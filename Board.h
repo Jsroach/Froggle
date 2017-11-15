@@ -69,16 +69,6 @@ public:
     /*
      * Setter
      */
-    void setPieceX(int pieceX);
-
-    /*
-     * Setter
-     */
-    void setPieceY(int pieceY);
-
-    /*
-     * Setter
-     */
     void setHasPiece(bool hasPiece);
 
     /*
