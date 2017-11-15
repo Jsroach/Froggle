@@ -14,8 +14,8 @@ class Board {
 private:
     int boardX;
     int boardY;
-    int pieceX;
-    int pieceY;
+    // vector<Piece> pieces; // includes both consonant and vowels
+    // Player player;
     bool hasPiece;
     vector<string> words;
     std::clock_t time;
@@ -40,16 +40,6 @@ public:
      * Getter
      */
     int getBoardY() const;
-
-    /*
-     * Getter
-     */
-    int getPieceX() const;
-
-    /*
-     * Getter
-     */
-    int getPieceY() const;
 
     /*
      * Getter
@@ -102,6 +92,7 @@ public:
     void setTime(clock_t time);
 
     void DrawBoard();
+    bool checkCollision();
     bool checkLetter();
     void startTimer();
     void endTimer();
