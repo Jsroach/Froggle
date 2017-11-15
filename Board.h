@@ -5,6 +5,11 @@
 #ifndef MCJJ_BOARD_H
 #define MCJJ_BOARD_H
 
+#include <string>
+#include <vector>
+
+using namespace std;
+
 class Board {
 private:
     int boardX;
@@ -12,9 +17,90 @@ private:
     int pieceX;
     int pieceY;
     bool hasPiece;
+    vector<string> words;
     std::clock_t time;
 
 public:
+    /*
+     * Default constructor
+     */
+    Board();
+
+    /*
+     * * Constructor
+     */
+    Board(int boardX, int boardY, int pieceX, int pieceY, bool hasPiece, const vector<string> &words, clock_t time);
+
+    /*
+     * Getter
+     */
+    int getBoardX() const;
+
+    /*
+     * Getter
+     */
+    int getBoardY() const;
+
+    /*
+     * Getter
+     */
+    int getPieceX() const;
+
+    /*
+     * Getter
+     */
+    int getPieceY() const;
+
+    /*
+     * Getter
+     */
+    bool isHasPiece() const;
+
+    /*
+     * Getter
+     */
+    const vector<string> &getWords() const;
+
+    /*
+     * Getter
+     */
+    clock_t getTime() const;
+
+    /*
+     * Setter
+     */
+    void setBoardX(int boardX);
+
+    /*
+     * Setter
+     */
+    void setBoardY(int boardY);
+
+    /*
+     * Setter
+     */
+    void setPieceX(int pieceX);
+
+    /*
+     * Setter
+     */
+    void setPieceY(int pieceY);
+
+    /*
+     * Setter
+     */
+    void setHasPiece(bool hasPiece);
+
+    /*
+     * Setter
+     */
+    void setWords(const vector<string> &words);
+
+    /*
+     * Setter
+     */
+    void setTime(clock_t time);
+
     void DrawBoard();
     bool checkLetter();
     void startTimer();

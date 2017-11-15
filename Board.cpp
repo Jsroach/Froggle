@@ -23,3 +23,65 @@ void Board::endTimer() {
     double duration = (std::clock() - time) / (double) CLOCKS_PER_SEC;
     std::cout << "Number of seconds: " << duration << std::endl;
 }
+
+Board::Board() {}
+
+Board::Board(int boardX, int boardY, int pieceX, int pieceY, bool hasPiece, const vector<string> &words, clock_t time)
+        : boardX(boardX), boardY(boardY), pieceX(pieceX), pieceY(pieceY), hasPiece(hasPiece), words(words),
+          time(time) {}
+
+int Board::getBoardX() const {
+    return boardX;
+}
+
+int Board::getBoardY() const {
+    return boardY;
+}
+
+int Board::getPieceX() const {
+    return pieceX;
+}
+
+int Board::getPieceY() const {
+    return pieceY;
+}
+
+bool Board::isHasPiece() const {
+    return hasPiece;
+}
+
+const vector<string> &Board::getWords() const {
+    return words;
+}
+
+clock_t Board::getTime() const {
+    return time;
+}
+
+void Board::setBoardX(int boardX) {
+    Board::boardX = boardX;
+}
+
+void Board::setBoardY(int boardY) {
+    Board::boardY = boardY;
+}
+
+void Board::setPieceX(int pieceX) {
+    Board::pieceX = pieceX;
+}
+
+void Board::setPieceY(int pieceY) {
+    Board::pieceY = pieceY;
+}
+
+void Board::setHasPiece(bool hasPiece) {
+    Board::hasPiece = hasPiece;
+}
+
+void Board::setWords(const vector<string> &words) {
+    Board::words = words;
+}
+
+void Board::setTime(clock_t time) {
+    Board::time = time;
+}
