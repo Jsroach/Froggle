@@ -29,7 +29,7 @@ public:
     /*
      * * Constructor
      */
-    Board(int boardX, int boardY, int pieceX, int pieceY, bool hasPiece, const vector<string> &words, clock_t time);
+    Board(int boardX, int boardY, bool hasPiece, const vector<string> &words, clock_t time);
 
     /*
      * Getter

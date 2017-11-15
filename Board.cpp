@@ -26,8 +26,8 @@ void Board::endTimer() {
 
 Board::Board() = default;
 
-Board::Board(int boardX, int boardY, int pieceX, int pieceY, bool hasPiece, const vector<string> &words, clock_t time)
-        : boardX(boardX), boardY(boardY), pieceX(pieceX), pieceY(pieceY), hasPiece(hasPiece), words(words),
+Board::Board(int boardX, int boardY, bool hasPiece, const vector<string> &words, clock_t time)
+        : boardX(boardX), boardY(boardY), hasPiece(hasPiece), words(words),
           time(time) {}
 
 int Board::getBoardX() const {
@@ -36,14 +36,6 @@ int Board::getBoardX() const {
 
 int Board::getBoardY() const {
     return boardY;
-}
-
-int Board::getPieceX() const {
-    return pieceX;
-}
-
-int Board::getPieceY() const {
-    return pieceY;
 }
 
 bool Board::isHasPiece() const {
@@ -64,14 +56,6 @@ void Board::setBoardX(int boardX) {
 
 void Board::setBoardY(int boardY) {
     Board::boardY = boardY;
-}
-
-void Board::setPieceX(int pieceX) {
-    Board::pieceX = pieceX;
-}
-
-void Board::setPieceY(int pieceY) {
-    Board::pieceY = pieceY;
 }
 
 void Board::setHasPiece(bool hasPiece) {
