@@ -24,7 +24,7 @@ void Board::endTimer() {
     std::cout << "Number of seconds: " << duration << std::endl;
 }
 
-Board::Board() {}
+Board::Board() = default;
 
 Board::Board(int boardX, int boardY, int pieceX, int pieceY, bool hasPiece, const vector<string> &words, clock_t time)
         : boardX(boardX), boardY(boardY), pieceX(pieceX), pieceY(pieceY), hasPiece(hasPiece), words(words),
@@ -84,4 +84,11 @@ void Board::setWords(const vector<string> &words) {
 
 void Board::setTime(clock_t time) {
     Board::time = time;
+}
+
+bool Board::checkCollision() {
+    // loop through the vector of all pieces.
+    // if piece has the same y value as player, check x value.
+    // if the x value for the piece is the same as the x value for the player a collision happened.
+    return false;
 }
