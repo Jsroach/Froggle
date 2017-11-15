@@ -5,6 +5,9 @@
 #ifndef MCJJ_PIECE_H
 #define MCJJ_PIECE_H
 
+#include <vector>
+using namespace std;
+
 class Piece {
 private:
     char character;
@@ -12,15 +15,19 @@ private:
     int y;
 
 public:
-    Piece() {}
+    Piece();
 
-    Piece(char character) : character(character) {}
+    Piece(char character);
 
-    virtual bool checkPosition() = 0;
     virtual void setPosition(int x, int y) = 0;
-    virtual void setCharacter(char character) = 0;
-    virtual char getCharacter() = 0;
     virtual void movePiece() = 0;
+    void setX(int xIn);
+    void setY(int yIn);
+    int getX() const;
+    int getY() const;
+    void setCharacter(char characterIn);
+    char getCharacter() const;
 };
+
 
 #endif //MCJJ_PIECE_H
