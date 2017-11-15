@@ -16,10 +16,7 @@ public:
 
     Constant(char characterIn);
 
-    bool checkPosition() override;
     void setPosition(int x, int y) override;
-    void setCharacter(char character) override;
-    char getCharacter() override;
     void movePiece() override;
 
 };
