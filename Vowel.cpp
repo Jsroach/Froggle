@@ -3,7 +3,6 @@
 //
 
 #include "Vowel.h"
-#include <random>
 
 Vowel::Vowel() : Piece() {
     Vowel::generate_vowel();
