@@ -31,7 +31,6 @@ public:
     void setY(int yIn);
     int getX() const;
     int getY() const;
-    virtual void setCharacter(char characterIn);
     char getCharacter() const;
 };
 
