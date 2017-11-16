@@ -14,8 +14,6 @@ public:
 
     void setCharacter(char characterIn) override;
 
-
-private:
     void movePiece() override;
 };
 
