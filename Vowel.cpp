@@ -3,19 +3,19 @@
 //
 
 #include "Vowel.h"
-#include <random>
 
 Vowel::Vowel() : Piece() {
+    Vowel::generate_vowel();
 }
 
-Vowel::Vowel(char c) : Piece(c) {
+Vowel::Vowel(char c) : Vowel(), Piece(c) {
     Piece::setCharacter(c);
 }
 
-Vowel::Vowel(char c, int x, int y) : Piece(c,x,y) {
+Vowel::Vowel(char c, int x, int y) : Vowel(), Piece(c,x,y) {
 }
 
-Vowel::Vowel(int x, int y) : Piece() {
+Vowel::Vowel(int x, int y) : Vowel() {
     Piece::setX(x);
     Piece::setY(y);
 }
