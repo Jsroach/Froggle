@@ -91,6 +91,7 @@ public:
 
     void saveGame();
     void loadGame();
+    void restart();
 };
 
 #endif //MCJJ_BOARD_H
