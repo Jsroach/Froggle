@@ -1,14 +1,19 @@
 #include <iostream>
 #include "Board.h"
+#include <thread>
+#include <cstdlib>
+
+using namespace std::this_thread;
+using namespace std::chrono;
 
 int main() {
-//    std::cout << "Hello, World!" << std::endl;
 
     // Create a board
     Board board = Board();
-    // Call board methods
+    // Write to a text file and load from a text file
     board.saveGame();
     board.loadGame();
+
 
     return 0;
 }

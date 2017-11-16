@@ -16,6 +16,7 @@ public:
     Vowel(int x, int y);
 
     char generate_vowel();
+    
 protected:
     vector<char> letters = {'a','e','i','o','u','y'};
 };

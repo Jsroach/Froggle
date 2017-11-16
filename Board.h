@@ -10,17 +10,21 @@
 #include <ctime>
 #include <iostream>
 #include <fstream>
+#include "Player.h"
+
 using namespace std;
 
 class Board {
 private:
-    int boardX;
-    int boardY;
-    // vector<Piece> pieces; // includes both consonant and vowels
-    // Player player;
+    // Default dimension values
+    int boardX = 400;
+    int boardY = 400;
+
+    vector<Piece> pieces; // includes both consonants and vowels
+    Player player;
     bool hasPiece;
     vector<string> words;
-    std::clock_t time;
+    clock_t startTime;
 
 public:
     /*
@@ -31,7 +35,7 @@ public:
     /*
      * * Constructor
      */
-    Board(int boardX, int boardY, bool hasPiece, const vector<string> &words, clock_t time);
+    Board(int boardX, int boardY, bool hasPiece, const vector<string> &words);
 
     /*
      * Getter
@@ -87,7 +91,7 @@ public:
     bool checkCollision();
     bool checkLetter();
     void startTimer();
-    void endTimer();
+    void stopTimer();
 
     void saveGame();
     void loadGame();
