@@ -5,7 +5,7 @@
 #include "Vowel.h"
 
 Vowel::Vowel() : Piece() {
-    Vowel::generate_vowel();
+    character = Vowel::generate_vowel();
 }
 
 Vowel::Vowel(char c) : Vowel(), Piece(c) {
