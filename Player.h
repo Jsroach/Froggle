@@ -4,7 +4,6 @@
 
 #ifndef MCJJ_PLAYER_H
 #define MCJJ_PLAYER_H
-
 #include "Piece.h"
 
 class Player : public Piece {
@@ -13,7 +12,8 @@ public:
 
     Player(int x, int y);
 
-    void setCharacter(char character);
+    void setCharacter(char characterIn) override;
+
 
 private:
     void movePiece() override;

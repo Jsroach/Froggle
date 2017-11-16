@@ -3,7 +3,7 @@
 //
 
 #include "Vowel.h"
-#include "Piece.h"
+#include <random>
 
 Vowel::Vowel() : Piece() {
 }
@@ -21,5 +21,7 @@ Vowel::Vowel(int x, int y) : Piece() {
 }
 
 char Vowel::generate_vowel() {
-    return 0;
+    int n = rand() % 6;
+    char letter = letters[n];
+    return letter;
 }
