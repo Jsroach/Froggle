@@ -17,10 +17,13 @@ private:
 public:
     Piece();
 
-    Piece(char character);
+    Piece(char characterIn);
+
+    Piece(char characterIn, int xIn, int yIn);
 
     virtual void setPosition(int x, int y) = 0;
     virtual void movePiece() = 0;
+    void position();
     void setX(int xIn);
     void setY(int yIn);
     int getX() const;

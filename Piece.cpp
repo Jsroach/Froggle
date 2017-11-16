@@ -7,8 +7,18 @@ Piece::Piece() = default;
 
 //Piece::Piece(char character) : Piece::setCharacter(character) {}
 
-Piece::Piece(char character) : character(character) {}
+Piece::Piece(char characterIn) {
+    character - characterIn;
+}
 
+Piece::Piece (char characterIn, int xIn, int yIn) {
+    character = characterIn;
+    x = xIn;
+    y = yIn;
+}
+void position() {
+    cout << "Position: (" << x << ", " << y << ")" << endl;
+}
 void Piece::setX(int xIn) {
     x = xIn;
 }
