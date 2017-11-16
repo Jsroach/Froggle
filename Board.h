@@ -10,15 +10,18 @@
 #include <ctime>
 #include <iostream>
 #include <fstream>
+#include "Player.h"
 
 using namespace std;
 
 class Board {
 private:
-    int boardX;
-    int boardY;
-    // vector<Piece> pieces; // includes both consonant and vowels
-    // Player player;
+    // Default dimension values
+    int boardX = 400;
+    int boardY = 400;
+
+    vector<Piece> pieces; // includes both consonants and vowels
+    Player player;
     bool hasPiece;
     vector<string> words;
     clock_t startTime;

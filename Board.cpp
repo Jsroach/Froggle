@@ -102,7 +102,9 @@ void Board::loadGame() {
 }
 
 void Board::restart() {
-    // restart game
     cout << "Restarting game" << endl;
-    // TODO: Implement restart game
+    // TODO: Implement restart function
+    // Loop through all the pieces and generate new positions for them.
+    // Reset the players letters to zero.
+    // Generate a new word.
 }
