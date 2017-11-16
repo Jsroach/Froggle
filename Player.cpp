@@ -3,7 +3,7 @@
 //
 
 #include "Player.h"
-#include "Piece.h"
+
 //default  constructer
 Player:: Player(){}
 //construtor sets initial positions (character is null initially)
