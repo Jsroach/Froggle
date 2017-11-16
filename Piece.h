@@ -8,12 +8,14 @@
 #include <vector>
 using namespace std;
 
+int SPACE = 10;
+
 class Piece {
 private:
-    char character;
     int x;
     int y;
-
+protected:
+    char character;
 public:
     Piece();
 
@@ -21,14 +23,14 @@ public:
 
     Piece(char characterIn, int xIn, int yIn);
 
-    virtual void setPosition(int x, int y) = 0;
     virtual void movePiece() = 0;
-    void position();
+    virtual void setCharacter(char characterIn);
+    void setPosition(int x, int y);
+    void getPosition();
     void setX(int xIn);
     void setY(int yIn);
     int getX() const;
     int getY() const;
-    void setCharacter(char characterIn);
     char getCharacter() const;
 };
 
