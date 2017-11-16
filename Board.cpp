@@ -78,12 +78,23 @@ bool Board::checkCollision() {
  void Board::saveGame() {
      // Should generate ID for each game and use that to find the right file.
      int gameID = 1;
-     ofstream file;
-     file.open("game-" + gameID);
+//     string textTitle = "game-" << gameID << ".txt";
+     ofstream file ("game.txt");
      file << "Writing to file" << endl;
      file.close();
  }
 
  void Board::loadGame() {
+     int gameID = 1;
+     string line;
+     ifstream file ("game.txt");
 
+     if (file.is_open()) {
+         while (getline(file, line)) {
+             cout << line << endl;
+         }
+         file.close();
+     } else {
+         cout << "Unable to open file" << endl;
+     }
  }
