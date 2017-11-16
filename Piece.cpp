@@ -1,6 +1,7 @@
 //
 // Created by cn345 on 11/15/2017.
 //
+#include <iostream>
 #include "Piece.h"
 
 Piece::Piece() = default;
@@ -14,12 +15,12 @@ Piece::Piece (char characterIn, int xIn, int yIn) {
     x = xIn;
     y = yIn;
 }
-void setPosition(int x, int y) {
-    setX(x);
-    setY(y);
+void Piece::setPosition(int x, int y) {
+    Piece::x = x;
+    y = y;
 }
 
-void getPosition() {
+void Piece::getPosition() {
     cout << "Position: (" << x << ", " << y << ")" << endl;
 }
 void Piece::setX(int xIn) {
