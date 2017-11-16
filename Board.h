@@ -10,6 +10,7 @@
 #include <ctime>
 #include <iostream>
 #include <fstream>
+
 using namespace std;
 
 class Board {
@@ -20,7 +21,7 @@ private:
     // Player player;
     bool hasPiece;
     vector<string> words;
-    std::clock_t time;
+    clock_t startTime;
 
 public:
     /*
@@ -31,7 +32,7 @@ public:
     /*
      * * Constructor
      */
-    Board(int boardX, int boardY, bool hasPiece, const vector<string> &words, clock_t time);
+    Board(int boardX, int boardY, bool hasPiece, const vector<string> &words);
 
     /*
      * Getter
@@ -87,7 +88,7 @@ public:
     bool checkCollision();
     bool checkLetter();
     void startTimer();
-    void endTimer();
+    void stopTimer();
 
     void saveGame();
     void loadGame();

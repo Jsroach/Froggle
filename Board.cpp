@@ -1,32 +1,15 @@
- //
+//
 // Created by Jacob Jonsson on 2017-11-15.
 //
 
 #include "Board.h"
 
-
-void Board::DrawBoard() {
-    // Use graphics
-}
-
-bool Board::checkLetter() {
-    return false;
-}
-
-void Board::startTimer() {
-    time = std::clock();
-}
-
-void Board::endTimer() {
-    double duration = (std::clock() - time) / (double) CLOCKS_PER_SEC;
-    std::cout << "Number of seconds: " << duration << std::endl;
-}
+using namespace std;
 
 Board::Board() = default;
 
-Board::Board(int boardX, int boardY, bool hasPiece, const vector<string> &words, clock_t time)
-        : boardX(boardX), boardY(boardY), hasPiece(hasPiece), words(words),
-          time(time) {}
+Board::Board(int boardX, int boardY, bool hasPiece, const vector<string> &words)
+        : boardX(boardX), boardY(boardY), hasPiece(hasPiece), words(words){}
 
 int Board::getBoardX() const {
     return boardX;
@@ -45,7 +28,7 @@ const vector<string> &Board::getWords() const {
 }
 
 clock_t Board::getTime() const {
-    return time;
+    return startTime;
 }
 
 void Board::setBoardX(int boardX) {
@@ -65,7 +48,26 @@ void Board::setWords(const vector<string> &words) {
 }
 
 void Board::setTime(clock_t time) {
-    Board::time = time;
+    Board::startTime = time;
+}
+
+void Board::DrawBoard() {
+    // Graphics stuff
+}
+
+bool Board::checkLetter() {
+    // TODO: Implement
+    return false;
+}
+
+void Board::startTimer() {
+    setTime(clock());
+    cout << clock() << endl;
+}
+
+void Board::stopTimer() {
+    double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
+    cout << "Number of seconds: " << duration << endl;
 }
 
 bool Board::checkCollision() {
@@ -75,30 +77,32 @@ bool Board::checkCollision() {
     return false;
 }
 
- void Board::saveGame() {
-     // Should generate ID for each game and use that to find the right file.
-     int gameID = 1;
-//     string textTitle = "game-" << gameID << ".txt";
-     ofstream file ("game.txt");
-     file << "Writing to file" << endl;
-     file.close();
- }
+void Board::saveGame() {
+    // Should generate ID for each game and use that to find the right file.
+    int gameID = 1;
+    // string textTitle = "game-" << gameID << ".txt";
+    ofstream file("game.txt");
+    file << "Writing to file" << endl;
+    file.close();
+}
 
- void Board::loadGame() {
-     int gameID = 1;
-     string line;
-     ifstream file ("game.txt");
+void Board::loadGame() {
+    int gameID = 1;
+    string line;
+    ifstream file("game.txt");
 
-     if (file.is_open()) {
-         while (getline(file, line)) {
-             cout << line << endl;
-         }
-         file.close();
-     } else {
-         cout << "Unable to open file" << endl;
-     }
- }
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            cout << line << endl;
+        }
+        file.close();
+    } else {
+        cout << "Unable to open file" << endl;
+    }
+}
 
- void Board::restart() {
-     // restart game
- }
+void Board::restart() {
+    // restart game
+    cout << "Restarting game" << endl;
+    // TODO: Implement restart game
+}
