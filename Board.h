@@ -7,7 +7,9 @@
 
 #include <string>
 #include <vector>
-
+#include <ctime>
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 class Board {
@@ -86,6 +88,9 @@ public:
     bool checkLetter();
     void startTimer();
     void endTimer();
+
+    void saveGame();
+    void loadGame();
 };
 
 #endif //MCJJ_BOARD_H

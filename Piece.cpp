@@ -3,13 +3,16 @@
 //
 #include "Piece.h"
 
-Piece::Piece() = default {}
+Piece::Piece() = default;
 
-Piece::Piece(char character) : setCharacter(character) {}
+//Piece::Piece(char character) : Piece::setCharacter(character) {}
+
+Piece::Piece(char character) : character(character) {}
 
 void Piece::setX(int xIn) {
     x = xIn;
 }
+
 void Piece::setY(int yIn) {
     y = yIn;
 }

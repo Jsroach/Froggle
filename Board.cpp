@@ -2,8 +2,6 @@
 // Created by Jacob Jonsson on 2017-11-15.
 //
 
-#include <ctime>
-#include <iostream>
 #include "Board.h"
 
 
@@ -76,3 +74,16 @@ bool Board::checkCollision() {
     // if the x value for the piece is the same as the x value for the player a collision happened.
     return false;
 }
+
+ void Board::saveGame() {
+     // Should generate ID for each game and use that to find the right file.
+     int gameID = 1;
+     ofstream file;
+     file.open("game-" + gameID);
+     file << "Writing to file" << endl;
+     file.close();
+ }
+
+ void Board::loadGame() {
+
+ }
