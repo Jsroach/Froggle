@@ -2,8 +2,6 @@
 // Created by Jacob Jonsson on 2017-11-15.
 //
 
-#include <ctime>
-#include <iostream>
 #include "Board.h"
 
 
@@ -26,8 +24,8 @@ void Board::endTimer() {
 
 Board::Board() = default;
 
-Board::Board(int boardX, int boardY, int pieceX, int pieceY, bool hasPiece, const vector<string> &words, clock_t time)
-        : boardX(boardX), boardY(boardY), pieceX(pieceX), pieceY(pieceY), hasPiece(hasPiece), words(words),
+Board::Board(int boardX, int boardY, bool hasPiece, const vector<string> &words, clock_t time)
+        : boardX(boardX), boardY(boardY), hasPiece(hasPiece), words(words),
           time(time) {}
 
 int Board::getBoardX() const {
@@ -36,14 +34,6 @@ int Board::getBoardX() const {
 
 int Board::getBoardY() const {
     return boardY;
-}
-
-int Board::getPieceX() const {
-    return pieceX;
-}
-
-int Board::getPieceY() const {
-    return pieceY;
 }
 
 bool Board::isHasPiece() const {
@@ -66,14 +56,6 @@ void Board::setBoardY(int boardY) {
     Board::boardY = boardY;
 }
 
-void Board::setPieceX(int pieceX) {
-    Board::pieceX = pieceX;
-}
-
-void Board::setPieceY(int pieceY) {
-    Board::pieceY = pieceY;
-}
-
 void Board::setHasPiece(bool hasPiece) {
     Board::hasPiece = hasPiece;
 }
@@ -92,3 +74,27 @@ bool Board::checkCollision() {
     // if the x value for the piece is the same as the x value for the player a collision happened.
     return false;
 }
+
+ void Board::saveGame() {
+     // Should generate ID for each game and use that to find the right file.
+     int gameID = 1;
+//     string textTitle = "game-" << gameID << ".txt";
+     ofstream file ("game.txt");
+     file << "Writing to file" << endl;
+     file.close();
+ }
+
+ void Board::loadGame() {
+     int gameID = 1;
+     string line;
+     ifstream file ("game.txt");
+
+     if (file.is_open()) {
+         while (getline(file, line)) {
+             cout << line << endl;
+         }
+         file.close();
+     } else {
+         cout << "Unable to open file" << endl;
+     }
+ }

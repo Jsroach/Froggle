@@ -7,7 +7,9 @@
 
 #include <string>
 #include <vector>
-
+#include <ctime>
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 class Board {
@@ -29,7 +31,7 @@ public:
     /*
      * * Constructor
      */
-    Board(int boardX, int boardY, int pieceX, int pieceY, bool hasPiece, const vector<string> &words, clock_t time);
+    Board(int boardX, int boardY, bool hasPiece, const vector<string> &words, clock_t time);
 
     /*
      * Getter
@@ -69,16 +71,6 @@ public:
     /*
      * Setter
      */
-    void setPieceX(int pieceX);
-
-    /*
-     * Setter
-     */
-    void setPieceY(int pieceY);
-
-    /*
-     * Setter
-     */
     void setHasPiece(bool hasPiece);
 
     /*
@@ -96,6 +88,9 @@ public:
     bool checkLetter();
     void startTimer();
     void endTimer();
+
+    void saveGame();
+    void loadGame();
 };
 
 #endif //MCJJ_BOARD_H
