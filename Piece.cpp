@@ -5,10 +5,23 @@
 
 Piece::Piece() = default;
 
-//Piece::Piece(char character) : Piece::setCharacter(character) {}
+Piece::Piece(char characterIn) {
+    character = characterIn;
+}
 
-Piece::Piece(char character) : character(character) {}
+Piece::Piece (char characterIn, int xIn, int yIn) {
+    character = characterIn;
+    x = xIn;
+    y = yIn;
+}
+void setPosition(int x, int y) {
+    setX(x);
+    setY(y);
+}
 
+void getPosition() {
+    cout << "Position: (" << x << ", " << y << ")" << endl;
+}
 void Piece::setX(int xIn) {
     x = xIn;
 }
@@ -22,9 +35,7 @@ int Piece::getX() const {
 int Piece::getY() const {
     return y;
 }
-void Piece::setCharacter(char characterIn) {
-    character = characterIn;
-}
+
 char Piece::getCharacter() const {
     return character;
 }

@@ -7,20 +7,19 @@
 
 #include "Piece.h"
 
-class Constant : public Piece {
+class Consonant : public Piece {
 private:
     vector<char> cPieces = {'b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'};
 
 public:
-    Constant();
+    Consonant();
 
-    Constant(char characterIn);
+    Consonant(char characterIn);
 
-    bool checkPosition() override;
-    void setPosition(int x, int y) override;
-    void setCharacter(char character) override;
-    char getCharacter() override;
+    Consonant(char characterIn, int xIn, int yIn);
+
     void movePiece() override;
+    void setCharacter () override;
 
 };
 #endif //MCJJ_CONSTANT_H
