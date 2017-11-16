@@ -11,13 +11,11 @@ using namespace std;
 class Vowel : public Piece{
 public:
     Vowel();
-    Vowel(char c);
+    explicit Vowel(char c);
     Vowel(char c, int x, int y);
     Vowel(int x, int y);
 
-    char generate_vowel(){
-
-    }
+    char generate_vowel();
 protected:
     vector<char> letters = {'a','e','i','o','u','y'};
 };

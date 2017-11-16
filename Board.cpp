@@ -98,3 +98,7 @@ bool Board::checkCollision() {
          cout << "Unable to open file" << endl;
      }
  }
+
+ void Board::restart() {
+     // restart game
+ }
