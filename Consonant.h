@@ -19,7 +19,7 @@ public:
     Consonant(char characterIn, int xIn, int yIn);
 
     void movePiece() override;
-    void setCharacter () override;
+    virtual void setCharacter(char characterIn) override;
 
 };
 #endif //MCJJ_CONSTANT_H

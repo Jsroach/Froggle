@@ -8,15 +8,17 @@
 #include <vector>
 using namespace std;
 
-class Vowel : public Piece{
+class Vowel : public Piece {
 public:
     Vowel();
     explicit Vowel(char c);
     Vowel(char c, int x, int y);
     Vowel(int x, int y);
 
+    virtual void setCharacter(char characterIn) override;
+
     char generate_vowel();
-    
+
 protected:
     vector<char> letters = {'a','e','i','o','u','y'};
 };

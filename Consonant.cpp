@@ -3,7 +3,7 @@
 //
 #include "Consonant.h"
 
-Consonant::Consonant() = default {}
+Consonant::Consonant() = default;
 
 Consonant::Consonant(char characterIn) : setCharacter(characterIn) {}
 
