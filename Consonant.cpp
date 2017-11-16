@@ -4,7 +4,7 @@
 #include "Consonant.h"
 #include <iostream>
 
-Consonant::Consonant() = default {}
+Consonant::Consonant() = default;
 
 Consonant::Consonant(char characterIn) : setCharacter(characterIn) {}
 
