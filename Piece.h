@@ -19,12 +19,12 @@ protected:
 public:
     Piece();
 
-    Piece(char characterIn);
+    explicit Piece(char characterIn);
 
     Piece(char characterIn, int xIn, int yIn);
 
     virtual void movePiece() = 0;
-    virtual void setCharacter(char characterIn);
+    virtual void setCharacter(char characterIn) = 0;
     void setPosition(int x, int y);
     void getPosition();
     void setX(int xIn);

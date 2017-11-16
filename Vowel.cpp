@@ -3,23 +3,25 @@
 //
 
 #include "Vowel.h"
-#include "Piece.h"
 
 Vowel::Vowel() : Piece() {
+    character = Vowel::generate_vowel();
 }
 
-Vowel::Vowel(char c) : Piece(c) {
+Vowel::Vowel(char c) : Vowel(), Piece(c) {
     Piece::setCharacter(c);
 }
 
-Vowel::Vowel(char c, int x, int y) : Piece(c,x,y) {
+Vowel::Vowel(char c, int x, int y) : Vowel(), Piece(c,x,y) {
 }
 
-Vowel::Vowel(int x, int y) : Piece() {
+Vowel::Vowel(int x, int y) : Vowel() {
     Piece::setX(x);
     Piece::setY(y);
 }
 
 char Vowel::generate_vowel() {
-    return 0;
+    int n = rand() % 6;
+    char letter = letters[n];
+    return letter;
 }
