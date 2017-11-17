@@ -20,8 +20,9 @@ void Piece::setPosition(int x, int y) {
     y = y;
 }
 
-void Piece::getPosition() {
+int Piece::getPosition() const {
     cout << "Position: (" << x << ", " << y << ")" << endl;
+    return x,y;
 }
 void Piece::setX(int xIn) {
     x = xIn;

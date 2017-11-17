@@ -24,15 +24,18 @@ public:
 
     Piece(char characterIn, int xIn, int yIn);
 
-    virtual void movePiece() = 0;
-    virtual void setCharacter(char characterIn) = 0;
-    void setPosition(int x, int y);
-    void getPosition();
-    void setX(int xIn);
-    void setY(int yIn);
+    int getPosition() const;
     int getX() const;
     int getY() const;
     char getCharacter() const;
+
+    void setPosition(int x, int y);
+    void setX(int xIn);
+    void setY(int yIn);
+
+    virtual void movePiece() = 0;
+    virtual void setCharacter(char characterIn) = 0;
+
 };
 
 
