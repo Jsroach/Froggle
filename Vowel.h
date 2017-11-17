@@ -17,6 +17,7 @@ public:
 
     void setCharacter(char characterIn) override;
 
+    void movePiece() override;
     char generate_vowel();
 
 protected:
