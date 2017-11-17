@@ -20,6 +20,7 @@ public:
 
     void movePiece() override;
     void setCharacter (char characterIn) override;
+    char generateConsonant();
 
 };
 #endif //MCJJ_CONSTANT_H

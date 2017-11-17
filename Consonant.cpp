@@ -6,9 +6,11 @@
 
 Consonant::Consonant() = default;
 
-Consonant::Consonant(char characterIn) : setCharacter(characterIn) {}
+Consonant::Consonant(char characterIn){
+    character = characterIn;
+}
 
-Consonant::Consonant(char characterIn, int xIn, int yIn) : setCharacter(characterIn), setX(xIn), setY(yIn) {}
+Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){}
 
 void Consonant::movePiece() {
     if (getY() == SPACE && getX() > 0) {
@@ -31,4 +33,10 @@ void Consonant::setCharacter(char characterIn) {
     }else {
         cout << "Character is not a consonant" << endl;
     }
+}
+
+char Consonant::generateConsonant() {
+    int n = rand() % 20;
+    char letter = cPieces[n];
+    return letter;
 }
