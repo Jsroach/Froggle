@@ -21,14 +21,17 @@ int main() {
     Vowel v1 = Vowel('a', 0, 100);
     Consonant c1 = Consonant('t', 200, 10);
 
+    cout << "Player: " << endl;
     player.getPosition();
     player.movePiece();
     player.getPosition();
 
+    cout << "Vowel: " << endl;
     v1.getPosition();
     v1.movePiece();
     v1.getPosition();
 
+    cout << "Consonant: " << endl;
     c1.getPosition();
     c1.movePiece();
     c1.getPosition();
