@@ -9,10 +9,13 @@ Vowel::Vowel() : Piece() {
 }
 
 Vowel::Vowel(char c) : Vowel(), Piece(c) {
-    Piece::setCharacter(c);
+    character = c;
 }
 
-Vowel::Vowel(char c, int x, int y) : Vowel(), Piece(c,x,y) {
+Vowel::Vowel(char c, int x, int y) : Vowel() {
+    character = c;
+    setX(x);
+    setY(y);
 }
 
 Vowel::Vowel(int x, int y) : Vowel() {

@@ -2,7 +2,7 @@
 // Created by cn345 on 11/15/2017.
 //
 #include "Consonant.h"
-#include <iostream>
+
 
 Consonant::Consonant() = default;
 

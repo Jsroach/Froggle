@@ -2,15 +2,13 @@
 #include "Board.h"
 #include <thread>
 #include <cstdlib>
-#include "Piece.h"
 #include "Consonant.h"
-
-using namespace std::this_thread;
-using namespace std::chrono;
 #include "Player.h"
 #include "Vowel.h"
-#include "Consonant.h"
 #include "Piece.h"
+
+using namespace std::chrono;
+
 
 int main() {
 
@@ -53,12 +51,5 @@ int main() {
     cC = c1.getCharacter();
     cout<<cC<<endl;
 
-
-
-
-    Consonant c1 = Consonant('t', SPACE*20, SPACE);
-    c1.getPosition();
-    c1.movePiece();
-    c1.getPosition();
     return 0;
 }

@@ -5,6 +5,7 @@
 #ifndef MCJJ_PIECE_H
 #define MCJJ_PIECE_H
 
+#include <iostream>
 #include <vector>
 using namespace std;
 
