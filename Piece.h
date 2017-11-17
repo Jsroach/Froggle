@@ -9,7 +9,6 @@
 #include <vector>
 using namespace std;
 
-int SPACE = 10;
 
 class Piece {
 private:
@@ -18,6 +17,7 @@ private:
 protected:
     char character;
 public:
+    int SPACE = 10;
     Piece();
 
     explicit Piece(char characterIn);

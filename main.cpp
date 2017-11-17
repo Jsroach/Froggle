@@ -19,7 +19,7 @@ int main() {
     board.loadGame();
     Player player = Player(200, 500);
     Vowel v1 = Vowel('a', 0, 100);
-    Consonant c1 = Consonant('t', 0, 200);
+    Consonant c1 = Consonant('t', 200, 10);
 
     player.getPosition();
     player.movePiece();

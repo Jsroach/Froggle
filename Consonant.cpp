@@ -15,8 +15,10 @@ Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xI
 void Consonant::movePiece() {
     if (getY() == SPACE && getX() > 0) {
         setX(getX() - SPACE);
-    }else if (getY() == SPACE * 2 && getX() < SPACE * 50) {
+    }else if (getY() == SPACE*2 && getX() < 500) {
         setX(getX() + SPACE);
+    }else {
+        cout << "Car is off the road!" << endl;
     }
 }
 

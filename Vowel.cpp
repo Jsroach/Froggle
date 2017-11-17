@@ -4,11 +4,11 @@
 
 #include "Vowel.h"
 
-Vowel::Vowel() : Piece() {
+Vowel::Vowel() {
     character = Vowel::generate_vowel();
 }
 
-Vowel::Vowel(char c) : Vowel(), Piece(c) {
+Vowel::Vowel(char c) : Vowel() {
     character = c;
 }
 
