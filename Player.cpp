@@ -14,22 +14,14 @@ Player:: Player(){}
  * Effects: player object position
  */
 Player:: Player(int x, int y){
-    setPosition(x,y);
+    setX(x);
+    setY(y);
+    character = ' ';
 }
-/*
- * sets character as parameter
- * Requires: Char character
- * Modifies: Player character field
- * Effects: player object
- **/
+
 void Player:: setCharacter(char characterIn) {
     character = characterIn;
 }
-/* for now moves player "up" by SPACE
- * Requires: nothing
- * Modifies: player position
- * Effects: player object
- **/
 
 void Player:: movePiece(){
     setPosition(getX(), getY()-SPACE);

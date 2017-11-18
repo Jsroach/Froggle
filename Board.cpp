@@ -31,6 +31,17 @@ clock_t Board::getTime() const {
     return startTime;
 }
 
+vector<Vowel> Board::getVowel() const {
+    return vow;
+}
+vector<Consonant> Board::getConsonant() const {
+    return con;
+}
+
+Player Board::getPlayer() const {
+    return player;
+}
+
 void Board::setBoardX(int boardX) {
     Board::boardX = boardX;
 }
@@ -49,6 +60,18 @@ void Board::setWords(const vector<string> &words) {
 
 void Board::setTime(clock_t time) {
     Board::startTime = time;
+}
+
+void Board::setVowel(Vowel v) {
+    vow.emplace_back(v);
+}
+
+void Board::setConsonant(Consonant c) {
+    con.emplace_back(c);
+}
+
+void Board::setPlayer(Player p) {
+    player = p;
 }
 
 void Board::DrawBoard() {
@@ -82,25 +105,60 @@ void Board::saveGame() {
     int gameID = 1;
     // string textTitle = "game-" << gameID << ".txt";
     ofstream file("game.txt");
-    file << "Writing to file" << endl;
+    for (int i = 0; i < vow.size(); ++i) {
+        file << "v," << vow[i].getCharacter() << ',' << vow[i].getX() << ',' << vow[i].getY() << ',' << endl;
+    }
+    for (int i = 0; i < con.size(); ++i) {
+        file << "c," << con[i].getCharacter() << ',' << con[i].getX() << ',' << con[i].getY() << ',' << endl;
+    }
+    if (player.getCharacter() == ' ') {
+        file << "p,!," << player.getX() << ',' << player.getY() << ',' << endl;
+    } else {
+        file << "p," << player.getCharacter() << ',' << player.getX() << ',' << player.getY() << ',' << endl;
+    }
+    //file << "Writing to file" << endl;
     file.close();
+    con.clear();
+    vow.clear();
+    player = Player(0,0);
 }
 
 void Board::loadGame() {
     int gameID = 1;
-    string line;
-    ifstream file("game.txt");
+    char type;
+    char character;
+    char comma;
+    int x;
+    int y;
 
-    if (file.is_open()) {
-        while (getline(file, line)) {
-            cout << line << endl;
+    ifstream file("game.txt");
+    while(file) {
+        file >> type >> comma >> character >> comma >> x >> comma >> y >> comma;
+        if (type == 'v') {
+            vow.emplace_back(Vowel(character, x, y));
+        }else if (type == 'c') {
+            con.emplace_back(Consonant(character, x, y));
+        }else if (type == 'p' && character == '!'){
+            setPlayer(Player(x,y));
+        }else {
+            setPlayer(Player(x,y));
+            player.setCharacter(character);
         }
-        file.close();
-    } else {
-        cout << "Unable to open file" << endl;
     }
+    file.close();
 }
 
+void Board::newGame() {
+    con.clear();
+    vow.clear();
+    player = Player(0,0);
+    con.emplace_back(Consonant(' ', 0 ,0));
+    vow.emplace_back(Vowel(' ', 0, 0));
+    player = Player(0,0);
+
+    cout << "New Game Started!" << endl;
+
+}
 void Board::restart() {
     cout << "Restarting game" << endl;
     // TODO: Implement restart function

@@ -17,7 +17,7 @@ Piece::Piece (char characterIn, int xIn, int yIn) {
 }
 void Piece::setPosition(int x, int y) {
     Piece::x = x;
-    y = y;
+    Piece::y = y;
 }
 
 int Piece::getPosition() const {
