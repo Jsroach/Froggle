@@ -115,12 +115,16 @@ int main() {
     //Changes Vowels character
     cout<< "Vowel's Character Change: "<<endl;
     cout << v1.getCharacter() << endl; //a
+    v1.setCharacter('t');
+    cout << v1.getCharacter() << endl;//Character is not a vowel
     v1.setCharacter('o');
     cout << v1.getCharacter() << endl; //o
 
     //Changes Consonants character
     cout<< "Consonant's Character Change: "<<endl;
     cout << c1.getCharacter() << endl; //t
+    c1.setCharacter('o');
+    cout << c1.getCharacter() << endl;//Character is not a consonant
     c1.setCharacter('s');
     cout << c1.getCharacter() << endl; //s
 

@@ -103,27 +103,33 @@ bool Board::checkCollision() {
 void Board::saveGame() {
     // Should generate ID for each game and use that to find the right file.
     int gameID = 1;
-    // string textTitle = "game-" << gameID << ".txt";
+    //write to file
     ofstream file("game.txt");
+    //Write values of vowel vector to file
     for (int i = 0; i < vow.size(); ++i) {
+        //Leter is added at beginning to help with loading game in
         file << "v," << vow[i].getCharacter() << ',' << vow[i].getX() << ',' << vow[i].getY() << ',' << endl;
     }
+    //Write values of consonant vector to file
     for (int i = 0; i < con.size(); ++i) {
         file << "c," << con[i].getCharacter() << ',' << con[i].getX() << ',' << con[i].getY() << ',' << endl;
     }
+    //If players character is blank write to file with temporary character
     if (player.getCharacter() == ' ') {
         file << "p,!," << player.getX() << ',' << player.getY() << ',' << endl;
-    } else {
+    } else { // Else just add character value
         file << "p," << player.getCharacter() << ',' << player.getX() << ',' << player.getY() << ',' << endl;
     }
     //file << "Writing to file" << endl;
     file.close();
+    //To demonstrate save worked in testing
     con.clear();
     vow.clear();
     player = Player(0,0);
 }
 
 void Board::loadGame() {
+    //Define variables
     int gameID = 1;
     char type;
     char character;
@@ -131,14 +137,17 @@ void Board::loadGame() {
     int x;
     int y;
 
+    //Open save file
     ifstream file("game.txt");
     while(file) {
+        //Get information from each line
         file >> type >> comma >> character >> comma >> x >> comma >> y >> comma;
+        //V = vowel
         if (type == 'v') {
             vow.emplace_back(Vowel(character, x, y));
         }else if (type == 'c') {
             con.emplace_back(Consonant(character, x, y));
-        }else if (type == 'p' && character == '!'){
+        }else if (type == 'p' && character == '!'){ //Check to see if player character is a filler character
             setPlayer(Player(x,y));
         }else {
             setPlayer(Player(x,y));
@@ -149,13 +158,17 @@ void Board::loadGame() {
 }
 
 void Board::newGame() {
+    //Clears all values
     con.clear();
     vow.clear();
     player = Player(0,0);
+
+    //Set needed objects up (values are for testing purposes)
     con.emplace_back(Consonant(' ', 0 ,0));
     vow.emplace_back(Vowel(' ', 0, 0));
     player = Player(0,0);
 
+    //For testing
     cout << "New Game Started!" << endl;
 
 }
