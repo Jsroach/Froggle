@@ -21,8 +21,8 @@ void Piece::setPosition(int x, int y) {
 }
 
 int Piece::getPosition() const {
-    cout << "Position: (" << x << ", " << y << ")" << endl;
-    return x,y;
+    cout << "Position: (" << x << ", " << y << ")" << endl; //displays current position of piece
+    return x,y; //returns 2 variables, x and y
 }
 void Piece::setX(int xIn) {
     x = xIn;
