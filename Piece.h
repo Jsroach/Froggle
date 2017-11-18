@@ -17,23 +17,27 @@ private:
 protected:
     char character;
 public:
-    int SPACE = 10;
+    int SPACE = 10; //establishes unit conversion for piece length to graphics units
+    
+    //constructors
     Piece();
-
     explicit Piece(char characterIn);
-
     Piece(char characterIn, int xIn, int yIn);
-
+    
+    //getters
     int getPosition() const;
     int getX() const;
     int getY() const;
     char getCharacter() const;
 
+    //setters
     void setPosition(int x, int y);
     void setX(int xIn);
     void setY(int yIn);
 
+    //virtual method to move piece
     virtual void movePiece() = 0;
+    //virtual method to set the character for the class
     virtual void setCharacter(char characterIn) = 0;
 
 };
