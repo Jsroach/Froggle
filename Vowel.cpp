@@ -4,6 +4,7 @@
 
 #include "Vowel.h"
 
+
 Vowel::Vowel() {
     character = Vowel::generate_vowel(); //chooses a vowel randomly to set as the character field for the created piece
 }
