@@ -7,9 +7,11 @@
 #include "Vowel.h"
 #include "Piece.h"
 
+#include "graphics.h"
+
 using namespace std::chrono;
 
-int main() {
+int main(int argc, char** argv) {
     //Create Objects
     Player player1 = Player(200, 500);
     Vowel v1 = Vowel('a', 0, 100);
@@ -127,6 +129,8 @@ int main() {
     cout << c1.getCharacter() << endl;//Character is not a consonant
     c1.setCharacter('s');
     cout << c1.getCharacter() << endl; //s
+
+    graphicsPlay(argc, argv);
 
     return 0;
 }
