@@ -6,16 +6,17 @@
 
 GLdouble width, height;
 int wd;
+int UNIT = 50;
 
 void init() {
-    width = 500;
-    height = 500;
+    width = UNIT * 11;
+    height = UNIT * 14;
 }
 
 /* Initialize OpenGL Graphics */
 void initGL() {
     // Set "clearing" or background color
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black and opaque
+    glClearColor(0.0f, 0.5f, 0.0f, 1.0f); // Black and opaque
 }
 
 /* Handler for window-repaint event. Call back when the window first appears and
@@ -37,6 +38,45 @@ void display() {
     /*
      * Draw here
      */
+
+    //shape
+
+    //Two Lane Road
+    glColor3f(0.6, 0.6, 0.6);
+    glBegin(GL_QUADS);
+    glVertex2i(0, UNIT);
+    glVertex2i(0, UNIT*3);
+    glVertex2i(width, UNIT*3);
+    glVertex2i(width, UNIT);
+    glEnd();
+
+    glColor3f(0.0,0.0,0.0);
+    glPointSize(1.0);
+    glBegin(GL_LINES);
+    glVertex2d(0,UNIT);
+    glVertex2d(width,UNIT);
+    glBegin(GL_LINES);
+    glVertex2d(0,UNIT*3);
+    glVertex2d(width,UNIT*3);
+    glEnd();
+
+    //Three Lane Road #1
+    glColor3f(0.6, 0.6, 0.6);
+    glBegin(GL_QUADS);
+    glVertex2i(0, UNIT*4);
+    glVertex2i(0, UNIT*7);
+    glVertex2i(width, UNIT*7);
+    glVertex2i(width, UNIT*4);
+    glEnd();
+
+    //Three Lane Road #2
+    glColor3f(0.6, 0.6, 0.6);
+    glBegin(GL_QUADS);
+    glVertex2i(0, UNIT*8);
+    glVertex2i(0, UNIT*11);
+    glVertex2i(width, UNIT*11);
+    glVertex2i(width, UNIT*8);
+    glEnd();
 
     glFlush();  // Render now
 }
@@ -107,7 +147,7 @@ int graphicsPlay(int argc, char** argv) {
     glutInitDisplayMode(GLUT_RGBA);
 
     glutInitWindowSize((int)width, (int)height);
-    glutInitWindowPosition(100, 200); // Position the window's initial top-left corner
+    glutInitWindowPosition(450, 100); // Position the window's initial top-left corner
     /* create the window and store the handle to it */
     wd = glutCreateWindow("Fun with Drawing!" /* title */ );
 
