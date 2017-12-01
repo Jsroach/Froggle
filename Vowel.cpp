@@ -4,8 +4,9 @@
 
 #include "Vowel.h"
 
+
 Vowel::Vowel() {
-    character = Vowel::generate_vowel();
+    character = Vowel::generate_vowel(); //chooses a vowel randomly to set as the character field for the created piece
 }
 
 Vowel::Vowel(char c) : Vowel() {
@@ -24,31 +25,31 @@ Vowel::Vowel(int x, int y) : Vowel() {
 }
 
 void Vowel::movePiece() {
-    if (getY() == SPACE && getX() > 0) {
+    if (getY() == SPACE && getX() > 0) { //moves piece to the left if it is in a certain row (lane)
         setX(getX() - SPACE);
-    }else if (getY() == SPACE*2 && getX() < 500) {
+    }else if (getY() == SPACE*2 && getX() < 500) { //moves piece to the right if it is in a specific row (lane)
         setX(getX() + SPACE);
     }else {
-        cout << "Car is off the road!" << endl;
+        cout << "Car is off the road!" << endl; //error message
     }
 }
 
 void Vowel::setCharacter(char characterIn) {
     bool check = false;
-    for (int i = 0; i < letters.size(); i++) {
+    for (int i = 0; i < letters.size(); i++) { //checks to make sure inputted character is in vowels vector (is a vowel)
         if (characterIn == letters[i]) {
             check = true;
             break;
         }else;
     }
     if (check == true) {
-        character = characterIn;
+        character = characterIn; //sets character if input is a vowel
     }else {
-        cout << "Character is not a Vowel" << endl;
+        cout << "Character is not a Vowel" << endl; //displays error message if input is not a vowel
     }
 }
 
-char Vowel::generate_vowel() {
+char Vowel::generate_vowel() { //randomly returns a vowel out of the 6 existing vowels (Y included)
     int n = rand() % 6;
     char letter = letters[n];
     return letter;

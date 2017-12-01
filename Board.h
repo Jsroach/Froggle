@@ -119,15 +119,43 @@ public:
      */
     void setPlayer(Player p);
 
+    //Set up for later
     void DrawBoard();
+
+    //Set up for later
     bool checkCollision();
+
+    //Set up for later
     bool checkLetter();
+
+    //Set up for later
     void startTimer();
+
+    //Set up for later
     void stopTimer();
 
+    /**
+     * Requires: Game to be made
+     * Modifies: Output file
+     * Effects: Saves the game, can only store one game at a time
+     */
     void saveGame();
+
+    /**
+     * Requires: Save game to be on file
+     * Modifies: Board object values
+     * Effects: Loads a saved game into the board
+     */
     void loadGame();
+
+    /**
+     * Requires: None
+     * Modifies: Board object values
+     * Effects: Creates a new game, *starting values of objecs still need to be determined*
+     */
     void newGame();
+
+    //Set up for later
     void restart();
 };
 
