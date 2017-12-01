@@ -15,8 +15,9 @@ public:
     Vowel(char c, int x, int y);
     Vowel(int x, int y);
 
-    virtual void setCharacter(char characterIn) override;
+    void setCharacter(char characterIn) override;
 
+    void movePiece() override;
     char generate_vowel();
 
 protected:

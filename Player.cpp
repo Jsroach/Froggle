@@ -3,18 +3,26 @@
 //
 
 #include "Player.h"
-#include "Piece.h"
-//default  constructer
+/*
+ * default constructor
+ */
 Player:: Player(){}
-//construtor sets initial positions (character is null initially)
+//constructor sets initial positions (character is null initially)
+/*
+ * Requires: position (x and y)
+ * Modifies: player object
+ * Effects: player object position
+ */
 Player:: Player(int x, int y){
-    setPosition(x,y);
+    setX(x);
+    setY(y);
+    character = ' ';
 }
-//sets character as parameter
+
 void Player:: setCharacter(char characterIn) {
     character = characterIn;
 }
-//for now moves player "up" by SPACE
+
 void Player:: movePiece(){
     setPosition(getX(), getY()-SPACE);
 }

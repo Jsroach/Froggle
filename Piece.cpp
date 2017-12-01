@@ -17,11 +17,12 @@ Piece::Piece (char characterIn, int xIn, int yIn) {
 }
 void Piece::setPosition(int x, int y) {
     Piece::x = x;
-    y = y;
+    Piece::y = y;
 }
 
-void Piece::getPosition() {
+int Piece::getPosition() const {
     cout << "Position: (" << x << ", " << y << ")" << endl;
+    return x,y;
 }
 void Piece::setX(int xIn) {
     x = xIn;

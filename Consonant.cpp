@@ -2,19 +2,23 @@
 // Created by cn345 on 11/15/2017.
 //
 #include "Consonant.h"
-#include <iostream>
+
 
 Consonant::Consonant() = default;
 
-Consonant::Consonant(char characterIn) : setCharacter(characterIn) {}
+Consonant::Consonant(char characterIn){
+    character = characterIn;
+}
 
-Consonant::Consonant(char characterIn, int xIn, int yIn) : setCharacter(characterIn), setX(xIn), setY(yIn) {}
+Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){}
 
 void Consonant::movePiece() {
     if (getY() == SPACE && getX() > 0) {
         setX(getX() - SPACE);
-    }else if (getY() == SPACE * 2 && getX() < SPACE * 50) {
+    }else if (getY() == SPACE*2 && getX() < 500) {
         setX(getX() + SPACE);
+    }else {
+        cout << "Car is off the road!" << endl;
     }
 }
 
@@ -31,4 +35,10 @@ void Consonant::setCharacter(char characterIn) {
     }else {
         cout << "Character is not a consonant" << endl;
     }
+}
+
+char Consonant::generateConsonant() {
+    int n = rand() % 20;
+    char letter = cPieces[n];
+    return letter;
 }

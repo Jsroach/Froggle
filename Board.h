@@ -11,6 +11,8 @@
 #include <iostream>
 #include <fstream>
 #include "Player.h"
+#include "Vowel.h"
+#include "Consonant.h"
 
 using namespace std;
 
@@ -20,7 +22,8 @@ private:
     int boardX = 400;
     int boardY = 400;
 
-    vector<Piece> pieces; // includes both consonants and vowels
+    vector<Consonant> con; // includes both consonants and vowels
+    vector<Vowel> vow;
     Player player;
     bool hasPiece;
     vector<string> words;
@@ -61,6 +64,20 @@ public:
      * Getter
      */
     clock_t getTime() const;
+    /*
+     * Getter
+     */
+    vector<Vowel> getVowel() const;
+
+    /*
+     * Getter
+     */
+    vector<Consonant> getConsonant() const;
+
+    /*
+     * Getter
+     */
+    Player getPlayer() const;
 
     /*
      * Setter
@@ -87,6 +104,21 @@ public:
      */
     void setTime(clock_t time);
 
+    /*
+     * Setter
+     */
+    void setVowel(Vowel v);
+
+    /*
+     * Setter
+     */
+    void setConsonant(Consonant c);
+
+    /*
+     * Setter
+     */
+    void setPlayer(Player p);
+
     void DrawBoard();
     bool checkCollision();
     bool checkLetter();
@@ -95,6 +127,7 @@ public:
 
     void saveGame();
     void loadGame();
+    void newGame();
     void restart();
 };
 
