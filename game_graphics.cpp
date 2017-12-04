@@ -3,6 +3,9 @@
 //
 
 #include "graphics.h"
+#include <string>
+
+using namespace std;
 
 GLdouble width, height;
 int wd;
@@ -77,6 +80,39 @@ void display() {
     glVertex2i(width, UNIT*11);
     glVertex2i(width, UNIT*8);
     glEnd();
+
+    // drawing menu
+    glColor3f(0.0, 0.0, 0.0);
+    glBegin(GL_QUADS);
+    glVertex2i(0, UNIT * 13);
+    glVertex2i(0, height);
+    glVertex2i(width, height);
+    glVertex2i(width, UNIT * 13);
+    glEnd();
+
+    // drawing new game
+    string newGame = "New Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 0.2, UNIT * 13.7);
+    for (int i = 0; i < newGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, newGame[i]);
+    }
+
+    // drawing load game
+    string loadGame = "Load Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 5, UNIT * 13.7);
+    for (int i = 0; i < loadGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, loadGame[i]);
+    }
+
+    // drawing exit button
+    string exit = "Exit";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 10, UNIT * 13.7);
+    for (int i = 0; i < exit.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
+    }
 
     glFlush();  // Render now
 }
