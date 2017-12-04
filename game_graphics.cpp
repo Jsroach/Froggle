@@ -4,6 +4,7 @@
 
 #include "graphics.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -161,7 +162,18 @@ void cursor(int x, int y) {
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
+    if (button == GLUT_LEFT_BUTTON and (x > 12 and x < 120) and (y > 669 and y < 690)) {
+        cout << "Inside New Game" << endl;
+    }
 
+    if (button == GLUT_LEFT_BUTTON and (x > 250 and x < 370) and (y > 669 and y < 690)) {
+        cout << "Inside Load Game" << endl;
+    }
+
+
+    if (button == GLUT_LEFT_BUTTON and (x > 500 and x < 550) and (y > 669 and y < 690)) {
+        cout << "Inside Exit" << endl;
+    }
 
 
     glutPostRedisplay();
