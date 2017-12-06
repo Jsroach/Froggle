@@ -5,7 +5,7 @@
 #ifndef MCJJ_LETTER_H
 #define MCJJ_LETTER_H
 #include "Piece.h"
-
+/*
 using namespace std;
 
 class Letter {
@@ -24,11 +24,12 @@ public:
 
     void updatePosition();
 private:
-    Piece p;
+   // Piece p;
     char letter;
 
 
 };
+ */
 
 
 #endif //MCJJ_LETTER_H

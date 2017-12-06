@@ -3,13 +3,13 @@
 //
 
 #include "Letter.h"
-
+/*
 Letter:: Letter(){}
 
 Letter:: Letter(Piece p){
-    //setPiece(p);
-    setLetter(p.getCharacter());
-    //updatePosition(p.getX(),p.getY());
+    setPiece(p);
+   setLetter(p.getCharacter());
+    updatePosition(p.getX(),p.getY());
 }
 
 void Letter:: setLetter(char c){
@@ -31,3 +31,4 @@ Piece Letter:: getPiece(){
 void Letter:: updatePosition(){
 
 }
+*/
