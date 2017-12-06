@@ -35,6 +35,8 @@ public:
      * Effects: player object
      **/
     void movePiece() override;
+
+    void draw();
 };
 
 

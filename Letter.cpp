@@ -3,7 +3,7 @@
 //
 
 #include "Letter.h"
-/**
+
 Letter:: Letter(){}
 
 Letter:: Letter(Piece p){
@@ -31,4 +31,3 @@ Piece Letter:: getPiece(){
 void Letter:: updatePosition(){
 
 }
- **/

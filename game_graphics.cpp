@@ -4,13 +4,19 @@
 
 #include "graphics.h"
 #include <string>
+<<<<<<< Updated upstream
 #include <iostream>
+=======
+#include "Player.h"
+>>>>>>> Stashed changes
 
 using namespace std;
 
 GLdouble width, height;
 int wd;
 int UNIT = 50;
+
+Player p1;
 
 void init() {
     width = UNIT * 11;
@@ -23,6 +29,9 @@ void initGL() {
     glClearColor(0.0f, 0.5f, 0.0f, 1.0f); // Black and opaque
 }
 
+void displayStart() {
+
+}
 /* Handler for window-repaint event. Call back when the window first appears and
  whenever the window needs to be re-painted. */
 void display() {
@@ -44,6 +53,9 @@ void display() {
      */
 
     //shape
+
+    p1.draw();
+
 
     //Two Lane Road
     glColor3f(0.6, 0.6, 0.6);

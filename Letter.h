@@ -6,8 +6,11 @@
 #define MCJJ_LETTER_H
 #include "Piece.h"
 
+<<<<<<< Updated upstream
 using namespace std;
 
+=======
+>>>>>>> Stashed changes
 class Letter {
 public:
     Letter();
