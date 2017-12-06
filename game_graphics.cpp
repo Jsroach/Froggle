@@ -9,6 +9,9 @@
 
 using namespace std;
 
+//Determine screen
+enum screen_type {menu, game};
+
 GLdouble width, height;
 int wd;
 int UNIT = 50;
@@ -27,7 +30,19 @@ void initGL() {
 }
 
 void displayStart() {
-
+    glColor3f(0, 0, 0);
+    glBegin(GL_QUADS);
+    glVertex2i(0, 0);
+    glVertex2i(0, height);
+    glVertex2i(width, height);
+    glVertex2i(width, 0);
+    glEnd();
+    string message = "Click anywhere to begin";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(150, 240);
+    for (int i = 0; i < message.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+    }
 }
 /* Handler for window-repaint event. Call back when the window first appears and
  whenever the window needs to be re-painted. */
