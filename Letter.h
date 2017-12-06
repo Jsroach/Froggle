@@ -6,6 +6,8 @@
 #define MCJJ_LETTER_H
 #include "Piece.h"
 
+using namespace std;
+
 class Letter {
 public:
     Letter();

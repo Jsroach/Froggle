@@ -49,3 +49,5 @@ crashlytics-build.properties
 fabric.properties
 .idea/mcjj.iml
 .idea/modules.xml
+
+CMakeLists.txt

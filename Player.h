@@ -37,6 +37,8 @@ public:
     void movePiece() override;
 
     //void movePlayer(int deltaX, int deltaY);
+
+    void draw();
 };
 
 

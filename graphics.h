@@ -28,6 +28,9 @@ void InitGL(void);
 
 // Callback functions for GLUT */
 
+//First Menu Window
+void displayStart();
+
 // Draw the window - this is where all the GL actions are
 void display(void);
 

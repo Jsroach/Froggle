@@ -4,12 +4,16 @@
 
 #include "graphics.h"
 #include <string>
+#include <iostream>
+#include "Player.h"
 
 using namespace std;
 
 GLdouble width, height;
 int wd;
 int UNIT = 50;
+
+Player p1;
 
 void init() {
     width = UNIT * 11;
@@ -22,6 +26,9 @@ void initGL() {
     glClearColor(0.0f, 0.5f, 0.0f, 1.0f); // Black and opaque
 }
 
+void displayStart() {
+
+}
 /* Handler for window-repaint event. Call back when the window first appears and
  whenever the window needs to be re-painted. */
 void display() {
@@ -43,6 +50,9 @@ void display() {
      */
 
     //shape
+
+    p1.draw();
+
 
     //Two Lane Road
     glColor3f(0.6, 0.6, 0.6);
@@ -98,10 +108,18 @@ void display() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, newGame[i]);
     }
 
+    // drawing new game
+    string saveGame = "Save Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 3.3, UNIT * 13.7);
+    for (int i = 0; i < saveGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, saveGame[i]);
+    }
+
     // drawing load game
     string loadGame = "Load Game";
     glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 5, UNIT * 13.7);
+    glRasterPos2i(UNIT * 6.3, UNIT * 13.7);
     for (int i = 0; i < loadGame.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, loadGame[i]);
     }
@@ -205,7 +223,22 @@ void cursor(int x, int y) {
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
+    if (button == GLUT_LEFT_BUTTON and (x > 12 and x < 120) and (y > 669 and y < 690)) {
+        cout << "Inside New Game" << endl;
+    }
 
+    if (button == GLUT_LEFT_BUTTON and (x > 166 and x < 276) and (y > 669 and y < 690)) {
+        cout << "Inside Save Game" << endl;
+    }
+
+    if (button == GLUT_LEFT_BUTTON and (x > 315 and x < 430) and (y > 669 and y < 690)) {
+        cout << "Inside Load Game" << endl;
+    }
+
+
+    if (button == GLUT_LEFT_BUTTON and (x > 500 and x < 550) and (y > 669 and y < 690)) {
+        cout << "Inside Exit" << endl;
+    }
 
 
     glutPostRedisplay();

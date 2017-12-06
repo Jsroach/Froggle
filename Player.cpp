@@ -3,6 +3,7 @@
 //
 
 #include "Player.h"
+#include "graphics.h"
 
 Player:: Player(){}
 
@@ -29,4 +30,19 @@ void Player:: movePlayer(int deltaX, int deltaY){
     }
 }
 */
+
+
+void Player:: draw() {
+    glColor3f(1, 0, 0);
+    glBegin(GL_QUADS);
+    // top left corner
+    glVertex2i(getX(), getY());
+    // top right corner
+    glVertex2i(getX() + 50, getY());
+    // bottom right corner
+    glVertex2i(getX() + 50, getY() + 50);
+    // bottom left corner
+    glVertex2i(getX(), getY() + 50);
+    glEnd();
+}
 
