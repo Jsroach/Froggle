@@ -51,7 +51,7 @@ void display() {
 
     //shape
 
-    p1.draw();
+
 
 
     //Two Lane Road
@@ -176,6 +176,8 @@ void display() {
     glVertex2d(UNIT * 8,UNIT * 13);
     glEnd();
 
+    p1.draw();
+
     glFlush();  // Render now
 }
 
@@ -196,15 +198,19 @@ void kbd(unsigned char key, int x, int y)
 void kbdS(int key, int x, int y) {
     switch(key) {
         case GLUT_KEY_DOWN:
+            p1.movePlayer(0,UNIT);
 
             break;
         case GLUT_KEY_LEFT:
+            p1.movePlayer(-UNIT, 0);
 
             break;
         case GLUT_KEY_RIGHT:
+            p1.movePlayer(UNIT, 0);
 
             break;
         case GLUT_KEY_UP:
+            p1.movePlayer(0,-UNIT);
 
             break;
     }
