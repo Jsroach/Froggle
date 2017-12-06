@@ -113,6 +113,50 @@ void display() {
     for (int i = 0; i < exit.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
+    // drawing word box
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*3, UNIT * 12);
+    glVertex2i(UNIT*3, UNIT * 13);
+    glVertex2i(UNIT*8, UNIT * 13);
+    glVertex2i(UNIT*8, UNIT * 12);
+    glEnd();
+
+    glColor3f(0.0,0.0,0.0);
+    glPointSize(1);
+    glBegin(GL_LINES);
+    glVertex2d(UNIT * 3,UNIT * 12);
+    glVertex2d(UNIT * 8,UNIT*12);
+    glBegin(GL_LINES);
+    glVertex2d(UNIT * 3,UNIT * 13);
+    glVertex2d(UNIT * 8,UNIT * 13);
+    glBegin(GL_LINES);
+
+
+    glVertex2d(UNIT * 3,UNIT * 12);
+    glVertex2d(UNIT * 3,UNIT * 13);
+
+    glBegin(GL_LINES);
+    glVertex2d(UNIT * 4,UNIT * 12);
+    glVertex2d(UNIT * 4,UNIT * 13);
+
+    glBegin(GL_LINES);
+    glVertex2d(UNIT * 5,UNIT * 12);
+    glVertex2d(UNIT * 5,UNIT * 13);
+
+    glBegin(GL_LINES);
+    glVertex2d(UNIT * 6,UNIT * 12);
+    glVertex2d(UNIT * 6,UNIT * 13);
+
+    glBegin(GL_LINES);
+    glVertex2d(UNIT * 7,UNIT * 12);
+    glVertex2d(UNIT * 7,UNIT * 13);
+    glEnd();
+
+    glBegin(GL_LINES);
+    glVertex2d(UNIT * 8,UNIT * 12);
+    glVertex2d(UNIT * 8,UNIT * 13);
+    glEnd();
 
     glFlush();  // Render now
 }

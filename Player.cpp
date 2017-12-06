@@ -18,5 +18,15 @@ void Player:: setCharacter(char characterIn) {
 
 void Player:: movePiece(){
     //Moves piece left one SPACE
-    setPosition(getX(), getY()-SPACE);
+    setPosition(getX()-SPACE, getY());
 }
+/*
+void Player:: movePlayer(int deltaX, int deltaY){
+    if (getX()+deltaX <= 550 && getX()+deltaX>=0){
+        if(getY()+deltaY<=650 && getY()+deltaY>=0){
+            setPosition(getX()+deltaX,getY()+deltaY);
+        }
+    }
+}
+*/
+

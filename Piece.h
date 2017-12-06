@@ -7,8 +7,8 @@
 
 #include <iostream>
 #include <vector>
-using namespace std;
 
+using namespace std;
 
 class Piece {
 private:
@@ -16,6 +16,7 @@ private:
     int y;
 protected:
     char character;
+
 public:
     int SPACE = 10; //establishes unit conversion for piece length to graphics units
     

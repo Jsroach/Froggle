@@ -41,3 +41,5 @@ int Piece::getY() const {
 char Piece::getCharacter() const {
     return character;
 }
+
+

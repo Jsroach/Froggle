@@ -35,6 +35,8 @@ public:
      * Effects: player object
      **/
     void movePiece() override;
+
+    //void movePlayer(int deltaX, int deltaY);
 };
 
 
