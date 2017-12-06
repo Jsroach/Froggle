@@ -99,10 +99,18 @@ void display() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, newGame[i]);
     }
 
+    // drawing new game
+    string saveGame = "Save Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 3.3, UNIT * 13.7);
+    for (int i = 0; i < saveGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, saveGame[i]);
+    }
+
     // drawing load game
     string loadGame = "Load Game";
     glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 5, UNIT * 13.7);
+    glRasterPos2i(UNIT * 6.3, UNIT * 13.7);
     for (int i = 0; i < loadGame.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, loadGame[i]);
     }
@@ -166,7 +174,11 @@ void mouse(int button, int state, int x, int y) {
         cout << "Inside New Game" << endl;
     }
 
-    if (button == GLUT_LEFT_BUTTON and (x > 250 and x < 370) and (y > 669 and y < 690)) {
+    if (button == GLUT_LEFT_BUTTON and (x > 166 and x < 276) and (y > 669 and y < 690)) {
+        cout << "Inside Save Game" << endl;
+    }
+
+    if (button == GLUT_LEFT_BUTTON and (x > 315 and x < 430) and (y > 669 and y < 690)) {
         cout << "Inside Load Game" << endl;
     }
 
