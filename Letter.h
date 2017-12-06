@@ -5,7 +5,7 @@
 #ifndef MCJJ_LETTER_H
 #define MCJJ_LETTER_H
 #include "Piece.h"
-
+/**
 class Letter {
 public:
     Letter();
@@ -27,6 +27,6 @@ private:
 
 
 };
-
+**/
 
 #endif //MCJJ_LETTER_H
