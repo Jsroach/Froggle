@@ -4,11 +4,8 @@
 
 #include "graphics.h"
 #include <string>
-<<<<<<< Updated upstream
 #include <iostream>
-=======
 #include "Player.h"
->>>>>>> Stashed changes
 
 using namespace std;
 
