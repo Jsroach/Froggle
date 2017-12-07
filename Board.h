@@ -21,7 +21,7 @@ private:
     // Default dimension values
     int boardX = 400;
     int boardY = 400;
-
+    bool start = true;
     vector<char> goalWord = {'T', 'E', 'S', 'T'} ;
     vector<char> gameWord = {'T',' ','S',' '};
     vector<string> words1 = {"pi", "cow", "time", "smile" };
@@ -125,6 +125,9 @@ public:
     //Set up for later
     void DrawBoard();
 
+    void wait();
+
+    void update();
     //Set up for later
     bool checkCollision();
 

@@ -105,6 +105,16 @@ void Board::displayGameWord() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
     }
 }
+void Board:: wait(int seconds) {
+    clock_t endwait;
+    endwait = clock () + seconds * CLOCKS_PER_SEC ;
+    while (clock() < endwait) {}
+}
+void Board:: update(){
+    while (start == true){
+        //move cars in vector
+    }
+}
 
 bool Board::checkLetter() {
     // TODO: Implement
@@ -120,6 +130,7 @@ void Board::stopTimer() {
     double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
     cout << "Number of seconds: " << duration << endl;
 }
+
 
 bool Board::checkCollision() {
     // loop through the vector of all pieces.
