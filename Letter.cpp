@@ -2,63 +2,41 @@
 //// Created by Michael Bickley on 11/30/17.
 ////
 //
-//#include "Letter.h"
-//
 
 #include "Letter.h"
-/*
-Letter:: Letter(){}
 
-Letter:: Letter(Piece p){
+
+#include "Letter.h"
+
+Letter:: Letter() {
+    hasPiece = false;
+};
+
+Letter::Letter(Piece* p){
     setPiece(p);
-   setLetter(p.getCharacter());
-    updatePosition(p.getX(),p.getY());
+    setLetter(p->getCharacter());
+    hasPiece = true;
+    updatePosition();
 }
 
-void Letter:: setLetter(char c){
+void Letter::setLetter(char c){
     letter= c;
 }
 
-char Letter:: getLetter(){
+char Letter::getLetter(){
     return letter;
 }
 
-void Letter:: setPiece(Piece p){
-    p = p;
+void Letter::setPiece(Piece* p){
+    Letter::p = p;
+    hasPiece = true;
 }
 
-Piece Letter:: getPiece(){
-    return p;
-}
 
 void Letter:: updatePosition(){
-
+    if (hasPiece) {
+        cout << "Has piece" << endl;
+    } else {
+        cout << "do not have a piece" << endl;
+    }
 }
-*/
-//Letter:: Letter(){}
-//
-//Letter:: Letter(Piece p){
-//    //setPiece(p);
-//    setLetter(p.getCharacter());
-//    //updatePosition(p.getX(),p.getY());
-//}
-//
-//void Letter:: setLetter(char c){
-//    letter= c;
-//}
-//
-//char Letter:: getLetter(){
-//    return letter;
-//}
-//
-//void Letter:: setPiece(Piece p){
-//    p = p;
-//}
-//
-//Piece Letter:: getPiece(){
-//    return p;
-//}
-//
-//void Letter:: updatePosition(){
-//
-//}
