@@ -21,16 +21,19 @@ int UNIT = 50;
 
 Board b;
 
-Player p1= Player(UNIT*5,UNIT*11);
+Player p1 = Player(UNIT*5,UNIT*11);
+Consonant c1 = Consonant('t', UNIT*2, UNIT*2);
+Vowel v1 = Vowel('e', UNIT *2, 0);
 
 screen_type screen = menu;
-
-Consonant c1 = Consonant('I', UNIT*2, UNIT*2);
-Vowel v1 = Vowel('t', UNIT *2, 0);
 
 void init() {
     width = UNIT * 11;
     height = UNIT * 14;
+
+    b.setPlayer(p1);
+    b.setConsonant(c1);
+    b.setVowel(v1);
 }
 
 /* Initialize OpenGL Graphics */
@@ -183,7 +186,6 @@ void displayGame() {
     glVertex2d(UNIT * 8,UNIT * 13);
     glBegin(GL_LINES);
 
-
     glVertex2d(UNIT * 3,UNIT * 12);
     glVertex2d(UNIT * 3,UNIT * 13);
 
@@ -242,23 +244,14 @@ void displayGame() {
     }
 
 
-    if (!p1.getHasLetter()) {
-        p1.setCharacter('J');
-    }
-
     b.displayGoal();
+    //b.setConsonant()
 
-    p1.draw();
-
-    if (!c1.getHasLetter()) {
-        c1.setCharacter('c');
-    }
     c1.draw();
 
-    if (!v1.getHasLetter()) {
-        v1.setCharacter('e');
-    }
     v1.draw();
+
+    p1.draw();
 
     glFlush();  // Render now
 }
@@ -314,22 +307,27 @@ void kbdS(int key, int x, int y) {
         switch(key) {
             case GLUT_KEY_DOWN:
                 p1.movePlayer(0,UNIT);
-
+                b.checkCollision(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_LEFT:
                 p1.movePlayer(-UNIT, 0);
-
+                b.checkCollision(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_RIGHT:
                 p1.movePlayer(UNIT, 0);
-
+                b.checkCollision(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_UP:
                 p1.movePlayer(0,-UNIT);
+                b.checkCollision(p1.getX(), p1.getY(), p1);
+                break;
 
+            default:
                 break;
         }
     }
+
+
 
     glutPostRedisplay();
 

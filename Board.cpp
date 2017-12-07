@@ -3,8 +3,9 @@
 //
 
 #include "Board.h"
-#include "graphics.h"
 
+#include <utility>
+#include "graphics.h"
 
 using namespace std;
 
@@ -64,15 +65,15 @@ void Board::setTime(clock_t time) {
     Board::startTime = time;
 }
 
-void Board::setVowel(Vowel v) {
+void Board::setVowel(Vowel& v) {
     vow.emplace_back(v);
 }
 
-void Board::setConsonant(Consonant c) {
+void Board::setConsonant(Consonant& c) {
     con.emplace_back(c);
 }
 
-void Board::setPlayer(Player p) {
+void Board::setPlayer(Player& p) {
     player = p;
 }
 
@@ -112,11 +113,23 @@ void Board::stopTimer() {
     cout << "Number of seconds: " << duration << endl;
 }
 
-bool Board::checkCollision() {
+void Board::checkCollision(int pX, int pY, Player& player) {
     // loop through the vector of all pieces.
     // if piece has the same y value as player, check x value.
     // if the x value for the piece is the same as the x value for the player a collision happened.
-    return false;
+    for (Consonant c : getConsonant()) {
+        if (pX == c.getX() and pY == c.getY()) {
+            //cout << "COLLLLL C" << endl;
+            player.setCharacter(c.getCharacter());
+        }
+    }
+
+    for (Vowel v : getVowel()) {
+        if (pX == v.getX() and pY == v.getY()) {
+            //cout << "COLLLLL V" << endl;
+            player.setCharacter(v.getCharacter());
+        }
+    }
 }
 
 void Board::saveGame() {
@@ -125,13 +138,13 @@ void Board::saveGame() {
     //write to file
     ofstream file("game.txt");
     //Write values of vowel vector to file
-    for (int i = 0; i < vow.size(); ++i) {
+    for (auto &i : vow) {
         //Leter is added at beginning to help with loading game in
-        file << "v," << vow[i].getCharacter() << ',' << vow[i].getX() << ',' << vow[i].getY() << ',' << endl;
+        file << "v," << i.getCharacter() << ',' << i.getX() << ',' << i.getY() << ',' << endl;
     }
     //Write values of consonant vector to file
-    for (int i = 0; i < con.size(); ++i) {
-        file << "c," << con[i].getCharacter() << ',' << con[i].getX() << ',' << con[i].getY() << ',' << endl;
+    for (auto &i : con) {
+        file << "c," << i.getCharacter() << ',' << i.getX() << ',' << i.getY() << ',' << endl;
     }
     //If players character is blank write to file with temporary character
     if (player.getCharacter() == ' ') {
@@ -167,9 +180,11 @@ void Board::loadGame() {
         }else if (type == 'c') {
             con.emplace_back(Consonant(character, x, y));
         }else if (type == 'p' && character == '!'){ //Check to see if player character is a filler character
-            setPlayer(Player(x,y));
+            Player p = Player(x, y);
+            setPlayer(p);
         }else {
-            setPlayer(Player(x,y));
+            Player p = Player(x, y);
+            setPlayer(p);
             player.setCharacter(character);
         }
     }

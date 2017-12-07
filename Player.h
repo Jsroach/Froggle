@@ -19,6 +19,7 @@ public:
      * Effects: Makes a Player with coordinates but no character (this is the starting character)
      */
     Player(int x, int y);
+
     /*
      * sets character as parameter
      * Requires: Char character

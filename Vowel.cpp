@@ -14,11 +14,7 @@ Vowel::Vowel(char c) : Vowel() {
     character = c;
 }
 
-Vowel::Vowel(char c, int x, int y) : Vowel() {
-    character = c;
-    setX(x);
-    setY(y);
-}
+Vowel::Vowel(char c, int x, int y) : Piece(c, x, y) {}
 
 Vowel::Vowel(int x, int y) : Vowel() {
     Piece::setX(x);
