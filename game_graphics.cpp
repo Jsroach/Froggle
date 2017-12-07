@@ -13,7 +13,8 @@ GLdouble width, height;
 int wd;
 int UNIT = 50;
 
-Player p1;
+Player p1= Player(UNIT*5,UNIT*11);
+
 
 void init() {
     width = UNIT * 11;
