@@ -7,8 +7,6 @@
 #include "Piece.h"
 
 class Player : public Piece {
-private:
-    bool hasLetter;
 public:
     /*
      * Default Constructor

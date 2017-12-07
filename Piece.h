@@ -14,6 +14,8 @@ class Piece {
 private:
     int x;
     int y;
+    bool hasLetter;
+
 protected:
     char character;
 

@@ -33,8 +33,6 @@ void Player:: movePlayer(int deltaX, int deltaY){
     }
 }
 
-
-
 void Player:: draw() {
     glColor3f(1, 0, 0);
     glBegin(GL_QUADS);
