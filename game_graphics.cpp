@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "Consonant.h"
 #include "Vowel.h"
+#include "Shape.h"
 #include "Board.h"
 
 using namespace std;
@@ -28,6 +29,9 @@ screen_type screen = menu;
 Consonant c1 = Consonant('I', UNIT*2, UNIT*2);
 Vowel v1 = Vowel('t', UNIT *2, 0);
 
+Rectangle1 r1 = Rectangle1({0,.5,0}, 200, 300);
+Rectangle1 r2 = Rectangle1({0,.5,0}, 200, 400);
+
 void init() {
     width = UNIT * 11;
     height = UNIT * 14;
@@ -40,19 +44,53 @@ void initGL() {
 }
 
 void displayStart() {
-    glColor3f(0, 0, 0);
+
+    glColor3f(1, 1, 1);
     glBegin(GL_QUADS);
     glVertex2i(0, 0);
     glVertex2i(0, height);
     glVertex2i(width, height);
     glVertex2i(width, 0);
     glEnd();
-
-    string message = "Click anywhere to begin";
+/**
+    glColor3f(0, .5, 0);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*4, UNIT*6);
+    glVertex2i(UNIT*7,UNIT*6);
+    glVertex2i(UNIT*7, UNIT*7);
+    glVertex2i(UNIT*4, UNIT*7);
+    glEnd();
+**/
+    r1.draw();    string messageNGAME = "New Game";
     glColor3f(1, 1, 1);
-    glRasterPos2i(150, 240);
-    for (int i = 0; i < message.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+    glRasterPos2i(220, 335);
+    for (int i = 0; i < messageNGAME.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageNGAME[i]);
+    }
+
+    r2.draw();
+    /**
+    glColor3f(0,.5, 0);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*4, UNIT*8);
+    glVertex2i(UNIT*7,UNIT*8);
+    glVertex2i(UNIT*7, UNIT*9);
+    glVertex2i(UNIT*4, UNIT*9);
+    glEnd();
+**/
+    string messageLGAME = "Load Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(220, 435);
+    for (int i = 0; i < messageLGAME.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageLGAME[i]);
+    }
+
+    string messageTitle = "FROGGLE!";
+    glColor3f(0, .5, 0);
+    glRasterPos2i(215, 240);
+    for (int i = 0; i < messageTitle.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageTitle[i]);
+
     }
 
 }
@@ -296,6 +334,7 @@ void display() {
             displayGame();
             break;
     }
+    glFlush();  // Render now
 }
 
 // http://www.theasciicode.com.ar/ascii-control-characters/escape-ascii-code-27.html
@@ -342,7 +381,16 @@ void kbdS(int key, int x, int y) {
 }
 
 void cursor(int x, int y) {
-
+    if (screen == menu) {
+        if ((x > UNIT*4 && x < UNIT*7) && (y >= UNIT*6 && y <= UNIT*7)) {
+            r1.setFill({0,0,1});
+        }else if ((x > 200 and x < 350) && (y > 400 and y < 450)) {
+            r2.setFill({0,0,1});
+        } else {
+            r1.setFill({0,.5,0});
+            r2.setFill({0,.5,0});
+        }
+    }
 
     glutPostRedisplay();
 }
@@ -351,7 +399,7 @@ void cursor(int x, int y) {
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
     if (screen == menu) {
-        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > UNIT*4 && x < UNIT*7) && (y > UNIT*4 && y < UNIT*7)) {
             screen = game;
         }
     }
@@ -397,7 +445,7 @@ int graphicsPlay(int argc, char** argv) {
     glutInitWindowSize((int) width, (int) height);
     glutInitWindowPosition(450, 100); // Position the window's initial top-left corner
     /* create the window and store the handle to it */
-    wd = glutCreateWindow("Fun with Drawing!" /* title */ );
+    wd = glutCreateWindow("Froggle" /* title */ );
 
     // Register callback handler for window re-paint event
     glutDisplayFunc(display);
