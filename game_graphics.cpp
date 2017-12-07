@@ -20,7 +20,7 @@ int wd;
 int UNIT = 50;
 
 screen_type screen = menu;
-Player p1;
+Player p1 = Player(UNIT*5,0);
 Consonant c1 = Consonant('i', UNIT, 0);
 Vowel v1 = Vowel('t', UNIT *2, 0);
 
