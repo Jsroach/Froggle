@@ -24,7 +24,7 @@ void Player:: movePiece(){
 }
 
 void Player:: movePlayer(int deltaX, int deltaY){
-    if (getX()+deltaX <= 550 && getX()+deltaX>=0){
+    if (getX()+deltaX <= 500 && getX()+deltaX>=0){
         if(getY()+deltaY<=600 && getY()+deltaY>=0){
             setPosition(getX()+deltaX,getY()+deltaY);
         }

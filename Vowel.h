@@ -2,6 +2,7 @@
 // Created by Jack Roach on 11/15/17.
 //
 #include "Piece.h"
+
 #ifndef MCJJ_VOWEL_H
 #define MCJJ_VOWEL_H
 
@@ -23,7 +24,7 @@ public:
     void movePiece() override;
     
     //randomly generates a vowel (including Y) for when a moving piece is created on board
-    char generate_vowel();
+    char generateVowel();
 
     void draw();
 
