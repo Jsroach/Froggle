@@ -412,6 +412,7 @@ void mouse(int button, int state, int x, int y) {
 
 
         if (button == GLUT_LEFT_BUTTON and (x > 500 and x < 550) and (y > 669 and y < 690)) {
+            screen = menu;
             cout << "Inside Exit" << endl;
         }
     }
