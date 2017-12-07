@@ -9,7 +9,6 @@
 #include "Consonant.h"
 #include "Vowel.h"
 #include "Shape.h"
-
 #include "Board.h"
 
 using namespace std;
@@ -299,7 +298,7 @@ void displayGame() {
     }
     v1.draw();
 
-
+    glFlush();  // Render now
 }
 
 
