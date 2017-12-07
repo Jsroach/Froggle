@@ -22,6 +22,6 @@ file(GLOB SOURCE_FILES
         *.h
         )
 
-add_executable(main.cpp ${SOURCE_FILES})
-
+add_executable(main.cpp ${SOURCE_FILES} Car.cpp Car.h)
 target_link_libraries (main.cpp ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES} m dl pthread)
+

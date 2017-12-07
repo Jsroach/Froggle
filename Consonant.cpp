@@ -2,6 +2,7 @@
 // Created by cn345 on 11/15/2017.
 //
 #include "Consonant.h"
+#include "graphics.h"
 
 
 Consonant::Consonant() = default;
@@ -14,8 +15,11 @@ Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xI
 
 void Consonant::movePiece() {
     //Changes direction of movement based on the Y coordinate
-    if (getY() == SPACE && getX() > 0) {
-        setX(getX() - SPACE); //Moves left
+    if (getY() == UNIT1*11 && getX() > UNIT1) {
+        setX(getX() - UNIT1); //Moves left
+        if (getX() == UNIT1) {
+            setX(UNIT1*11);
+        }
     }else if (getY() == SPACE*2 && getX() < 500) {
         setX(getX() + SPACE);//Moves right
     }else {
@@ -46,4 +50,18 @@ char Consonant::generateConsonant() {
     int n = rand() % 20;
     char letter = cPieces[n];
     return letter;
+}
+
+void Consonant::draw() {
+    glColor3f(0, 0, 1);
+    glBegin(GL_QUADS);
+    // top left corner
+    glVertex2i(getX(), getY());
+    // top right corner
+    glVertex2i(getX() + 50, getY());
+    // bottom right corner
+    glVertex2i(getX() + 50, getY() + 50);
+    // bottom left corner
+    glVertex2i(getX(), getY() + 50);
+    glEnd();
 }

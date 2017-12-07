@@ -22,6 +22,9 @@ private:
     int boardX = 400;
     int boardY = 400;
 
+    vector<char> goalWord;
+    vector<char> gameWord;
+    vector<string> words1 = {"pi", "cow", "time", "smile" };
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
     Player player;
