@@ -10,8 +10,6 @@
 
 using namespace std;
 
-int UNIT = 50;
-
 class Piece {
 private:
     int x;

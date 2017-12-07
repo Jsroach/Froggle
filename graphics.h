@@ -31,6 +31,8 @@ void InitGL(void);
 //First Menu Window
 void displayStart();
 
+void displayGame();
+
 // Draw the window - this is where all the GL actions are
 void display(void);
 

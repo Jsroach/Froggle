@@ -15,10 +15,10 @@ Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xI
 
 void Consonant::movePiece() {
     //Changes direction of movement based on the Y coordinate
-    if (getY() == UNIT*11 && getX() > UNIT) {
-        setX(getX() - UNIT); //Moves left
-        if (getX() == UNIT) {
-            setX(UNIT*11);
+    if (getY() == UNIT1*11 && getX() > UNIT1) {
+        setX(getX() - UNIT1); //Moves left
+        if (getX() == UNIT1) {
+            setX(UNIT1*11);
         }
     }else if (getY() == SPACE*2 && getX() < 500) {
         setX(getX() + SPACE);//Moves right
