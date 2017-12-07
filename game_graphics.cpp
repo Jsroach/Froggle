@@ -58,31 +58,6 @@ void road(int x, int y) {
     glVertex2i(UNIT*(x+1), UNIT*y+4);
     glVertex2i(UNIT*(x+1), UNIT*y-4);
     glBegin(GL_QUADS);
-    /*
-    glVertex2i(UNIT*2, UNIT*y-5);
-    glVertex2i(UNIT*2, UNIT*y+5);
-    glVertex2i(UNIT*3, UNIT*y+5);
-    glVertex2i(UNIT*3, UNIT*y-5);
-    glBegin(GL_QUADS);
-    glVertex2i(UNIT*4, UNIT*y-5);
-    glVertex2i(UNIT*4, UNIT*y+5);
-    glVertex2i(UNIT*5, UNIT*y+5);
-    glVertex2i(UNIT*5, UNIT*y-5);
-    glBegin(GL_QUADS);
-    glVertex2i(UNIT*6, UNIT*y-5);
-    glVertex2i(UNIT*6, UNIT*y+5);
-    glVertex2i(UNIT*7, UNIT*y+5);
-    glVertex2i(UNIT*7, UNIT*y-5);
-    glBegin(GL_QUADS);
-    glVertex2i(UNIT*8, UNIT*y-5);
-    glVertex2i(UNIT*8, UNIT*y+5);
-    glVertex2i(UNIT*9, UNIT*y+5);
-    glVertex2i(UNIT*9, UNIT*y-5);
-    glBegin(GL_QUADS);
-    glVertex2i(UNIT*10, UNIT*y-5);
-    glVertex2i(UNIT*10, UNIT*y+5);
-    glVertex2i(UNIT*11, UNIT*y+5);
-    glVertex2i(UNIT*11, UNIT*y-5);*/
     return;
 };
 
