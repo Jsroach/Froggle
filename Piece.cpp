@@ -9,12 +9,14 @@ Piece::Piece() = default;
 
 Piece::Piece(char characterIn) {
     character = characterIn;
+    hasLetter = true;
 }
 
 Piece::Piece (char characterIn, int xIn, int yIn) {
     character = characterIn;
     x = xIn;
     y = yIn;
+    hasLetter = true;
 }
 void Piece::setPosition(int x, int y) {
     Piece::x = x;

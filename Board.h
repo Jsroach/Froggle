@@ -13,8 +13,10 @@
 #include "Player.h"
 #include "Vowel.h"
 #include "Consonant.h"
+#include "Vowel.h"
 
 using namespace std;
+
 
 class Board {
 private:
@@ -111,17 +113,17 @@ public:
     /*
      * Setter
      */
-    void setVowel(Vowel v);
+    void setVowel(Vowel& v);
 
     /*
      * Setter
      */
-    void setConsonant(Consonant c);
+    void setConsonant(Consonant& c);
 
     /*
      * Setter
      */
-    void setPlayer(Player p);
+    void setPlayer(Player& p);
 
     //Set up for later
     void DrawBoard();
@@ -130,7 +132,7 @@ public:
 
     void update();
     //Set up for later
-    bool checkCollision();
+    void checkCollision(int px, int py, Player& player);
 
     void setGoalWord(string newWord);
 
