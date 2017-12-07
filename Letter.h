@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Letter {
+class Letter : public Piece {
 public:
     Letter();
 
@@ -22,11 +22,12 @@ public:
 
     void updatePosition();
 
+    void updatePosition(int x, int y);
+
 private:
     Piece* p;
     char letter;
     bool hasPiece;
-
 };
 
 #endif //MCJJ_LETTER_H

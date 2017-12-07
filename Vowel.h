@@ -17,13 +17,13 @@ public:
     Vowel(char c, int x, int y);
     Vowel(int x, int y);
 
-    //setters
+    // setters
     void setCharacter(char characterIn) override;
 
-    //moves piece by amount that the public field SPACE, checks position to make sure piece is able to be moved
+    // moves piece by amount that the public field SPACE, checks position to make sure piece is able to be moved
     void movePiece() override;
     
-    //randomly generates a vowel (including Y) for when a moving piece is created on board
+    // randomly generates a vowel (including Y) for when a moving piece is created on board
     char generateVowel();
 
     void draw();

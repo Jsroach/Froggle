@@ -25,7 +25,7 @@ Player p1= Player(UNIT*5,UNIT*11);
 
 screen_type screen = menu;
 
-Consonant c1 = Consonant('i', UNIT, 0);
+Consonant c1 = Consonant('I', UNIT*2, UNIT*2);
 Vowel v1 = Vowel('t', UNIT *2, 0);
 
 void init() {
@@ -241,10 +241,13 @@ void displayGame() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
 
+    p1.setCharacter('J');
     b.displayGoal();
 
     p1.draw();
+    c1.setCharacter('c');
     c1.draw();
+    v1.setCharacter('e');
     v1.draw();
 
     glFlush();  // Render now
