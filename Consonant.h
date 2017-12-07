@@ -11,7 +11,7 @@ class Consonant : public Piece {
 private:
     //Vector of consonants
     vector<char> cPieces = {'b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'};
-
+    int UNIT1 = 50;
 public:
     /**
      * Requires: None

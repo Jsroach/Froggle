@@ -4,6 +4,7 @@
 #include "Consonant.h"
 #include "graphics.h"
 
+
 Consonant::Consonant() = default;
 
 Consonant::Consonant(char characterIn){
@@ -14,8 +15,11 @@ Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xI
 
 void Consonant::movePiece() {
     //Changes direction of movement based on the Y coordinate
-    if (getY() == SPACE && getX() > 0) {
-        setX(getX() - SPACE); //Moves left
+    if (getY() == UNIT1*11 && getX() > UNIT1) {
+        setX(getX() - UNIT1); //Moves left
+        if (getX() == UNIT1) {
+            setX(UNIT1*11);
+        }
     }else if (getY() == SPACE*2 && getX() < 500) {
         setX(getX() + SPACE);//Moves right
     }else {
