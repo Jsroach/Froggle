@@ -24,7 +24,7 @@ public:
     void movePiece() override;
     
     //randomly generates a vowel (including Y) for when a moving piece is created on board
-    char generate_vowel();
+    char generateVowel();
 
     void draw();
 
