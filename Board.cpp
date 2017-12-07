@@ -88,12 +88,21 @@ void Board::setGoalWord(string newWord) {
     }
 }
 
-void Board::displayGoal() {
+void Board::displayGoalWord() {
     for(int i = 0; i<goalWord.size(); i++){
         char goal = goalWord[i];
         glColor3f(0.0, 0.0, 0.0);
         glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, goalWord[i]);
+    }
+}
+
+void Board::displayGameWord() {
+    for(int i = 0; i<gameWord.size(); i++){
+        char goal = gameWord[i];
+        glColor3f(0.0, 0.0, 1.0);
+        glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
     }
 }
 

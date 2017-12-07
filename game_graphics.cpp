@@ -242,7 +242,9 @@ void displayGame() {
     }
 
     p1.setCharacter('J');
-    b.displayGoal();
+
+    b.displayGoalWord();
+    b.displayGameWord();
 
     p1.draw();
     c1.setCharacter('c');
