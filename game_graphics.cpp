@@ -288,11 +288,14 @@ void display() {
 
     //shape
 
-    switch(screen) {
-        case menu: displayStart();
+    switch (screen) {
+        case menu:
+            displayStart();
             break;
-        case game: displayGame();
+        case game:
+            displayGame();
             break;
+    }
 }
 
 // http://www.theasciicode.com.ar/ascii-control-characters/escape-ascii-code-27.html
@@ -416,4 +419,4 @@ int graphicsPlay(int argc, char** argv) {
     // Enter the event-processing loop
     glutMainLoop();
     return 0;
-}}
+}
