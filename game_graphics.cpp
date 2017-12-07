@@ -9,6 +9,7 @@
 #include "Consonant.h"
 #include "Vowel.h"
 
+
 using namespace std;
 
 //Determine screen
@@ -18,6 +19,7 @@ GLdouble width, height;
 int wd;
 int UNIT = 50;
 
+screen_type screen = menu;
 Player p1;
 Consonant c1 = Consonant('i', UNIT, 0);
 Vowel v1 = Vowel('t', UNIT *2, 0);
@@ -59,33 +61,9 @@ void road(int x, int y) {
     glVertex2i(UNIT*(x+1), UNIT*y-4);
     glBegin(GL_QUADS);
     return;
-};
+}
 
-/* Handler for window-repaint event. Call back when the window first appears and
- whenever the window needs to be re-painted. */
-void display() {
-    // tell OpenGL to use the whole window for drawing
-    glViewport(0, 0, width, height);
-
-    // do an orthographic parallel projection with the coordinate
-    // system set to first quadrant, limited by screen/window size
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0.0, width, height, 0.0, -1.f, 1.f);
-
-    glClear(GL_COLOR_BUFFER_BIT);   // Clear the color buffer with current clearing color
-
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-    /*
-     * Draw here
-     */
-
-    //shape
-
-
-
-
+void displayGame() {
     //Two Lane Road
     glColor3f(0.6, 0.6, 0.6);
     glBegin(GL_QUADS);
@@ -113,7 +91,7 @@ void display() {
     glVertex2i(width, UNIT*7);
     glVertex2i(width, UNIT*4);
     glEnd();
-    
+
     glColor3f(0.0,0.0,0.0);
     glPointSize(1.0);
     glBegin(GL_LINES);
@@ -132,7 +110,7 @@ void display() {
     glVertex2i(width, UNIT*11);
     glVertex2i(width, UNIT*8);
     glEnd();
-    
+
     glColor3f(0.0,0.0,0.0);
     glPointSize(1.0);
     glBegin(GL_LINES);
@@ -179,6 +157,37 @@ void display() {
         }
     }
 
+    // drawing new game
+    string newGame = "New Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 0.2, UNIT * 13.7);
+    for (int i = 0; i < newGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, newGame[i]);
+    }
+
+    // drawing new game
+    string saveGame = "Save Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 3.3, UNIT * 13.7);
+    for (int i = 0; i < saveGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, saveGame[i]);
+    }
+
+    // drawing load game
+    string loadGame = "Load Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 6.3, UNIT * 13.7);
+    for (int i = 0; i < loadGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, loadGame[i]);
+    }
+
+    // drawing exit button
+    string exit = "Exit";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 10, UNIT * 13.7);
+    for (int i = 0; i < exit.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
+    }
     // drawing word box
     glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_QUADS);
@@ -224,38 +233,6 @@ void display() {
     glVertex2d(UNIT * 8,UNIT * 13);
     glEnd();
 
-    // drawing new game
-    string newGame = "New Game";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 0.2, UNIT * 13.7);
-    for (int i = 0; i < newGame.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, newGame[i]);
-    }
-
-    // drawing new game
-    string saveGame = "Save Game";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 3.3, UNIT * 13.7);
-    for (int i = 0; i < saveGame.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, saveGame[i]);
-    }
-
-    // drawing load game
-    string loadGame = "Load Game";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 6.3, UNIT * 13.7);
-    for (int i = 0; i < loadGame.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, loadGame[i]);
-    }
-
-    // drawing exit button
-    string exit = "Exit";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 10, UNIT * 13.7);
-    for (int i = 0; i < exit.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
-    }
-
     p1.draw();
     c1.draw();
     v1.draw();
@@ -263,9 +240,42 @@ void display() {
     glFlush();  // Render now
 }
 
+
+
+/* Handler for window-repaint event. Call back when the window first appears and
+ whenever the window needs to be re-painted. */
+void display() {
+    // tell OpenGL to use the whole window for drawing
+    glViewport(0, 0, width, height);
+
+    // do an orthographic parallel projection with the coordinate
+    // system set to first quadrant, limited by screen/window size
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(0.0, width, height, 0.0, -1.f, 1.f);
+
+    glClear(GL_COLOR_BUFFER_BIT);   // Clear the color buffer with current clearing color
+
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    /*
+     * Draw here
+     */
+
+    //shape
+
+    switch (screen) {
+        case menu:
+            displayStart();
+            break;
+        case game:
+            displayGame();
+            break;
+    }
+}
+
 // http://www.theasciicode.com.ar/ascii-control-characters/escape-ascii-code-27.html
-void kbd(unsigned char key, int x, int y)
-{
+void kbd(unsigned char key, int x, int y) {
     // escape
     if (key == 27) {
         glutDestroyWindow(wd);
@@ -278,23 +288,25 @@ void kbd(unsigned char key, int x, int y)
 }
 
 void kbdS(int key, int x, int y) {
-    switch(key) {
-        case GLUT_KEY_DOWN:
-            p1.movePlayer(0,UNIT);
+    if (screen == game) {
+        switch(key) {
+            case GLUT_KEY_DOWN:
+                p1.movePlayer(0,UNIT);
 
-            break;
-        case GLUT_KEY_LEFT:
-            p1.movePlayer(-UNIT, 0);
+                break;
+            case GLUT_KEY_LEFT:
+                p1.movePlayer(-UNIT, 0);
 
-            break;
-        case GLUT_KEY_RIGHT:
-            p1.movePlayer(UNIT, 0);
+                break;
+            case GLUT_KEY_RIGHT:
+                p1.movePlayer(UNIT, 0);
 
-            break;
-        case GLUT_KEY_UP:
-            p1.movePlayer(0,-UNIT);
+                break;
+            case GLUT_KEY_UP:
+                p1.movePlayer(0,-UNIT);
 
-            break;
+                break;
+        }
     }
 
     glutPostRedisplay();
@@ -311,21 +323,29 @@ void cursor(int x, int y) {
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
-    if (button == GLUT_LEFT_BUTTON and (x > 12 and x < 120) and (y > 669 and y < 690)) {
-        cout << "Inside New Game" << endl;
+    if (screen == menu) {
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            screen = game;
+        }
     }
 
-    if (button == GLUT_LEFT_BUTTON and (x > 166 and x < 276) and (y > 669 and y < 690)) {
-        cout << "Inside Save Game" << endl;
-    }
+    if (screen == game){
+        if (button == GLUT_LEFT_BUTTON and (x > 12 and x < 120) and (y > 669 and y < 690)) {
+            cout << "Inside New Game" << endl;
+        }
 
-    if (button == GLUT_LEFT_BUTTON and (x > 315 and x < 430) and (y > 669 and y < 690)) {
-        cout << "Inside Load Game" << endl;
-    }
+        if (button == GLUT_LEFT_BUTTON and (x > 166 and x < 276) and (y > 669 and y < 690)) {
+            cout << "Inside Save Game" << endl;
+        }
+
+        if (button == GLUT_LEFT_BUTTON and (x > 315 and x < 430) and (y > 669 and y < 690)) {
+            cout << "Inside Load Game" << endl;
+        }
 
 
-    if (button == GLUT_LEFT_BUTTON and (x > 500 and x < 550) and (y > 669 and y < 690)) {
-        cout << "Inside Exit" << endl;
+        if (button == GLUT_LEFT_BUTTON and (x > 500 and x < 550) and (y > 669 and y < 690)) {
+            cout << "Inside Exit" << endl;
+        }
     }
 
 
@@ -347,7 +367,7 @@ int graphicsPlay(int argc, char** argv) {
 
     glutInitDisplayMode(GLUT_RGBA);
 
-    glutInitWindowSize((int)width, (int)height);
+    glutInitWindowSize((int) width, (int) height);
     glutInitWindowPosition(450, 100); // Position the window's initial top-left corner
     /* create the window and store the handle to it */
     wd = glutCreateWindow("Fun with Drawing!" /* title */ );
