@@ -7,6 +7,8 @@
 #include "Piece.h"
 
 class Player : public Piece {
+private:
+    bool hasLetter;
 public:
     /*
      * Default Constructor
@@ -17,8 +19,6 @@ public:
      * Requires: Coordinates
      * Modifies: None
      * Effects: Makes a Player with coordinates but no character (this is the starting character)
-     * @param x
-     * @param y
      */
     Player(int x, int y);
     /*

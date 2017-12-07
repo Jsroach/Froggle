@@ -16,6 +16,8 @@ Player:: Player(int x, int y){
 
 void Player:: setCharacter(char characterIn) {
     character = characterIn;
+    hasLetter = true;
+    drawLetter(getX(), getY(), character);
 }
 
 void Player:: movePiece(){
@@ -44,6 +46,11 @@ void Player:: draw() {
     glVertex2i(getX() + 50, getY() + 50);
     // bottom left corner
     glVertex2i(getX(), getY() + 50);
-    glEnd();
-}
 
+    glEnd();
+
+    // check if player has a letter, if not don't draw letter
+    if (hasLetter) {
+        drawLetter(getX(), getY(), getCharacter());
+    }
+}

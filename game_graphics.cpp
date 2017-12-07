@@ -237,6 +237,7 @@ void displayGame() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
 
+    p1.setCharacter('J');
     p1.draw();
     c1.draw();
     v1.draw();
