@@ -25,6 +25,8 @@ public:
     //randomly generates a vowel (including Y) for when a moving piece is created on board
     char generate_vowel();
 
+    void draw();
+
 protected:
     vector<char> letters = {'a','e','i','o','u','y'}; //list of possible values which are used when generating pieces
 };
