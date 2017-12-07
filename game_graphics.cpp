@@ -1,7 +1,7 @@
 //
 // Created by Jack Roach on 11/30/17.
 //
-
+#include <time.h>
 #include "graphics.h"
 #include <string>
 #include <iostream>
@@ -165,7 +165,7 @@ void displayGame() {
     glEnd();
 
     // drawing word box
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3f(1.0,1.0,1.0);
     glBegin(GL_QUADS);
     glVertex2i(UNIT*3, UNIT * 12);
     glVertex2i(UNIT*3, UNIT * 13);
