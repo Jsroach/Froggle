@@ -16,7 +16,7 @@ Player:: Player(int x, int y){
 
 void Player:: setCharacter(char characterIn) {
     character = characterIn;
-    hasLetter = true;
+    setHasLetter(true);
     drawLetter(getX(), getY(), character);
 }
 
@@ -48,7 +48,7 @@ void Player:: draw() {
     glEnd();
 
     // check if player has a letter, if not don't draw letter
-    if (hasLetter) {
+    if (getHasLetter()) {
         drawLetter(getX(), getY(), getCharacter());
     }
 }

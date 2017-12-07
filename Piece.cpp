@@ -50,4 +50,12 @@ void Piece::drawLetter(int x, int y, char character) {
     glEnd();
 }
 
+bool Piece::getHasLetter() {
+    return hasLetter;
+}
+
+void Piece::setHasLetter(bool hasLetter) {
+    Piece::hasLetter = hasLetter;
+}
+
 
