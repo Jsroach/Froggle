@@ -28,6 +28,13 @@ public:
     Consonant(char characterIn);
 
     /**
+     * Requires: x value, y value
+     * Modifies: x,y
+     * Effects: Creates a consonant with full coordinates
+     */
+    Consonant(int xIn, int yIn);
+
+    /**
      * Requires: char that is a consonant, x value, y value
      * Modifies: Piece::character, x,y
      * Effects: Creates a consonant with a character and full coordinates

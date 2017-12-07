@@ -7,7 +7,7 @@
 
 
 Vowel::Vowel() {
-    character = Vowel::generate_vowel(); //chooses a vowel randomly to set as the character field for the created piece
+    character = Vowel::generateVowel(); //chooses a vowel randomly to set as the character field for the created piece
 }
 
 Vowel::Vowel(char c) : Vowel() {
@@ -50,7 +50,7 @@ void Vowel::setCharacter(char characterIn) {
     }
 }
 
-char Vowel::generate_vowel() { //randomly returns a vowel out of the 6 existing vowels (Y included)
+char Vowel::generateVowel() { //randomly returns a vowel out of the 6 existing vowels (Y included)
     int n = rand() % 6;
     char letter = letters[n];
     return letter;
