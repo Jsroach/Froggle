@@ -113,6 +113,7 @@ void Board:: wait(int seconds) {
 void Board:: update(){
     while (start == true){
         //move cars in vector
+        wait(0.1);
     }
 }
 

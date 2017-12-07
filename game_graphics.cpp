@@ -311,6 +311,9 @@ void kbd(unsigned char key, int x, int y) {
     return;
 }
 
+
+
+
 void kbdS(int key, int x, int y) {
     if (screen == game) {
         switch(key) {
