@@ -3,6 +3,8 @@
 //
 
 #include "Board.h"
+#include "graphics.h"
+
 
 using namespace std;
 
@@ -76,6 +78,23 @@ void Board::setPlayer(Player p) {
 
 void Board::DrawBoard() {
     // Graphics stuff
+}
+
+void Board::setGoalWord(string newWord) {
+
+    for ( int i = 0 ; i < newWord.length(); i++)
+    {
+        goalWord[i]= newWord[i];
+    }
+}
+
+void Board::displayGoal() {
+    for(int i = 0; i<goalWord.size(); i++){
+        char goal = goalWord[i];
+        glColor3f(0.0, 0.0, 0.0);
+        glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, goalWord[i]);
+    }
 }
 
 bool Board::checkLetter() {

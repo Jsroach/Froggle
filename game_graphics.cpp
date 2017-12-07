@@ -8,7 +8,7 @@
 #include "Player.h"
 #include "Consonant.h"
 #include "Vowel.h"
-
+#include "Board.h"
 
 using namespace std;
 
@@ -18,6 +18,8 @@ enum screen_type {menu, game};
 GLdouble width, height;
 int wd;
 int UNIT = 50;
+
+Board b;
 
 Player p1= Player(UNIT*5,UNIT*11);
 
@@ -45,12 +47,14 @@ void displayStart() {
     glVertex2i(width, height);
     glVertex2i(width, 0);
     glEnd();
+
     string message = "Click anywhere to begin";
     glColor3f(1, 1, 1);
     glRasterPos2i(150, 240);
     for (int i = 0; i < message.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
+
 }
 
 void road_lines(int x, int y) {
@@ -241,6 +245,9 @@ void displayGame() {
     if (!p1.getHasLetter()) {
         p1.setCharacter('J');
     }
+
+    b.displayGoal();
+
     p1.draw();
 
     if (!c1.getHasLetter()) {
