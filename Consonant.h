@@ -55,5 +55,7 @@ public:
      */
     char generateConsonant();
 
+    void draw();
+
 };
 #endif //MCJJ_CONSTANT_H

@@ -3,6 +3,7 @@
 //
 
 #include "Vowel.h"
+#include "graphics.h"
 
 
 Vowel::Vowel() {
@@ -53,4 +54,18 @@ char Vowel::generate_vowel() { //randomly returns a vowel out of the 6 existing 
     int n = rand() % 6;
     char letter = letters[n];
     return letter;
+}
+
+void Vowel::draw() {
+    glColor3f(1, 1, 0);
+    glBegin(GL_QUADS);
+    // top left corner
+    glVertex2i(getX(), getY());
+    // top right corner
+    glVertex2i(getX() + 50, getY());
+    // bottom right corner
+    glVertex2i(getX() + 50, getY() + 50);
+    // bottom left corner
+    glVertex2i(getX(), getY() + 50);
+    glEnd();
 }

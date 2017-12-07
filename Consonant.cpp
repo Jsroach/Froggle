@@ -2,7 +2,7 @@
 // Created by cn345 on 11/15/2017.
 //
 #include "Consonant.h"
-
+#include "graphics.h"
 
 Consonant::Consonant() = default;
 
@@ -46,4 +46,18 @@ char Consonant::generateConsonant() {
     int n = rand() % 20;
     char letter = cPieces[n];
     return letter;
+}
+
+void Consonant::draw() {
+    glColor3f(0, 0, 1);
+    glBegin(GL_QUADS);
+    // top left corner
+    glVertex2i(getX(), getY());
+    // top right corner
+    glVertex2i(getX() + 50, getY());
+    // bottom right corner
+    glVertex2i(getX() + 50, getY() + 50);
+    // bottom left corner
+    glVertex2i(getX(), getY() + 50);
+    glEnd();
 }

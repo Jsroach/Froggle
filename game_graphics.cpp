@@ -6,6 +6,8 @@
 #include <string>
 #include <iostream>
 #include "Player.h"
+#include "Consonant.h"
+#include "Vowel.h"
 
 using namespace std;
 
@@ -17,6 +19,8 @@ int wd;
 int UNIT = 50;
 
 Player p1;
+Consonant c1 = Consonant('i', UNIT, 0);
+Vowel v1 = Vowel('t', UNIT *2, 0);
 
 void init() {
     width = UNIT * 11;
@@ -192,6 +196,8 @@ void display() {
     glEnd();
 
     p1.draw();
+    c1.draw();
+    v1.draw();
 
     glFlush();  // Render now
 }
