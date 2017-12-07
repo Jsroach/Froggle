@@ -70,4 +70,9 @@ void Consonant::draw() {
     // bottom left corner
     glVertex2i(getX(), getY() + 50);
     glEnd();
+
+    /*char message = character;
+    glColor3f(0.0, 0.0, 0.0);
+    glRasterPos2i(getX()+22, getY()+30);
+    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message);*/
 }

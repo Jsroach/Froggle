@@ -23,7 +23,7 @@ Player p1= Player(UNIT*5,UNIT*11);
 
 screen_type screen = menu;
 
-Consonant c1 = Consonant('i', UNIT, 0);
+Consonant c1 = Consonant('I', UNIT*2, UNIT*2);
 Vowel v1 = Vowel('t', UNIT *2, 0);
 
 void init() {
