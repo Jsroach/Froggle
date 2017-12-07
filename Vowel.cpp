@@ -43,8 +43,8 @@ void Vowel::setCharacter(char characterIn) {
             break;
         }
     }
+
     if (check) {
-        cout << " CHECK WORKS " << endl;
         character = characterIn; //sets character if input is a vowel
         setHasLetter(true);
         drawLetter();

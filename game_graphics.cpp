@@ -241,15 +241,25 @@ void displayGame() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
 
-    p1.setCharacter('J');
+
+    if (!p1.getHasLetter()) {
+        p1.setCharacter('J');
+    }
+
 
     b.displayGoalWord();
     b.displayGameWord();
 
     p1.draw();
-    c1.setCharacter('c');
+
+    if (!c1.getHasLetter()) {
+        c1.setCharacter('c');
+    }
     c1.draw();
-    v1.setCharacter('e');
+
+    if (!v1.getHasLetter()) {
+        v1.setCharacter('e');
+    }
     v1.draw();
 
     glFlush();  // Render now
