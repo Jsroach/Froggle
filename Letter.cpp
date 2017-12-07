@@ -40,3 +40,7 @@ void Letter:: updatePosition(){
         cout << "do not have a piece" << endl;
     }
 }
+
+void Letter::updatePosition(int x, int y) {
+
+}

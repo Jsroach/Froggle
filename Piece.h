@@ -36,6 +36,9 @@ public:
     void setX(int xIn);
     void setY(int yIn);
 
+    // draw letter
+    void drawLetter(int x, int y, char character);
+
     //virtual method to move piece
     virtual void movePiece() = 0;
     //virtual method to set the character for the class
