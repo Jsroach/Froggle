@@ -12,22 +12,20 @@ class Letter {
 public:
     Letter();
 
-    explicit Letter(Piece p);
+    explicit Letter(Piece* p);
 
     void setLetter(char c);
 
     char getLetter();
 
-    void setPiece(Piece p);
+    void setPiece(Piece* p);
 
-    Piece getPiece();
-
-    void updatePosition(int x, int y);
+    void updatePosition();
 
 private:
-    Piece p;
+    Piece* p;
     char letter;
-
+    bool hasPiece;
 
 };
 

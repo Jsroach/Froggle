@@ -7,7 +7,10 @@
 #include "Vowel.h"
 #include "Piece.h"
 
+#include <type_traits>
+
 #include "graphics.h"
+#include "Letter.h"
 
 using namespace std::chrono;
 
@@ -136,7 +139,11 @@ int main(int argc, char** argv) {
 //    Consonant consonant = Consonant();
 //    consonant.setX(10);
 //
-//    cout << consonant.getX() << endl;
+//
+//    Letter l = Letter();
+//    l.updatePosition();
+//    l.setPiece(&consonant);
+//    l.updatePosition();
 
     graphicsPlay(argc, argv);
 

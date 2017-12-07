@@ -42,12 +42,4 @@ char Piece::getCharacter() const {
     return character;
 }
 
-void Piece::movePiece() {
-    cout << "Moving piece" << endl;
-}
-
-void Piece::setCharacter(char characterIn) {
-    cout << "Setting character" << endl;
-}
-
 
