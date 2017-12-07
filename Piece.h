@@ -41,7 +41,7 @@ public:
     void setHasLetter(bool hasLetter);
 
     // draw letter
-    void drawLetter(int x, int y, char character);
+    void drawLetter();
 
     //virtual method to move piece
     virtual void movePiece() = 0;

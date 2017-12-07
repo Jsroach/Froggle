@@ -239,7 +239,9 @@ void displayGame() {
 
     p1.setCharacter('J');
     p1.draw();
+    c1.setCharacter('c');
     c1.draw();
+    v1.setCharacter('e');
     v1.draw();
 
     glFlush();  // Render now

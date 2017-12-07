@@ -44,7 +44,10 @@ void Vowel::setCharacter(char characterIn) {
         }
     }
     if (check) {
+        cout << " CHECK WORKS " << endl;
         character = characterIn; //sets character if input is a vowel
+        setHasLetter(true);
+        drawLetter();
     }else {
         cout << "Character is not a Vowel" << endl; //displays error message if input is not a vowel
     }
@@ -68,4 +71,6 @@ void Vowel::draw() {
     // bottom left corner
     glVertex2i(getX(), getY() + 50);
     glEnd();
+
+    drawLetter();
 }
