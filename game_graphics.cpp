@@ -19,8 +19,10 @@ GLdouble width, height;
 int wd;
 int UNIT = 50;
 
+Player p1= Player(UNIT*5,UNIT*11);
+
 screen_type screen = menu;
-Player p1 = Player(UNIT*5,0);
+
 Consonant c1 = Consonant('i', UNIT, 0);
 Vowel v1 = Vowel('t', UNIT *2, 0);
 
@@ -121,14 +123,7 @@ void displayGame() {
     glVertex2d(width,UNIT*11);
     glEnd();
 
-    // drawing menu
-    glColor3f(0.0, 0.0, 0.0);
-    glBegin(GL_QUADS);
-    glVertex2i(0, UNIT * 13);
-    glVertex2i(0, height);
-    glVertex2i(width, height);
-    glVertex2i(width, UNIT * 13);
-    glEnd();
+
 
     /***** Yellow Road Lines *****/
     for (int i = 0; i < 12;i++){
@@ -156,6 +151,14 @@ void displayGame() {
             road_lines(i, 10);
         }
     }
+    // drawing menu
+    glColor3f(0.0, 0.0, 0.0);
+    glBegin(GL_QUADS);
+    glVertex2i(0, UNIT * 13);
+    glVertex2i(0, height);
+    glVertex2i(width, height);
+    glVertex2i(width, UNIT * 13);
+    glEnd();
 
     // drawing word box
     glColor3f(1.0, 1.0, 1.0);
