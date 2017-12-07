@@ -10,6 +10,7 @@
 #include "Vowel.h"
 #include "Shape.h"
 
+#include "Board.h"
 
 using namespace std;
 
@@ -20,11 +21,13 @@ GLdouble width, height;
 int wd;
 int UNIT = 50;
 
+Board b;
+
 Player p1= Player(UNIT*5,UNIT*11);
 
 screen_type screen = menu;
 
-Consonant c1 = Consonant('i', UNIT, 0);
+Consonant c1 = Consonant('I', UNIT*2, UNIT*2);
 Vowel v1 = Vowel('t', UNIT *2, 0);
 
 Rectangle1 r1 = Rectangle1({0,.5,0}, 200, 300);
@@ -59,9 +62,7 @@ void displayStart() {
     glVertex2i(UNIT*4, UNIT*7);
     glEnd();
 **/
-    r1.draw();
-
-    string messageNGAME = "New Game";
+    r1.draw();    string messageNGAME = "New Game";
     glColor3f(1, 1, 1);
     glRasterPos2i(220, 335);
     for (int i = 0; i < messageNGAME.length(); ++i) {
@@ -279,8 +280,23 @@ void displayGame() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
 
+
+    if (!p1.getHasLetter()) {
+        p1.setCharacter('J');
+    }
+
+    b.displayGoal();
+
     p1.draw();
+
+    if (!c1.getHasLetter()) {
+        c1.setCharacter('c');
+    }
     c1.draw();
+
+    if (!v1.getHasLetter()) {
+        v1.setCharacter('e');
+    }
     v1.draw();
 
 

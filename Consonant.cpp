@@ -37,15 +37,18 @@ void Consonant::movePiece() {
 void Consonant::setCharacter(char characterIn) {
     bool check = false;
     //Makes sure the character is a consonant
-    for (int i = 0; i < cPieces.size(); i++) {
+    for (char cPiece : cPieces) {
         //If it is a consonant check
-        if (characterIn == cPieces[i]) {
+        if (characterIn == cPiece) {
             check = true;
             break;
-        }else; //If it isnt dont do anything to check
+        }
     }
-    if (check == true) {
+
+    if (check) {
         character = characterIn;
+        setHasLetter(true);
+        drawLetter();
     }else {
         cout << "Character is not a consonant" << endl;
     }
@@ -70,4 +73,6 @@ void Consonant::draw() {
     // bottom left corner
     glVertex2i(getX(), getY() + 50);
     glEnd();
+
+    drawLetter();
 }

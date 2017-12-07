@@ -14,6 +14,8 @@ class Piece {
 private:
     int x;
     int y;
+    bool hasLetter;
+
 protected:
     char character;
 
@@ -30,11 +32,16 @@ public:
     int getX() const;
     int getY() const;
     char getCharacter() const;
+    bool getHasLetter();
 
     //setters
     void setPosition(int x, int y);
     void setX(int xIn);
     void setY(int yIn);
+    void setHasLetter(bool hasLetter);
+
+    // draw letter
+    void drawLetter();
 
     //virtual method to move piece
     virtual void movePiece() = 0;

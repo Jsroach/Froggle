@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include "Piece.h"
+#include "graphics.h"
 
 Piece::Piece() = default;
 
@@ -40,6 +41,23 @@ int Piece::getY() const {
 
 char Piece::getCharacter() const {
     return character;
+}
+
+void Piece::drawLetter() {
+    if (getHasLetter()) {
+        glColor3f(1, 1, 1);
+        glRasterPos2i(getX() + 20, getY() + 30);
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, getCharacter());
+        glEnd();
+    }
+}
+
+bool Piece::getHasLetter() {
+    return hasLetter;
+}
+
+void Piece::setHasLetter(bool hasLetter) {
+    Piece::hasLetter = hasLetter;
 }
 
 
