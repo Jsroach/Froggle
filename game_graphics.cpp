@@ -48,6 +48,44 @@ void displayStart() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
     }
 }
+
+void road(int x, int y) {
+//yellow lines
+    glColor3f(0.9,0.8,0.0);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*x, UNIT*y-4);
+    glVertex2i(UNIT*x, UNIT*y+4);
+    glVertex2i(UNIT*(x+1), UNIT*y+4);
+    glVertex2i(UNIT*(x+1), UNIT*y-4);
+    glBegin(GL_QUADS);
+    /*
+    glVertex2i(UNIT*2, UNIT*y-5);
+    glVertex2i(UNIT*2, UNIT*y+5);
+    glVertex2i(UNIT*3, UNIT*y+5);
+    glVertex2i(UNIT*3, UNIT*y-5);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*4, UNIT*y-5);
+    glVertex2i(UNIT*4, UNIT*y+5);
+    glVertex2i(UNIT*5, UNIT*y+5);
+    glVertex2i(UNIT*5, UNIT*y-5);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*6, UNIT*y-5);
+    glVertex2i(UNIT*6, UNIT*y+5);
+    glVertex2i(UNIT*7, UNIT*y+5);
+    glVertex2i(UNIT*7, UNIT*y-5);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*8, UNIT*y-5);
+    glVertex2i(UNIT*8, UNIT*y+5);
+    glVertex2i(UNIT*9, UNIT*y+5);
+    glVertex2i(UNIT*9, UNIT*y-5);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*10, UNIT*y-5);
+    glVertex2i(UNIT*10, UNIT*y+5);
+    glVertex2i(UNIT*11, UNIT*y+5);
+    glVertex2i(UNIT*11, UNIT*y-5);*/
+    return;
+};
+
 /* Handler for window-repaint event. Call back when the window first appears and
  whenever the window needs to be re-painted. */
 void display() {
@@ -100,6 +138,16 @@ void display() {
     glVertex2i(width, UNIT*7);
     glVertex2i(width, UNIT*4);
     glEnd();
+    
+    glColor3f(0.0,0.0,0.0);
+    glPointSize(1.0);
+    glBegin(GL_LINES);
+    glVertex2d(0,UNIT*4);
+    glVertex2d(width,UNIT*4);
+    glBegin(GL_LINES);
+    glVertex2d(0,UNIT*7);
+    glVertex2d(width,UNIT*7);
+    glEnd();
 
     //Three Lane Road #2
     glColor3f(0.6, 0.6, 0.6);
@@ -108,6 +156,16 @@ void display() {
     glVertex2i(0, UNIT*11);
     glVertex2i(width, UNIT*11);
     glVertex2i(width, UNIT*8);
+    glEnd();
+    
+    glColor3f(0.0,0.0,0.0);
+    glPointSize(1.0);
+    glBegin(GL_LINES);
+    glVertex2d(0,UNIT*8);
+    glVertex2d(width,UNIT*8);
+    glBegin(GL_LINES);
+    glVertex2d(0,UNIT*11);
+    glVertex2d(width,UNIT*11);
     glEnd();
 
     // drawing menu
@@ -119,6 +177,33 @@ void display() {
     glVertex2i(width, UNIT * 13);
     glEnd();
 
+    /***** Yellow Road Lines *****/
+    for (int i = 0; i < 12;i++){
+        if (i%2 == 0){
+            road(i, 2);
+        }
+    }
+    for (int i = 0; i < 12;i++){
+        if (i%2 != 0){
+            road(i, 5);
+        }
+    }
+    for (int i = 0; i < 12;i++){
+        if (i%2 == 0){
+            road(i, 6);
+        }
+    }
+    for (int i = 0; i < 12;i++){
+        if (i%2 != 0){
+            road(i, 9);
+        }
+    }
+    for (int i = 0; i < 12;i++){
+        if (i%2 == 0){
+            road(i, 10);
+        }
+    }
+    
     // drawing new game
     string newGame = "New Game";
     glColor3f(1, 1, 1);
