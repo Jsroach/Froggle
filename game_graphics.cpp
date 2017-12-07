@@ -51,7 +51,7 @@ void displayStart() {
     }
 }
 
-void road(int x, int y) {
+void road_lines(int x, int y) {
 //yellow lines
     glColor3f(0.9,0.8,0.0);
     glBegin(GL_QUADS);
@@ -133,27 +133,27 @@ void displayGame() {
     /***** Yellow Road Lines *****/
     for (int i = 0; i < 12;i++){
         if (i%2 == 0){
-            road(i, 2);
+            road_lines(i, 2);
         }
     }
     for (int i = 0; i < 12;i++){
         if (i%2 != 0){
-            road(i, 5);
+            road_lines(i, 5);
         }
     }
     for (int i = 0; i < 12;i++){
         if (i%2 == 0){
-            road(i, 6);
+            road_lines(i, 6);
         }
     }
     for (int i = 0; i < 12;i++){
         if (i%2 != 0){
-            road(i, 9);
+            road_lines(i, 9);
         }
     }
     for (int i = 0; i < 12;i++){
         if (i%2 == 0){
-            road(i, 10);
+            road_lines(i, 10);
         }
     }
 
