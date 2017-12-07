@@ -41,9 +41,9 @@ void Vowel::setCharacter(char characterIn) {
         if (characterIn == letters[i]) {
             check = true;
             break;
-        }else;
+        }
     }
-    if (check == true) {
+    if (check) {
         character = characterIn; //sets character if input is a vowel
     }else {
         cout << "Character is not a Vowel" << endl; //displays error message if input is not a vowel

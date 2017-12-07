@@ -157,37 +157,6 @@ void displayGame() {
         }
     }
 
-    // drawing new game
-    string newGame = "New Game";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 0.2, UNIT * 13.7);
-    for (int i = 0; i < newGame.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, newGame[i]);
-    }
-
-    // drawing new game
-    string saveGame = "Save Game";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 3.3, UNIT * 13.7);
-    for (int i = 0; i < saveGame.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, saveGame[i]);
-    }
-
-    // drawing load game
-    string loadGame = "Load Game";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 6.3, UNIT * 13.7);
-    for (int i = 0; i < loadGame.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, loadGame[i]);
-    }
-
-    // drawing exit button
-    string exit = "Exit";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 10, UNIT * 13.7);
-    for (int i = 0; i < exit.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
-    }
     // drawing word box
     glColor3f(1.0, 1.0, 1.0);
     glBegin(GL_QUADS);
@@ -233,13 +202,44 @@ void displayGame() {
     glVertex2d(UNIT * 8,UNIT * 13);
     glEnd();
 
+    // drawing new game
+    string newGame = "New Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 0.2, UNIT * 13.7);
+    for (int i = 0; i < newGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, newGame[i]);
+    }
+
+    // drawing new game
+    string saveGame = "Save Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 3.3, UNIT * 13.7);
+    for (int i = 0; i < saveGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, saveGame[i]);
+    }
+
+    // drawing load game
+    string loadGame = "Load Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 6.3, UNIT * 13.7);
+    for (int i = 0; i < loadGame.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, loadGame[i]);
+    }
+
+    // drawing exit button
+    string exit = "Exit";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(UNIT * 10, UNIT * 13.7);
+    for (int i = 0; i < exit.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
+    }
+
     p1.draw();
     c1.draw();
     v1.draw();
 
     glFlush();  // Render now
 }
-
 
 
 /* Handler for window-repaint event. Call back when the window first appears and

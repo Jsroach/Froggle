@@ -37,11 +37,9 @@ public:
     void setY(int yIn);
 
     //virtual method to move piece
-    virtual void movePiece() = 0;
+    virtual void movePiece();
     //virtual method to set the character for the class
-    virtual void setCharacter(char characterIn) = 0;
-
-
+    virtual void setCharacter(char characterIn);
 };
 
 

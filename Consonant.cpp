@@ -11,7 +11,7 @@ Consonant::Consonant(char characterIn){
     character = characterIn;
 }
 
-Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){}
+Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn) {}
 
 void Consonant::movePiece() {
     //Changes direction of movement based on the Y coordinate

@@ -133,6 +133,11 @@ int main(int argc, char** argv) {
 
     **/
 
+//    Consonant consonant = Consonant();
+//    consonant.setX(10);
+//
+//    cout << consonant.getX() << endl;
+
     graphicsPlay(argc, argv);
 
     return 0;
