@@ -27,6 +27,7 @@ screen_type screen = menu;
 
 Rectangle1 r1 = Rectangle1({0,.5,0}, 200, 300);
 Rectangle1 r2 = Rectangle1({0,.5,0}, 200, 400);
+Rectangle1 r3 = Rectangle1({0,.5,0}, 200, 500);
 
 void init() {
     width = UNIT * 11;
@@ -84,6 +85,14 @@ void displayStart() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageLGAME[i]);
     }
 
+    r3.draw();
+
+    string messageEGAME = "Exit";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(253, 535);
+    for (int i = 0; i < messageEGAME.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageEGAME[i]);
+    }
     string messageTitle = "FROGGLE!";
     glColor3f(0, .5, 0);
     glRasterPos2i(215, 240);
@@ -270,9 +279,9 @@ void displayGame() {
     }
 
     // drawing exit button
-    string exit = "Exit";
+    string exit = "Menu";
     glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 10, UNIT * 13.7);
+    glRasterPos2i(UNIT * 9.6, UNIT * 13.7);
     for (int i = 0; i < exit.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
@@ -384,9 +393,12 @@ void cursor(int x, int y) {
             r1.setFill({0,0,1});
         }else if ((x > 200 and x < 350) && (y > 400 and y < 450)) {
             r2.setFill({0,0,1});
+        } else if ((x > 200 and x < 350) && (y > 500 and y < 550)) {
+            r3.setFill({0,0,1});
         } else {
             r1.setFill({0,.5,0});
             r2.setFill({0,.5,0});
+            r3.setFill({0,.5,0});
         }
     }
 
@@ -399,6 +411,9 @@ void mouse(int button, int state, int x, int y) {
     if (screen == menu) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > UNIT*4 && x < UNIT*7) && (y > UNIT*4 && y < UNIT*7)) {
             screen = game;
+        }else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > 200 and x < 350) && (y > 500 and y < 550)) {
+            glutDestroyWindow(wd);
+            exit(0);
         }
     }
 
