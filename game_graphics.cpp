@@ -23,7 +23,7 @@ Board b;
 
 Consonant c1 = Consonant('P', UNIT*5, UNIT*10);
 Vowel v1 = Vowel('I', UNIT *2, 0);
-Player p1 = Player(UNIT*5,UNIT*11);
+//Player p1 = Player(UNIT*5,UNIT*11);
 
 screen_type screen = menu;
 
@@ -35,7 +35,7 @@ void init() {
     width = UNIT * 11;
     height = UNIT * 14;
 
-    b.setPlayer(p1);
+    //b.setPlayer(p1);
     b.spawnPieces();
 }
 
@@ -175,8 +175,6 @@ void displayGame() {
     glVertex2d(width,UNIT*11);
     glEnd();
 
-
-
     /***** Yellow Road Lines *****/
     for (int i = 0; i < 12;i++){
         if (i%2 == 0){
@@ -291,15 +289,8 @@ void displayGame() {
     b.displayGoalWord();
     b.displayGameWord();//b.setConsonant()
 
-    //b.getConsonant().front().draw();
     b.drawPieces();
 
-/**
-    c1.draw();
-
-    //v1.draw();
-**/
-    p1.draw();
     glFlush();  // Render now
 }
 
@@ -356,24 +347,24 @@ void kbdS(int key, int x, int y) {
     if (screen == game) {
         switch(key) {
             case GLUT_KEY_DOWN:
-                p1.movePlayer(0,UNIT);
-                b.checkCollision(p1);
-                b.checkLetter(p1.getX(), p1.getY(), p1);
+                b.movePlayer(0,UNIT);
+                b.checkCollision();
+                b.checkLetter();
                 break;
             case GLUT_KEY_LEFT:
-                p1.movePlayer(-UNIT, 0);
-                b.checkCollision(p1);
-                b.checkLetter(p1.getX(), p1.getY(), p1);
+                b.movePlayer(-UNIT, 0);
+                b.checkCollision();
+                b.checkLetter();
                 break;
             case GLUT_KEY_RIGHT:
-                p1.movePlayer(UNIT, 0);
-                b.checkCollision(p1);
-                b.checkLetter(p1.getX(), p1.getY(), p1);
+                b.movePlayer(UNIT, 0);
+                b.checkCollision();
+                b.checkLetter();
                 break;
             case GLUT_KEY_UP:
-                p1.movePlayer(0,-UNIT);
-                b.checkCollision(p1);
-                b.checkLetter(p1.getX(), p1.getY(), p1);
+                b.movePlayer(0,-UNIT);
+                b.checkCollision();
+                b.checkLetter();
                 break;
 
             default:
@@ -446,7 +437,7 @@ void mouse(int button, int state, int x, int y) {
 void timer(int extra) {
     if (screen == game) {
         b.movePieces();
-        b.checkCollision(p1);
+        b.checkCollision();
 
     }
     glutPostRedisplay();
