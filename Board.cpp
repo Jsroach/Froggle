@@ -183,7 +183,7 @@ void Board::newGame() {
     }
 
     player = Player(UNITB*5,UNITB*11);
-   **/
+**/
 }
 
 void Board:: wait(int seconds) {
@@ -355,8 +355,13 @@ void Board::movePieces() {
 }
 
 void Board::spawnPieces() {
-    con.emplace_back('P', 50*5, 50*10);
-    vow.emplace_back('I', 50*2, 50*6);
+    //con.emplace_back('P', 50*5, 50*10);
+    con.emplace_back('P', 50*5, 50*9);
+    //con.emplace_back('P', 50*5, 50*8);
+    con.emplace_back('P', 50*5, 50*6);
+    //con.emplace_back('P', 50*5, 50*5);
+    //con.emplace_back('P', 50*5, 50*4);
+    //vow.emplace_back('I', 50*2, 50*6);
 }
 
 void Board::drawPieces() {

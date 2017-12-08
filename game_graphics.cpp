@@ -412,6 +412,7 @@ void mouse(int button, int state, int x, int y) {
     if (screen == menu) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > UNIT*4 && x < UNIT*7) && (y > UNIT*4 && y < UNIT*7)) {
             screen = game;
+            b.newGame();
         }else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > 200 and x < 350) && (y > 500 and y < 550)) {
             glutDestroyWindow(wd);
             exit(0);
