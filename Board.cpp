@@ -121,7 +121,7 @@ void Board::newGame() {
         goalWord[j] = c;
     }
 
-    con.emplace_back(UNITB*5, UNITB*10);
+    con.emplace_back(UNITB*6, UNITB*10);
     con.emplace_back(UNITB*5, UNITB*9);
     con.emplace_back(UNITB*5, UNITB*8);
     con.emplace_back(UNITB*5, UNITB*6);

@@ -31,6 +31,7 @@ public:
 
 protected:
     vector<char> letters = {'a','e','i','o','u','y'}; //list of possible values which are used when generating pieces
+    int UNIT1 = 50;
 };
 
 
