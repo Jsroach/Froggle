@@ -25,7 +25,7 @@ private:
     int boardY = 400;
 
     vector<char> goalWord = {'T', 'E', 'S', 'T'} ;
-    vector<char> gameWord = {'T',' ','S',' '};
+    vector<char> gameWord = {' ',' ',' ',' '};
     vector<string> words1 = {"pi", "cow", "time", "smile" };
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
@@ -141,7 +141,7 @@ public:
     void displayGameWord();
 
     //Set up for later
-    bool checkLetter();
+    void checkLetter(int pX, int pY, Player& player);
 
     //Set up for later
     void startTimer();

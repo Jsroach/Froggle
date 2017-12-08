@@ -23,8 +23,8 @@ int UNIT = 50;
 Board b;
 
 Player p1 = Player(UNIT*5,UNIT*11);
-Consonant c1 = Consonant('t', UNIT*2, UNIT*2);
-Vowel v1 = Vowel('e', UNIT *2, 0);
+Consonant c1 = Consonant('T', UNIT*2, UNIT*2);
+Vowel v1 = Vowel('E', UNIT *2, 0);
 
 screen_type screen = menu;
 
@@ -352,18 +352,22 @@ void kbdS(int key, int x, int y) {
             case GLUT_KEY_DOWN:
                 p1.movePlayer(0,UNIT);
                 b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_LEFT:
                 p1.movePlayer(-UNIT, 0);
                 b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_RIGHT:
                 p1.movePlayer(UNIT, 0);
                 b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_UP:
                 p1.movePlayer(0,-UNIT);
                 b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
 
             default:
