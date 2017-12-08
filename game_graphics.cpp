@@ -22,8 +22,6 @@ int UNIT = 50;
 Board b;
 
 Player p1 = Player(UNIT*5,UNIT*11);
-Consonant c1 = Consonant('P', UNIT*10, UNIT*10);
-Vowel v1 = Vowel('I', UNIT *2, 0);
 
 screen_type screen = menu;
 
@@ -35,8 +33,7 @@ void init() {
     height = UNIT * 14;
 
     b.setPlayer(p1);
-    b.setConsonant(c1);
-    b.setVowel(v1);
+    b.spawnPieces();
 }
 
 /* Initialize OpenGL Graphics */
@@ -286,9 +283,10 @@ void displayGame() {
     b.displayGoalWord();
     b.displayGameWord();//b.setConsonant()
 
-    c1.draw();
+    //b.getConsonant().front().draw();
+    b.drawPieces();
 
-    v1.draw();
+    //v1.draw();
 
     p1.draw();
 
@@ -344,30 +342,27 @@ void kbd(unsigned char key, int x, int y) {
     return;
 }
 
-
-
-
 void kbdS(int key, int x, int y) {
     if (screen == game) {
         switch(key) {
             case GLUT_KEY_DOWN:
                 p1.movePlayer(0,UNIT);
-                b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkCollision(p1);
                 b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_LEFT:
                 p1.movePlayer(-UNIT, 0);
-                b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkCollision(p1);
                 b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_RIGHT:
                 p1.movePlayer(UNIT, 0);
-                b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkCollision(p1);
                 b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_UP:
                 p1.movePlayer(0,-UNIT);
-                b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkCollision(p1);
                 b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
 
@@ -432,7 +427,8 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void timer(int extra) {
-    c1.movePiece();
+    b.movePieces();
+    b.checkCollision(p1);
     glutPostRedisplay();
     glutTimerFunc(1000.0/2.0, timer, 0);
 }

@@ -5,6 +5,7 @@
 #ifndef MCJJ_BOARD_H
 #define MCJJ_BOARD_H
 
+#include <time.h>
 #include <string>
 #include <vector>
 #include <ctime>
@@ -48,6 +49,8 @@ public:
      */
     Board(int boardX, int boardY, bool hasPiece, const vector<string> &words);
 
+    void spawnPieces();
+
     /*
      * Getter
      */
@@ -75,12 +78,12 @@ public:
     /*
      * Getter
      */
-    vector<Vowel> getVowel() const;
+    vector<Vowel>& getVowel();
 
     /*
      * Getter
      */
-    vector<Consonant> getConsonant() const;
+    vector<Consonant>& getConsonant();
 
     /*
      * Getter
@@ -134,7 +137,7 @@ public:
 
     void update();
     //Set up for later
-    void checkCollision(int px, int py, Player& player);
+    void checkCollision(Player& player);
 
     void setGoalWord(string newWord);
 
@@ -174,6 +177,10 @@ public:
 
     //Set up for later
     void restart();
+
+    void movePieces();
+
+    void drawPieces();
 };
 
 #endif //MCJJ_BOARD_H
