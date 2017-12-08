@@ -24,15 +24,15 @@ private:
     int boardX = 400;
     int boardY = 400;
 
-    vector<char> goalWord = {'T', 'E', 'S', 'T'} ;
+    vector<char> goalWord = {'P','I',' ',' ',' '};
     vector<char> gameWord = {' ',' ',' ',' '};
-    vector<string> words1 = {"pi", "cow", "time", "smile" };
+    vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
+    int levelCount = 0;
     int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
     Player player;
     bool hasPiece;
-    vector<string> words;
     clock_t startTime;
     double duration;
 
