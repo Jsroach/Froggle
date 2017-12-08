@@ -289,7 +289,7 @@ void displayGame() {
     for (int i = 0; i < exit.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
-    b.displayLevel();
+    //b.displayLevel();
     b.displayGoalWord();
     b.displayGameWord();
 
@@ -408,6 +408,9 @@ void mouse(int button, int state, int x, int y) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > UNIT*4 && x < UNIT*7) && (y > UNIT*4 && y < UNIT*7)) {
             screen = game;
             b.newGame();
+        }else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > 200 and x < 350) && (y > 400 and y < 450)) {
+            screen = game;
+            b.loadGame();
         }else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > 200 and x < 350) && (y > 500 and y < 550)) {
             glutDestroyWindow(wd);
             exit(0);
@@ -416,14 +419,18 @@ void mouse(int button, int state, int x, int y) {
 
     if (screen == game){
         if (button == GLUT_LEFT_BUTTON and (x > 12 and x < 120) and (y > 669 and y < 690)) {
+            b.newGame();
             cout << "Inside New Game" << endl;
         }
 
         if (button == GLUT_LEFT_BUTTON and (x > 166 and x < 276) and (y > 669 and y < 690)) {
+            b.saveGame();
             cout << "Inside Save Game" << endl;
+            screen = menu;
         }
 
         if (button == GLUT_LEFT_BUTTON and (x > 315 and x < 430) and (y > 669 and y < 690)) {
+            b.loadGame();
             cout << "Inside Load Game" << endl;
         }
 
