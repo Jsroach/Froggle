@@ -56,7 +56,7 @@ char Vowel::generateVowel() { //randomly returns a vowel out of the 6 existing v
 }
 
 void Vowel::draw() {
-    glColor3f(1, 1, 0);
+    glColor3f(1, 0, 0);
     glBegin(GL_QUADS);
     // top left corner
     glVertex2i(getX(), getY());

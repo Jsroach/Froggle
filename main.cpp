@@ -145,6 +145,7 @@ int main(int argc, char** argv) {
 //    l.setPiece(&consonant);
 //    l.updatePosition();
 
+
     graphicsPlay(argc, argv);
 
 

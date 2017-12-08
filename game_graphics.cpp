@@ -20,8 +20,10 @@ int wd;
 int UNIT = 50;
 
 Board b;
+vector<Consonant> cong = b.getConsonant();
+vector<Vowel> vowg = b.getVowel();
 
-Player p1 = Player(UNIT*5,UNIT*11);
+Player p1 = b.getPlayer();
 Consonant c1 = Consonant('P', UNIT*5, UNIT*10);
 Vowel v1 = Vowel('I', UNIT *2, 0);
 
@@ -289,18 +291,26 @@ void displayGame() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
 
-
-
-
     b.displayGoalWord();
     b.displayGameWord();//b.setConsonant()
 
+
+    for (int i = 0; i < 6; i++) {
+        cong[i].draw();
+    }
+
+    for (int i = 0; i < 3; i++) {
+        vowg[i].draw();
+    }
+
+    b.getPlayer().draw();
+/**
     c1.draw();
 
     v1.draw();
 
     p1.draw();
-
+**/
     glFlush();  // Render now
 }
 
