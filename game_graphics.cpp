@@ -20,6 +20,7 @@ int wd;
 int UNIT = 50;
 
 Board b;
+vector<string> words1 = b.getWords();
 
 Consonant c1 = Consonant('P', UNIT*5, UNIT*10);
 Vowel v1 = Vowel('I', UNIT *2, 0);
@@ -173,6 +174,7 @@ void displayGame() {
     glBegin(GL_LINES);
     glVertex2d(0,UNIT*11);
     glVertex2d(width,UNIT*11);
+
     glEnd();
 
     /***** Yellow Road Lines *****/
@@ -209,6 +211,8 @@ void displayGame() {
     glVertex2i(width, height);
     glVertex2i(width, UNIT * 13);
     glEnd();
+
+
 
     // drawing word box
     glColor3f(1.0,1.0,1.0);
@@ -285,7 +289,7 @@ void displayGame() {
     for (int i = 0; i < exit.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
-
+    b.displayLevel();
     b.displayGoalWord();
     b.displayGameWord();
 
