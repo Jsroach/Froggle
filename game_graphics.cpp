@@ -21,6 +21,9 @@ int UNIT = 50;
 
 Board b;
 vector<string> words1 = b.getWords();
+
+Consonant c1 = Consonant('P', UNIT*5, UNIT*10);
+Vowel v1 = Vowel('I', UNIT *2, 0);
 Player p1 = Player(UNIT*5,UNIT*11);
 
 screen_type screen = menu;
@@ -294,19 +297,18 @@ void displayGame() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
 
-
-
-
     b.displayGoalWord();
     b.displayGameWord();//b.setConsonant()
 
     //b.getConsonant().front().draw();
     b.drawPieces();
 
+/**
+    c1.draw();
+
     //v1.draw();
-
+**/
     p1.draw();
-
     glFlush();  // Render now
 }
 
@@ -450,10 +452,13 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void timer(int extra) {
-    b.movePieces();
-    b.checkCollision(p1);
+    if (screen == game) {
+        b.movePieces();
+        b.checkCollision(p1);
+
+    }
     glutPostRedisplay();
-    glutTimerFunc(1000.0/2.0, timer, 0);
+    glutTimerFunc(1000.0 / 2.0, timer, 0);
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */

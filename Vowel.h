@@ -10,6 +10,8 @@
 using namespace std;
 
 class Vowel : public Piece {
+private:
+    int UNIT1 = 50;
 public:
     //Constructors
     Vowel();
