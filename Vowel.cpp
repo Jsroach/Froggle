@@ -16,14 +16,13 @@ Vowel::Vowel(char c) : Vowel() {
     setHasLetter(true);
 }
 
-Vowel::Vowel(char c, int x, int y) : Piece(c, x, y) {
-    setHasLetter(true);
-}
 Vowel::Vowel(int xIn, int yIn) : Vowel(){
 
 }
 
-Vowel::Vowel(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){}
+Vowel::Vowel(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){
+    setHasLetter(true);
+}
 
 Vowel::Vowel(const Vowel &v) {};
 
