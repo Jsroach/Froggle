@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.7)
-project(MCJJ)
+cmake_minimum_required(VERSION 3.8)
+project(mcjj)
 
 #set(CMAKE_CXX_STANDARD 14)
 
@@ -15,7 +15,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fpermissive")
 find_package (OpenGL REQUIRED)
 find_package (GLUT REQUIRED)
 
-include_directories(${OPENGL_INCLUDE_DIR}  ${FREEGLUT_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE_DIR}  ${GLUT_INCLUDE_DIRS})
 
 file(GLOB SOURCE_FILES
         *.cpp
@@ -24,8 +24,3 @@ file(GLOB SOURCE_FILES
 
 add_executable(main.cpp ${SOURCE_FILES})
 target_link_libraries (main.cpp ${OPENGL_LIBRARIES} ${GLUT_LIBRARIES} m dl pthread)
-
-
-
-
-

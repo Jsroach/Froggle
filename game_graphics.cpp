@@ -21,7 +21,9 @@ int UNIT = 50;
 
 Board b;
 
-Player p1 = Player(UNIT*5,UNIT*11);
+Consonant c1 = Consonant('P', UNIT*5, UNIT*10);
+Vowel v1 = Vowel('I', UNIT *2, 0);
+//Player p1 = Player(UNIT*5,UNIT*11);
 
 screen_type screen = menu;
 
@@ -33,7 +35,7 @@ void init() {
     width = UNIT * 11;
     height = UNIT * 14;
 
-    b.setPlayer(p1);
+    //b.setPlayer(p1);
     b.spawnPieces();
 }
 
@@ -173,8 +175,6 @@ void displayGame() {
     glVertex2d(width,UNIT*11);
     glEnd();
 
-
-
     /***** Yellow Road Lines *****/
     for (int i = 0; i < 12;i++){
         if (i%2 == 0){
@@ -286,18 +286,10 @@ void displayGame() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
 
-
-
-
     b.displayGoalWord();
     b.displayGameWord();//b.setConsonant()
 
-    //b.getConsonant().front().draw();
     b.drawPieces();
-
-    //v1.draw();
-
-    p1.draw();
 
     glFlush();  // Render now
 }
@@ -355,24 +347,24 @@ void kbdS(int key, int x, int y) {
     if (screen == game) {
         switch(key) {
             case GLUT_KEY_DOWN:
-                p1.movePlayer(0,UNIT);
-                b.checkCollision(p1);
-                b.checkLetter(p1.getX(), p1.getY(), p1);
+                b.movePlayer(0,UNIT);
+                b.checkCollision();
+                b.checkLetter();
                 break;
             case GLUT_KEY_LEFT:
-                p1.movePlayer(-UNIT, 0);
-                b.checkCollision(p1);
-                b.checkLetter(p1.getX(), p1.getY(), p1);
+                b.movePlayer(-UNIT, 0);
+                b.checkCollision();
+                b.checkLetter();
                 break;
             case GLUT_KEY_RIGHT:
-                p1.movePlayer(UNIT, 0);
-                b.checkCollision(p1);
-                b.checkLetter(p1.getX(), p1.getY(), p1);
+                b.movePlayer(UNIT, 0);
+                b.checkCollision();
+                b.checkLetter();
                 break;
             case GLUT_KEY_UP:
-                p1.movePlayer(0,-UNIT);
-                b.checkCollision(p1);
-                b.checkLetter(p1.getX(), p1.getY(), p1);
+                b.movePlayer(0,-UNIT);
+                b.checkCollision();
+                b.checkLetter();
                 break;
 
             default:
@@ -411,6 +403,7 @@ void mouse(int button, int state, int x, int y) {
     if (screen == menu) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > UNIT*4 && x < UNIT*7) && (y > UNIT*4 && y < UNIT*7)) {
             screen = game;
+            b.newGame();
         }else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > 200 and x < 350) && (y > 500 and y < 550)) {
             glutDestroyWindow(wd);
             exit(0);
@@ -442,10 +435,13 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void timer(int extra) {
-    b.movePieces();
-    b.checkCollision(p1);
+    if (screen == game) {
+        b.movePieces();
+        b.checkCollision();
+
+    }
     glutPostRedisplay();
-    glutTimerFunc(1000.0/2.0, timer, 0);
+    glutTimerFunc(1000.0 / 2.0, timer, 0);
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */

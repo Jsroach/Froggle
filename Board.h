@@ -25,6 +25,9 @@ private:
     int boardX = 400;
     int boardY = 400;
 
+    int UNITB = 50;
+    vector<char> conLetters = {'b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'};
+    vector<char> vowLetters = {'a','e','i','o','u','y'};
     vector<char> goalWord = {'P','I',' ',' ',' '};
     vector<char> gameWord = {' ',' ',' ',' '};
     vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
@@ -32,7 +35,7 @@ private:
     int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
-    Player player;
+    Player p1;
     bool hasPiece;
     clock_t startTime;
     double duration;
@@ -88,7 +91,7 @@ public:
     /*
      * Getter
      */
-    Player getPlayer() const;
+    Player& getPlayer();
 
     /*
      * Setter
@@ -137,7 +140,7 @@ public:
 
     void update();
     //Set up for later
-    void checkCollision(Player& player);
+    void checkCollision();
 
     void setGoalWord(string newWord);
 
@@ -145,8 +148,15 @@ public:
 
     void displayGameWord();
 
+    /**
+     * Requires: None
+     * Modifies: Board object values
+     * Effects: Creates a new game, *starting values of objecs still need to be determined*
+     */
+    void newGame();
+
     //Set up for later
-    void checkLetter(int pX, int pY, Player& player);
+    void checkLetter();
 
     //Set up for later
     void startTimer();
@@ -168,19 +178,14 @@ public:
      */
     void loadGame();
 
-    /**
-     * Requires: None
-     * Modifies: Board object values
-     * Effects: Creates a new game, *starting values of objecs still need to be determined*
-     */
-    void newGame();
-
     //Set up for later
     void restart();
 
     void movePieces();
 
     void drawPieces();
+
+    void movePlayer(int i, int i1);
 };
 
 #endif //MCJJ_BOARD_H

@@ -16,23 +16,32 @@ Vowel::Vowel(char c) : Vowel() {
     setHasLetter(true);
 }
 
+Vowel::Vowel(char c, int x, int y) : Piece(c, x, y) {
+    setHasLetter(true);
+}
 Vowel::Vowel(int xIn, int yIn) : Vowel(){
 
-}
-
-Vowel::Vowel(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){
-    setHasLetter(true);
 }
 
 Vowel::Vowel(const Vowel &v) {};
 
 void Vowel::movePiece() {
-    if (getY() == SPACE && getX() > 0) { //moves piece to the left if it is in a certain row (lane)
-        setX(getX() - 50);
-    }else if (getY() == SPACE*2 && getX() < 500) { //moves piece to the right if it is in a specific row (lane)
-        setX(getX() + SPACE);
-    }else {
-        cout << "Car is off the road!" << endl; //error message
+    //Changes direction of movement based on the Y coordinate
+//    if (getY() == UNIT1*6 && getX() >= 0) {
+//        setX(getX() - UNIT1); //Moves left
+//        if (getX() < 0) {
+//            setX(UNIT1*11);
+//        }
+//    } else if (getY() == SPACE*2 && getX() < 500) {
+//        setX(getX() + SPACE);//Moves right
+//    } else {
+//        //Y coordinate is incorrect, the car is off the road
+//        cout << "Car is off the road!" << endl;
+//    }
+
+    setX(getX() - UNIT1); //Moves left
+    if (getX() < 0) {
+        setX(UNIT1*11);
     }
 }
 
@@ -61,7 +70,7 @@ char Vowel::generateVowel() { //randomly returns a vowel out of the 6 existing v
 }
 
 void Vowel::draw() {
-    glColor3f(1, 1, 0);
+    glColor3f(1, 0, 0);
     glBegin(GL_QUADS);
     // top left corner
     glVertex2i(getX(), getY());

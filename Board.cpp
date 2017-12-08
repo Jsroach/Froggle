@@ -43,8 +43,8 @@ vector<Consonant>& Board::getConsonant() {
     return con;
 }
 
-Player Board::getPlayer() const {
-    return player;
+Player& Board::getPlayer() {
+    return p1;
 }
 
 void Board::setBoardX(int boardX) {
@@ -76,7 +76,7 @@ void Board::setConsonant(Consonant& c) {
 }
 
 void Board::setPlayer(Player& p) {
-    player = p;
+    p1 = p;
 }
 
 void Board::DrawBoard() {
@@ -108,6 +108,85 @@ void Board::displayGameWord() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
     }
 }
+
+void Board::newGame() {
+    con.clear();
+    vow.clear();
+    goalWord.clear();
+    gameWord.clear();
+
+    string w = words[0];
+    for (int j = 0; j < w.length(); j++) {
+        char c = w[j];
+        goalWord[j] = c;
+    }
+
+    con.emplace_back(UNITB*5, UNITB*10);
+    con.emplace_back(UNITB*5, UNITB*9);
+    con.emplace_back(UNITB*5, UNITB*8);
+    con.emplace_back(UNITB*5, UNITB*6);
+    con.emplace_back(UNITB*5, UNITB*5);
+    con.emplace_back(UNITB*5, UNITB*4);
+
+    for (auto &i : con) {
+        auto random = static_cast<int>(rand() % con.size());
+        //Swap the iterated value with the random value
+        Consonant temp;
+        temp = i;
+        i = con[random];
+        con[random] = temp;
+    }
+
+    for (auto &i : con) {
+        for (char j : goalWord) {
+            bool check = false;
+            for (char conLetter : conLetters) {
+                if (j == conLetter) {
+                    check = true;
+                }
+            }
+            if (check) {
+                i.setCharacter(j);
+            }
+        }
+
+    }
+
+    vow.emplace_back(UNITB*5, UNITB*3);
+    vow.emplace_back(UNITB*1, UNITB*2);
+    vow.emplace_back(UNITB*6, UNITB*2);
+
+    for (auto &i : vow) {
+        auto random = static_cast<int>(rand() % vow.size());
+        //Swap the iterated value with the random value
+        Vowel temp;
+        temp = i;
+        i = vow[random];
+        vow[random] = temp;
+    }
+
+    for (auto &i : vow) {
+        for (char j : goalWord) {
+            bool check = false;
+
+            for (char vowLetter : vowLetters) {
+
+                if (j == vowLetter) {
+                    check = true;
+                }
+            }
+
+            if (check) {
+                i.setCharacter(j);
+            }
+        }
+    }
+
+    p1 = Player(UNITB*5,UNITB*11);
+
+    cout << "Done with setting up game" << endl;
+}
+
 void Board:: wait(int seconds) {
     clock_t endwait;
     endwait = clock () + seconds * CLOCKS_PER_SEC ;
@@ -115,43 +194,42 @@ void Board:: wait(int seconds) {
 }
 
 void Board:: update(){
-    while (start == true){
+    while (start){
         //move cars in vector
         wait(0.1);
     }
 }
 
-void Board::checkLetter(int pX, int pY, Player& player) {
+void Board::checkLetter() {
 
-   if (pY == (50 * 12)){
-       for(int i=0 ; i<goalWord.size();i++){
-           if(pX== (50 * (i+3)) && goalWord[i]!= gameWord[i] && player.getCharacter() == goalWord[i]) {
-               gameWord[i]= player.getCharacter();
+   if (p1.getX() == (50 * 12)){
+
+       for(int i=0 ; i < goalWord.size(); i++){
+           if(p1.getX() == (50 * (i+3)) && goalWord[i]!= gameWord[i] && p1.getCharacter() == goalWord[i]) {
+               gameWord[i]= p1.getCharacter();
                displayGameWord();
-               player.setCharacter(' ');
+               p1.setCharacter(' ');
            }
 
        }
-   }
-    int correctCount = 0;
-    for(int i=0 ; i<goalWord.size();i++){
-        if(goalWord[i] == gameWord[i]){
-            correctCount++;
-        }
-    }
-    if(correctCount == gameWord.size()){
-        cout<<"Ya good"<<endl;
-        for (char &i : gameWord) {
-            i = ' ';
-        }
-        levelCount++;
-        setGoalWord(words[levelCount]);
-        player.setX(50*5);
-        player.setY(50*11);
-        displayGoalWord();
-    }
-}
 
+       int correctCount = 0;
+       for(int i=0 ; i<goalWord.size();i++){
+           if(goalWord[i] == gameWord[i]){
+               correctCount++;
+           }
+       }
+       if(correctCount == gameWord.size()){
+           cout<< "Ya good" <<endl;
+           for (char &i : gameWord) {
+               i = ' ';
+           }
+           levelCount++;
+           setGoalWord(words[levelCount]);
+           displayGoalWord();
+       }
+   }
+}
 
 void Board::startTimer() {
     startTime = clock();
@@ -159,24 +237,19 @@ void Board::startTimer() {
 
 void Board::stopTimer() {
     double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
-    //cout << "Number of seconds: " << duration << endl;
-
 }
 
-void Board::checkCollision(Player& player) {
-    // loop through the vector of all pieces.
-    // if piece has the same y value as player, check x value.
-    // if the x value for the piece is the same as the x value for the player a collision happened.
+void Board::checkCollision() {
+
     for (auto &i : getConsonant()) {
-        if (player.getX() == i.getX() and player.getY() == i.getY()) {
-            cout << "COLLLLL C" << endl;
-            player.setCharacter(i.getCharacter());
+        if (p1.getX() == i.getX() and p1.getY() == i.getY()) {
+            p1.setCharacter(i.getCharacter());
         }
     }
 
     for (auto &i : getVowel()) {
-        if (player.getX() == i.getX() and player.getY() == i.getY()) {
-            player.setCharacter(i.getCharacter());
+        if (p1.getX() == i.getX() and p1.getY() == i.getY()) {
+            p1.setCharacter(i.getCharacter());
         }
     }
 }
@@ -196,17 +269,17 @@ void Board::saveGame() {
         file << "c," << i.getCharacter() << ',' << i.getX() << ',' << i.getY() << ',' << endl;
     }
     //If players character is blank write to file with temporary character
-    if (player.getCharacter() == ' ') {
-        file << "p,!," << player.getX() << ',' << player.getY() << ',' << endl;
+    if (p1.getCharacter() == ' ') {
+        file << "p,!," << p1.getX() << ',' << p1.getY() << ',' << endl;
     } else { // Else just add character value
-        file << "p," << player.getCharacter() << ',' << player.getX() << ',' << player.getY() << ',' << endl;
+        file << "p," << p1.getCharacter() << ',' << p1.getX() << ',' << p1.getY() << ',' << endl;
     }
     //file << "Writing to file" << endl;
     file.close();
     //To demonstrate save worked in testing
     con.clear();
     vow.clear();
-    player = Player(0,0);
+    p1 = Player(0,0);
 }
 
 void Board::loadGame() {
@@ -234,26 +307,10 @@ void Board::loadGame() {
         }else {
             Player p = Player(x, y);
             setPlayer(p);
-            player.setCharacter(character);
+            p1.setCharacter(character);
         }
     }
     file.close();
-}
-
-void Board::newGame() {
-    //Clears all values
-    con.clear();
-    vow.clear();
-    player = Player(0,0);
-
-    //Set needed objects up (values are for testing purposes)
-    con.emplace_back(Consonant(' ', 0 ,0));
-    vow.emplace_back(Vowel(' ', 0, 0));
-    player = Player(0,0);
-
-    //For testing
-    cout << "New Game Started!" << endl;
-
 }
 
 void Board::restart() {
@@ -275,17 +332,25 @@ void Board::movePieces() {
 }
 
 void Board::spawnPieces() {
-    con.emplace_back('P', 50*5, 50*10);
-    vow.emplace_back('I', 50*2, 50*6);
-    //vow.emplace_back('E',50*1, 50*6);
+//    con.emplace_back('P', 50*5, 50*10);
+//    vow.emplace_back('I', 50*2, 50*6);
 }
 
 void Board::drawPieces() {
+    cout << "drawing" << endl;
+    p1.draw();
+
     for (auto &i : getConsonant()) {
+        cout << i.getCharacter() << endl;
         i.draw();
     }
 
     for (auto &i : getVowel()) {
+        cout << i.getCharacter() << endl;
         i.draw();
     }
+}
+
+void Board::movePlayer(int i, int i1) {
+    p1.movePlayer(i, i1);
 }
