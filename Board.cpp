@@ -92,21 +92,19 @@ void Board::setGoalWord(string newWord) {
 }
 
 void Board::displayGoalWord() {
-    for(int i = 0; i<goalWord.size(); i++){
-        char goal = goalWord[i];
+    for(int i = 0; i < goalWord.size(); i++){
         glColor3f(1.0, 0.0, 0.0);
-        glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
+        glRasterPos2i(static_cast<GLint>(50 * (3.35 + i)), static_cast<GLint>(50 * 12.7));
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, goalWord[i]);
-        glEnd();
     }
 }
 
-void Board::displayGameWord(char c) {
+void Board::displayGameWord() {
     for (int i = 0; i < goalWord.size(); i++){
-        if (goalWord[i] == c) {
+        if (gameWord[i] != ' ' and goalWord[i] == gameWord[i]) {
             glColor3f(0.0, 0.0, 0.0);
             glRasterPos2i(static_cast<GLint>(50 * (3.35 + i)), static_cast<GLint>(50 * 12.7));
-            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
         }
     }
 }
@@ -161,12 +159,15 @@ void Board::checkLetter() {
    if ((p1.getX() >= 150 and p1.getX() <= 350) and p1.getY() == 600){
 
            if (p1.getHasLetter()) {
-               for (char c : goalWord) {
-                   if (c != ' ' and p1.getCharacter() == c) {
-                       displayGameWord(c);
+               for (int i = 0; i < goalWord.size(); ++i) {
+                   if (goalWord[i] != ' ' and p1.getCharacter() == goalWord[i]) {
+                       gameWord[i] = p1.getCharacter();
                        p1.setCharacter(' ');
                        p1.setHasLetter(false);
                    }
+               }
+               for (char c : goalWord) {
+
                }
            }
    }
@@ -346,8 +347,6 @@ void Board::spawnPieces() {
 }
 
 void Board::drawPieces() {
-    displayGoalWord();
-
     p1.draw();
 
     for (auto &i : getConsonant()) {
