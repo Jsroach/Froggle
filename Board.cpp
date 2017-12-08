@@ -108,6 +108,84 @@ void Board::displayGameWord() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
     }
 }
+
+void Board::newGame() {
+    /**
+    con.clear();
+    vow.clear();
+    goalWord.clear();
+    gameWord.clear();
+
+    string w = words[0];
+    for (int j = 0; j < w.length(); j++) {
+        char c = w[j];
+        goalWord[j] = c;
+    }
+
+    con.resize(6);
+    con.emplace_back(Consonant(UNITB*5, UNITB*10));
+    con.emplace_back(Consonant(UNITB*5, UNITB*9));
+    con.emplace_back(Consonant(UNITB*5, UNITB*8));
+    con.emplace_back(Consonant(UNITB*5, UNITB*6));
+    con.emplace_back(Consonant(UNITB*5, UNITB*5));
+    con.emplace_back(Consonant(UNITB*5, UNITB*4));
+
+    for (int i = 0; i < con.size(); i++) {
+        int random = rand() % con.size();
+        //Swap the iterated value with the random value
+        Consonant temp;
+        temp = con[i];
+        con[i] = con[random];
+        con[random] = temp;
+    }
+
+    for(int i = 0; i < con.size(); i++) {
+        for (int j = 0; j < goalWord.size(); j ++) {
+            bool check = false;
+            for (int k = 0; k < conLetters.size(); k++) {
+                if (goalWord[j] == conLetters[k]) {
+                    check = true;
+                }else;
+            }
+            if (check == true) {
+                con[i].setCharacter(goalWord[j]);
+            }
+        }
+
+    }
+
+    vow.resize(3);
+    vow.emplace_back(Vowel(UNITB*5, UNITB*3));
+    vow.emplace_back(Vowel(UNITB*1, UNITB*2));
+    vow.emplace_back(Vowel(UNITB*6, UNITB*2));
+
+    for (int i = 0; i < vow.size(); i++) {
+        int random = rand() % vow.size();
+        //Swap the iterated value with the random value
+        Vowel temp;
+        temp = vow[i];
+        vow[i] = vow[random];
+        vow[random] = temp;
+    }
+
+    for(int i = 0; i < vow.size(); i++) {
+        for (int j = 0; j < goalWord.size(); j ++) {
+            bool check = false;
+            for (int k = 0; k < vowLetters.size(); k++) {
+                if (goalWord[j] == vowLetters[k]) {
+                    check = true;
+                }else;
+            }
+            if (check == true) {
+                vow[i].setCharacter(goalWord[j]);
+            }
+        }
+    }
+
+    player = Player(UNITB*5,UNITB*11);
+   **/
+}
+
 void Board:: wait(int seconds) {
     clock_t endwait;
     endwait = clock () + seconds * CLOCKS_PER_SEC ;
@@ -238,6 +316,7 @@ void Board::loadGame() {
     file.close();
 }
 
+/**
 void Board::newGame() {
     //Clears all values
     con.clear();
@@ -254,6 +333,7 @@ void Board::newGame() {
 
 }
 
+**/
 void Board::restart() {
     cout << "Restarting game" << endl;
     // TODO: Implement restart function
