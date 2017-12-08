@@ -146,7 +146,7 @@ public:
 
     void displayGoalWord();
 
-    void displayGameWord(char c);
+    void displayGameWord();
 
     /**
      * Requires: None

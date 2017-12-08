@@ -287,6 +287,7 @@ void displayGame() {
     }
 
     b.displayGoalWord();
+    b.displayGameWord();
 
     b.drawPieces();
 
