@@ -20,6 +20,7 @@ int wd;
 int UNIT = 50;
 
 Board b;
+vector<string> words1 = b.getWords();
 
 Consonant c1 = Consonant('P', UNIT*5, UNIT*10);
 Vowel v1 = Vowel('I', UNIT *2, 0);
@@ -173,6 +174,7 @@ void displayGame() {
     glBegin(GL_LINES);
     glVertex2d(0,UNIT*11);
     glVertex2d(width,UNIT*11);
+
     glEnd();
 
     /***** Yellow Road Lines *****/
@@ -209,6 +211,8 @@ void displayGame() {
     glVertex2i(width, height);
     glVertex2i(width, UNIT * 13);
     glEnd();
+
+
 
     // drawing word box
     glColor3f(1.0,1.0,1.0);
@@ -285,7 +289,7 @@ void displayGame() {
     for (int i = 0; i < exit.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
-
+    //b.displayLevel();
     b.displayGoalWord();
     b.displayGameWord();
 
@@ -404,6 +408,9 @@ void mouse(int button, int state, int x, int y) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > UNIT*4 && x < UNIT*7) && (y > UNIT*4 && y < UNIT*7)) {
             screen = game;
             b.newGame();
+        }else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > 200 and x < 350) && (y > 400 and y < 450)) {
+            screen = game;
+            b.loadGame();
         }else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > 200 and x < 350) && (y > 500 and y < 550)) {
             glutDestroyWindow(wd);
             exit(0);
@@ -412,14 +419,18 @@ void mouse(int button, int state, int x, int y) {
 
     if (screen == game){
         if (button == GLUT_LEFT_BUTTON and (x > 12 and x < 120) and (y > 669 and y < 690)) {
+            b.newGame();
             cout << "Inside New Game" << endl;
         }
 
         if (button == GLUT_LEFT_BUTTON and (x > 166 and x < 276) and (y > 669 and y < 690)) {
+            b.saveGame();
             cout << "Inside Save Game" << endl;
+            screen = menu;
         }
 
         if (button == GLUT_LEFT_BUTTON and (x > 315 and x < 430) and (y > 669 and y < 690)) {
+            b.loadGame();
             cout << "Inside Load Game" << endl;
         }
 

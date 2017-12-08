@@ -136,8 +136,13 @@ void Board::newGame() {
     }
 
     p1 = Player(UNITB*5,UNITB*11);
-
     cout << "Done with setting up game" << endl;
+
+    for (auto &i: goalWord) {
+        cout << goalWord[i] << endl;
+    }
+
+
 }
 
 void Board:: wait(int seconds) {
@@ -152,51 +157,6 @@ void Board:: update(){
         wait(static_cast<int>(0.1));
     }
 }
-
-//void Board::checkLetter() {
-//
-//   if ((p1.getX() >= 150 and p1.getX() <= 350) and p1.getY() == 600){
-//           if (p1.getHasLetter()) {
-//               for (char i : goalWord) {
-//                   if (i != ' ' and p1.getCharacter() == i) {
-//                       gameWord.emplace_back(p1.getCharacter());
-//                       p1.setCharacter(' ');
-//                       p1.setHasLetter(false);
-//                   }
-//               }
-//           }
-//   }
-//
-//    string newGoalWord;
-//    string newGameWord;
-//
-//    for(char s : goalWord){
-//        if (s != ' ') {
-//            newGoalWord += s;
-//        }
-//    }
-//
-//    for(char s : gameWord){
-//        newGameWord += s;
-//    }
-//
-//    cout << newGoalWord << endl;
-//    cout << newGameWord << endl;
-//
-//
-//    if (newGoalWord == newGameWord){
-//        cout<< "Ya good" << endl;
-//
-//        for (char &i : gameWord) {
-//            i = ' ';
-//        }
-//
-//        levelCount++;
-//
-//        setGoalWord(words[levelCount]);
-//        //displayGoalWord();
-//    }
-//}
 
 void Board::checkLetter() {
 
@@ -233,7 +193,6 @@ void Board::checkLetter() {
     }
 }
 
-
 void Board::startTimer() {
     startTime = clock();
 }
@@ -258,10 +217,8 @@ void Board::checkCollision() {
 }
 
 void Board::saveGame() {
-    // Should generate ID for each game and use that to find the right file.
-    int gameID = 1;
     //write to file
-    ofstream file("game.txt");
+    ofstream file("gameobjects.txt");
     //Write values of vowel vector to file
     for (auto &i : vow) {
         //Leter is added at beginning to help with loading game in
@@ -271,23 +228,38 @@ void Board::saveGame() {
     for (auto &i : con) {
         file << "c," << i.getCharacter() << ',' << i.getX() << ',' << i.getY() << ',' << endl;
     }
+
     //If players character is blank write to file with temporary character
     if (p1.getCharacter() == ' ') {
         file << "p,!," << p1.getX() << ',' << p1.getY() << ',' << endl;
     } else { // Else just add character value
         file << "p," << p1.getCharacter() << ',' << p1.getX() << ',' << p1.getY() << ',' << endl;
     }
+
     //file << "Writing to file" << endl;
     file.close();
+
+    ofstream stat("gamestats.txt");
+    for (auto &i : goalWord) {
+        stat << "g," <<  goalWord[i] << ',';
+    }
+    stat << endl;
+
+    for (auto &i : gameWord) {
+        char ch = gameWord[i];
+        stat << "w," << ch << ',';
+    }
+    stat << endl;
+
+    stat.close();
     //To demonstrate save worked in testing
     con.clear();
     vow.clear();
-    p1 = Player(0,0);
+    p1 = Player(UNITB*5,UNITB*11);
 }
 
 void Board::loadGame() {
     //Define variables
-    int gameID = 1;
     char type;
     char character;
     char comma;
@@ -295,15 +267,15 @@ void Board::loadGame() {
     int y;
 
     //Open save file
-    ifstream file("game.txt");
+    ifstream file("gameobjects.txt");
     while(file) {
         //Get information from each line
         file >> type >> comma >> character >> comma >> x >> comma >> y >> comma;
         //V = vowel
         if (type == 'v') {
-            vow.emplace_back(Vowel(character, x, y));
+            vow.emplace_back(character, x, y);
         }else if (type == 'c') {
-            con.emplace_back(Consonant(character, x, y));
+            con.emplace_back(character, x, y);
         }else if (type == 'p' && character == '!'){ //Check to see if player character is a filler character
             Player p = Player(x, y);
             setPlayer(p);
@@ -314,6 +286,37 @@ void Board::loadGame() {
         }
     }
     file.close();
+
+    ifstream stat("gamestat.txt");
+    while (stat) {
+        char type;
+        char comma;
+        char ch1;
+        char ch2;
+        char ch3;
+        char ch4;
+        char ch5;
+
+        stat >> type >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma;
+
+        if (type == 'g') {
+            goalWord.emplace_back(ch1);
+            goalWord.emplace_back(ch2);
+            goalWord.emplace_back(ch3);
+            goalWord.emplace_back(ch4);
+            goalWord.emplace_back(ch5);
+        }else if (type == 'w') {
+            gameWord.emplace_back(ch1);
+            gameWord.emplace_back(ch2);
+            gameWord.emplace_back(ch3);
+            gameWord.emplace_back(ch4);
+            gameWord.emplace_back(ch5);
+
+        }
+
+    }
+    stat.close();
+
 }
 
 void Board::restart() {
@@ -335,6 +338,13 @@ void Board::movePieces() {
 }
 
 void Board::spawnPieces() {
+    //con.emplace_back('P', 50*5, 50*10);
+    //con.emplace_back('I', 50*5, 50*9);
+    //con.emplace_back('K', 50*5, 50*8);
+    //con.emplace_back('P', 50*5, 50*6);
+    //con.emplace_back('P', 50*5, 50*5);
+    //con.emplace_back('P', 50*5, 50*4);
+    //vow.emplace_back('I', 50*2, 50*6);
 //    con.emplace_back('P', 50*5, 50*10);
 //    vow.emplace_back('I', 50*2, 50*6);
 }

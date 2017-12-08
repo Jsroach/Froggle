@@ -28,14 +28,13 @@ private:
     int UNITB = 50;
     vector<char> conLetters = {'B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Z'};
     vector<char> vowLetters = {'A','E','I','O','U','Y'};
-    vector<char> goalWord = {'P','I',' ',' ',' '};
-    vector<char> gameWord = {' ',' ',' ',' ', ' '};
+    vector<char> gameWord = {' ',' ',' ',' ',' '};
+    vector<char> goalWord = {' ',' ',' ',' ',' '};
     vector<string> words = {"PI   ", "COW  ", "TIME ", "SMILE"};
     int levelCount = 0;
-    int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
-    Player p1;
+    Player p1 = Player(UNITB*5, UNITB*11);
     bool hasPiece;
     clock_t startTime;
     double duration;
