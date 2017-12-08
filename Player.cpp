@@ -10,6 +10,7 @@ Player:: Player() = default;
 Player:: Player(int x, int y){
     setX(x);
     setY(y);
+    character = ' ';
 }
 
 void Player:: setCharacter(char characterIn) {
