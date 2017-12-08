@@ -21,7 +21,7 @@ Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xI
 
 void Consonant::movePiece() {
     //Changes direction of movement based on the Y coordinate
-    if (getY() == UNIT1*11 && getX() > UNIT1) {
+    if (getY() == UNIT1*10 && getX() > 0) {
         setX(getX() - UNIT1); //Moves left
         if (getX() == UNIT1) {
             setX(UNIT1*11);

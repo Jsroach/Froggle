@@ -10,7 +10,6 @@
 #include "Vowel.h"
 #include "Shape.h"
 #include "Board.h"
-
 using namespace std;
 
 //Determine screen
@@ -23,7 +22,7 @@ int UNIT = 50;
 Board b;
 vector<string> words1 = b.getWords();
 Player p1 = Player(UNIT*5,UNIT*11);
-Consonant c1 = Consonant('P', UNIT*2, UNIT*2);
+Consonant c1 = Consonant('P', UNIT*10, UNIT*10);
 Vowel v1 = Vowel('I', UNIT *2, 0);
 
 screen_type screen = menu;
@@ -321,9 +320,11 @@ void display() {
     switch (screen) {
         case menu:
             displayStart();
+            b.startTimer();
             break;
         case game:
             displayGame();
+            b.stopTimer();
             break;
     }
     glFlush();  // Render now
@@ -430,9 +431,9 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void timer(int extra) {
-
+    c1.movePiece();
     glutPostRedisplay();
-    glutTimerFunc(30, timer, 0);
+    glutTimerFunc(1000.0/2.0, timer, 0);
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */
@@ -469,7 +470,7 @@ int graphicsPlay(int argc, char** argv) {
     glutMouseFunc(mouse);
 
     // handles timer
-    glutTimerFunc(0, timer, 0);
+    glutTimerFunc(1000.0/60.0, timer, 0);
 
     // Enter the event-processing loop
     glutMainLoop();

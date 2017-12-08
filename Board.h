@@ -28,11 +28,13 @@ private:
     vector<char> gameWord = {' ',' ',' ',' '};
     vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
     int levelCount = 0;
+    int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
     Player player;
     bool hasPiece;
     clock_t startTime;
+    double duration;
 
 public:
     bool start = true;
