@@ -5,13 +5,11 @@
 #include "Player.h"
 #include "graphics.h"
 
-Player:: Player(){
-}
+Player:: Player() = default;
 
 Player:: Player(int x, int y){
     setX(x);
     setY(y);
-    character = ' ';
 }
 
 void Player:: setCharacter(char characterIn) {
@@ -25,7 +23,7 @@ void Player:: movePiece(){
     setPosition(getX()-SPACE, getY());
 }
 
-void Player:: movePlayer(int deltaX, int deltaY){
+void Player::movePlayer(int deltaX, int deltaY){
     if (getX()+deltaX <= 500 && getX()+deltaX>=0){
         if(getY()+deltaY<=600 && getY()+deltaY>=0){
             setPosition(getX()+deltaX,getY()+deltaY);

@@ -1,15 +1,15 @@
 //
 // Created by Jack Roach on 11/30/17.
 //
-
+#include <time.h>
 #include "graphics.h"
 #include <string>
 #include <iostream>
 #include "Player.h"
 #include "Consonant.h"
 #include "Vowel.h"
+#include "Shape.h"
 #include "Board.h"
-
 using namespace std;
 
 //Determine screen
@@ -21,16 +21,23 @@ int UNIT = 50;
 
 Board b;
 
-Player p1= Player(UNIT*5,UNIT*11);
+Player p1 = Player(UNIT*5,UNIT*11);
+Consonant c1 = Consonant('P', UNIT*5, UNIT*10);
+Vowel v1 = Vowel('I', UNIT *2, 0);
 
 screen_type screen = menu;
 
-Consonant c1 = Consonant('I', UNIT*2, UNIT*2);
-Vowel v1 = Vowel('t', UNIT *2, 0);
+Rectangle1 r1 = Rectangle1({0,.5,0}, 200, 300);
+Rectangle1 r2 = Rectangle1({0,.5,0}, 200, 400);
+Rectangle1 r3 = Rectangle1({0,.5,0}, 200, 500);
 
 void init() {
     width = UNIT * 11;
     height = UNIT * 14;
+
+    b.setPlayer(p1);
+    b.setConsonant(c1);
+    b.setVowel(v1);
 }
 
 /* Initialize OpenGL Graphics */
@@ -40,19 +47,61 @@ void initGL() {
 }
 
 void displayStart() {
-    glColor3f(0, 0, 0);
+
+    glColor3f(1, 1, 1);
     glBegin(GL_QUADS);
     glVertex2i(0, 0);
     glVertex2i(0, height);
     glVertex2i(width, height);
     glVertex2i(width, 0);
     glEnd();
-
-    string message = "Click anywhere to begin";
+/**
+    glColor3f(0, .5, 0);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*4, UNIT*6);
+    glVertex2i(UNIT*7,UNIT*6);
+    glVertex2i(UNIT*7, UNIT*7);
+    glVertex2i(UNIT*4, UNIT*7);
+    glEnd();
+**/
+    r1.draw();    string messageNGAME = "New Game";
     glColor3f(1, 1, 1);
-    glRasterPos2i(150, 240);
-    for (int i = 0; i < message.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, message[i]);
+    glRasterPos2i(220, 335);
+    for (int i = 0; i < messageNGAME.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageNGAME[i]);
+    }
+
+    r2.draw();
+    /**
+    glColor3f(0,.5, 0);
+    glBegin(GL_QUADS);
+    glVertex2i(UNIT*4, UNIT*8);
+    glVertex2i(UNIT*7,UNIT*8);
+    glVertex2i(UNIT*7, UNIT*9);
+    glVertex2i(UNIT*4, UNIT*9);
+    glEnd();
+**/
+    string messageLGAME = "Load Game";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(220, 435);
+    for (int i = 0; i < messageLGAME.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageLGAME[i]);
+    }
+
+    r3.draw();
+
+    string messageEGAME = "Exit";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(253, 535);
+    for (int i = 0; i < messageEGAME.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageEGAME[i]);
+    }
+    string messageTitle = "FROGGLE!";
+    glColor3f(0, .5, 0);
+    glRasterPos2i(215, 240);
+    for (int i = 0; i < messageTitle.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, messageTitle[i]);
+
     }
 
 }
@@ -165,7 +214,7 @@ void displayGame() {
     glEnd();
 
     // drawing word box
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3f(1.0,1.0,1.0);
     glBegin(GL_QUADS);
     glVertex2i(UNIT*3, UNIT * 12);
     glVertex2i(UNIT*3, UNIT * 13);
@@ -182,7 +231,6 @@ void displayGame() {
     glVertex2d(UNIT * 3,UNIT * 13);
     glVertex2d(UNIT * 8,UNIT * 13);
     glBegin(GL_LINES);
-
 
     glVertex2d(UNIT * 3,UNIT * 12);
     glVertex2d(UNIT * 3,UNIT * 13);
@@ -234,31 +282,24 @@ void displayGame() {
     }
 
     // drawing exit button
-    string exit = "Exit";
+    string exit = "Menu";
     glColor3f(1, 1, 1);
-    glRasterPos2i(UNIT * 10, UNIT * 13.7);
+    glRasterPos2i(UNIT * 9.6, UNIT * 13.7);
     for (int i = 0; i < exit.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
 
 
-    if (!p1.getHasLetter()) {
-        p1.setCharacter('J');
-    }
 
-    b.displayGoal();
 
-    p1.draw();
+    b.displayGoalWord();
+    b.displayGameWord();//b.setConsonant()
 
-    if (!c1.getHasLetter()) {
-        c1.setCharacter('c');
-    }
     c1.draw();
 
-    if (!v1.getHasLetter()) {
-        v1.setCharacter('e');
-    }
     v1.draw();
+
+    p1.draw();
 
     glFlush();  // Render now
 }
@@ -289,11 +330,14 @@ void display() {
     switch (screen) {
         case menu:
             displayStart();
+            //b.startTimer();
             break;
         case game:
             displayGame();
+            //b.stopTimer();
             break;
     }
+    glFlush();  // Render now
 }
 
 // http://www.theasciicode.com.ar/ascii-control-characters/escape-ascii-code-27.html
@@ -309,27 +353,39 @@ void kbd(unsigned char key, int x, int y) {
     return;
 }
 
+
+
+
 void kbdS(int key, int x, int y) {
     if (screen == game) {
         switch(key) {
             case GLUT_KEY_DOWN:
                 p1.movePlayer(0,UNIT);
-
+                b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_LEFT:
                 p1.movePlayer(-UNIT, 0);
-
+                b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_RIGHT:
                 p1.movePlayer(UNIT, 0);
-
+                b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_UP:
                 p1.movePlayer(0,-UNIT);
+                b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
+                break;
 
+            default:
                 break;
         }
     }
+
+
 
     glutPostRedisplay();
 
@@ -337,7 +393,19 @@ void kbdS(int key, int x, int y) {
 }
 
 void cursor(int x, int y) {
-
+    if (screen == menu) {
+        if ((x > UNIT*4 && x < UNIT*7) && (y >= UNIT*6 && y <= UNIT*7)) {
+            r1.setFill({0,0,1});
+        }else if ((x > 200 and x < 350) && (y > 400 and y < 450)) {
+            r2.setFill({0,0,1});
+        } else if ((x > 200 and x < 350) && (y > 500 and y < 550)) {
+            r3.setFill({0,0,1});
+        } else {
+            r1.setFill({0,.5,0});
+            r2.setFill({0,.5,0});
+            r3.setFill({0,.5,0});
+        }
+    }
 
     glutPostRedisplay();
 }
@@ -346,8 +414,11 @@ void cursor(int x, int y) {
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
     if (screen == menu) {
-        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > UNIT*4 && x < UNIT*7) && (y > UNIT*4 && y < UNIT*7)) {
             screen = game;
+        }else if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > 200 and x < 350) && (y > 500 and y < 550)) {
+            glutDestroyWindow(wd);
+            exit(0);
         }
     }
 
@@ -366,6 +437,7 @@ void mouse(int button, int state, int x, int y) {
 
 
         if (button == GLUT_LEFT_BUTTON and (x > 500 and x < 550) and (y > 669 and y < 690)) {
+            screen = menu;
             cout << "Inside Exit" << endl;
         }
     }
@@ -375,10 +447,11 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void timer(int extra) {
-
+    c1.movePiece();
     glutPostRedisplay();
-    glutTimerFunc(30, timer, 0);
+    glutTimerFunc(1000.0/2.0, timer, 0);
 }
+
 
 /* Main function: GLUT runs as a console application starting at main()  */
 int graphicsPlay(int argc, char** argv) {
@@ -392,7 +465,7 @@ int graphicsPlay(int argc, char** argv) {
     glutInitWindowSize((int) width, (int) height);
     glutInitWindowPosition(450, 100); // Position the window's initial top-left corner
     /* create the window and store the handle to it */
-    wd = glutCreateWindow("Fun with Drawing!" /* title */ );
+    wd = glutCreateWindow("Froggle" /* title */ );
 
     // Register callback handler for window re-paint event
     glutDisplayFunc(display);

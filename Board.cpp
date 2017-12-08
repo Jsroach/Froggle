@@ -3,8 +3,10 @@
 //
 
 #include "Board.h"
-#include "graphics.h"
 
+#include <utility>
+#include "graphics.h"
+#include <ctime>
 
 using namespace std;
 
@@ -64,15 +66,15 @@ void Board::setTime(clock_t time) {
     Board::startTime = time;
 }
 
-void Board::setVowel(Vowel v) {
+void Board::setVowel(Vowel& v) {
     vow.emplace_back(v);
 }
 
-void Board::setConsonant(Consonant c) {
+void Board::setConsonant(Consonant& c) {
     con.emplace_back(c);
 }
 
-void Board::setPlayer(Player p) {
+void Board::setPlayer(Player& p) {
     player = p;
 }
 
@@ -88,35 +90,95 @@ void Board::setGoalWord(string newWord) {
     }
 }
 
-void Board::displayGoal() {
+void Board::displayGoalWord() {
     for(int i = 0; i<goalWord.size(); i++){
         char goal = goalWord[i];
-        glColor3f(0.0, 0.0, 0.0);
+        glColor3f(1.0, 0.0, 0.0);
         glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, goalWord[i]);
     }
 }
 
-bool Board::checkLetter() {
-    // TODO: Implement
-    return false;
+void Board::displayGameWord() {
+    for(int i = 0; i<gameWord.size(); i++){
+        char goal = gameWord[i];
+        glColor3f(0.0, 0.0, 0.0);
+        glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
+    }
+}
+void Board:: wait(int seconds) {
+    clock_t endwait;
+    endwait = clock () + seconds * CLOCKS_PER_SEC ;
+    while (clock() < endwait) {}
+}
+void Board:: update(){
+    while (start == true){
+        //move cars in vector
+        wait(0.1);
+    }
 }
 
+void Board::checkLetter(int pX, int pY, Player& player) {
+
+   if (pY == (50 * 12)){
+       for(int i=0 ; i<goalWord.size();i++){
+           if(pX== (50 * (i+3)) && goalWord[i]!= gameWord[i] && player.getCharacter() == goalWord[i]) {
+               gameWord[i]= player.getCharacter();
+               displayGameWord();
+               player.setCharacter(' ');
+           }
+
+       }
+   }
+    int correctCount = 0;
+    for(int i=0 ; i<goalWord.size();i++){
+        if(goalWord[i] == gameWord[i]){
+            correctCount++;
+        }
+    }
+    if(correctCount == gameWord.size()){
+        cout<<"Ya good"<<endl;
+        for(int i=0 ; i<gameWord.size();i++) {
+            gameWord[i] = ' ';
+        }
+        levelCount++;
+        setGoalWord(words[levelCount]);
+        player.setX(50*5);
+        player.setY(50*11);
+        displayGoalWord();
+    }
+}
+
+
+
 void Board::startTimer() {
-    setTime(clock());
-    cout << clock() << endl;
+    startTime = clock();
 }
 
 void Board::stopTimer() {
     double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
     cout << "Number of seconds: " << duration << endl;
+
 }
 
-bool Board::checkCollision() {
+void Board::checkCollision(int pX, int pY, Player& player) {
     // loop through the vector of all pieces.
     // if piece has the same y value as player, check x value.
     // if the x value for the piece is the same as the x value for the player a collision happened.
-    return false;
+    for (Consonant c : getConsonant()) {
+        if (pX == c.getX() and pY == c.getY()) {
+            //cout << "COLLLLL C" << endl;
+            player.setCharacter(c.getCharacter());
+        }
+    }
+
+    for (Vowel v : getVowel()) {
+        if (pX == v.getX() and pY == v.getY()) {
+            //cout << "COLLLLL V" << endl;
+            player.setCharacter(v.getCharacter());
+        }
+    }
 }
 
 void Board::saveGame() {
@@ -125,13 +187,13 @@ void Board::saveGame() {
     //write to file
     ofstream file("game.txt");
     //Write values of vowel vector to file
-    for (int i = 0; i < vow.size(); ++i) {
+    for (auto &i : vow) {
         //Leter is added at beginning to help with loading game in
-        file << "v," << vow[i].getCharacter() << ',' << vow[i].getX() << ',' << vow[i].getY() << ',' << endl;
+        file << "v," << i.getCharacter() << ',' << i.getX() << ',' << i.getY() << ',' << endl;
     }
     //Write values of consonant vector to file
-    for (int i = 0; i < con.size(); ++i) {
-        file << "c," << con[i].getCharacter() << ',' << con[i].getX() << ',' << con[i].getY() << ',' << endl;
+    for (auto &i : con) {
+        file << "c," << i.getCharacter() << ',' << i.getX() << ',' << i.getY() << ',' << endl;
     }
     //If players character is blank write to file with temporary character
     if (player.getCharacter() == ' ') {
@@ -167,9 +229,11 @@ void Board::loadGame() {
         }else if (type == 'c') {
             con.emplace_back(Consonant(character, x, y));
         }else if (type == 'p' && character == '!'){ //Check to see if player character is a filler character
-            setPlayer(Player(x,y));
+            Player p = Player(x, y);
+            setPlayer(p);
         }else {
-            setPlayer(Player(x,y));
+            Player p = Player(x, y);
+            setPlayer(p);
             player.setCharacter(character);
         }
     }

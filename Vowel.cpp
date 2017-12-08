@@ -16,10 +16,7 @@ Vowel::Vowel(char c) : Vowel() {
     setHasLetter(true);
 }
 
-Vowel::Vowel(char c, int x, int y) : Vowel() {
-    character = c;
-    setX(x);
-    setY(y);
+Vowel::Vowel(char c, int x, int y) : Piece(c, x, y) {
     setHasLetter(true);
 }
 

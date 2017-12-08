@@ -13,8 +13,10 @@
 #include "Player.h"
 #include "Vowel.h"
 #include "Consonant.h"
+#include "Vowel.h"
 
 using namespace std;
+
 
 class Board {
 private:
@@ -22,17 +24,20 @@ private:
     int boardX = 400;
     int boardY = 400;
 
-    vector<char> goalWord = {'T', 'E', 'S', 'T'} ;
-    vector<char> gameWord;
-    vector<string> words1 = {"pi", "cow", "time", "smile" };
+    vector<char> goalWord = {'P','I',' ',' ',' '};
+    vector<char> gameWord = {' ',' ',' ',' '};
+    vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
+    int levelCount = 0;
+    int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
     Player player;
     bool hasPiece;
-    vector<string> words;
     clock_t startTime;
+    double duration;
 
 public:
+    bool start = true;
     /*
      * Default constructor
      */
@@ -110,30 +115,35 @@ public:
     /*
      * Setter
      */
-    void setVowel(Vowel v);
+    void setVowel(Vowel& v);
 
     /*
      * Setter
      */
-    void setConsonant(Consonant c);
+    void setConsonant(Consonant& c);
 
     /*
      * Setter
      */
-    void setPlayer(Player p);
+    void setPlayer(Player& p);
 
     //Set up for later
     void DrawBoard();
 
+    void wait(int seconds);
+
+    void update();
     //Set up for later
-    bool checkCollision();
+    void checkCollision(int px, int py, Player& player);
 
     void setGoalWord(string newWord);
 
-    void displayGoal();
+    void displayGoalWord();
+
+    void displayGameWord();
 
     //Set up for later
-    bool checkLetter();
+    void checkLetter(int pX, int pY, Player& player);
 
     //Set up for later
     void startTimer();
