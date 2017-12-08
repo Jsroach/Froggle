@@ -159,7 +159,6 @@ void Board::startTimer() {
 
 void Board::stopTimer() {
     double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
-    //cout << "Number of seconds: " << duration << endl;
 
 }
 
@@ -169,7 +168,6 @@ void Board::checkCollision(Player& player) {
     // if the x value for the piece is the same as the x value for the player a collision happened.
     for (auto &i : getConsonant()) {
         if (player.getX() == i.getX() and player.getY() == i.getY()) {
-            cout << "COLLLLL C" << endl;
             player.setCharacter(i.getCharacter());
         }
     }
