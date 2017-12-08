@@ -224,6 +224,7 @@ void Board::saveGame() {
     for (auto &i : con) {
         file << "c," << i.getCharacter() << ',' << i.getX() << ',' << i.getY() << ',' << endl;
     }
+
     //If players character is blank write to file with temporary character
     if (p1.getCharacter() == ' ') {
         file << "p,!," << p1.getX() << ',' << p1.getY() << ',' << endl;
@@ -236,14 +237,15 @@ void Board::saveGame() {
 
     ofstream stat("gamestats.txt");
     for (auto &i : goalWord) {
-        stat << "g," << goalWord[i] << ',';
+        stat << "g," <<  goalWord[i] << ',';
     }
-    file << endl;
+    stat << endl;
 
     for (auto &i : gameWord) {
-        stat << "w," << gameWord[i] << ',';
+        char ch = gameWord[i];
+        stat << "w," << ch << ',';
     }
-    file << endl;
+    stat << endl;
 
     stat.close();
     //To demonstrate save worked in testing
@@ -261,15 +263,15 @@ void Board::loadGame() {
     int y;
 
     //Open save file
-    ifstream file("game.txt");
+    ifstream file("gameobjects.txt");
     while(file) {
         //Get information from each line
         file >> type >> comma >> character >> comma >> x >> comma >> y >> comma;
         //V = vowel
         if (type == 'v') {
-            vow.emplace_back(Vowel(character, x, y));
+            vow.emplace_back(character, x, y);
         }else if (type == 'c') {
-            con.emplace_back(Consonant(character, x, y));
+            con.emplace_back(character, x, y);
         }else if (type == 'p' && character == '!'){ //Check to see if player character is a filler character
             Player p = Player(x, y);
             setPlayer(p);
@@ -332,9 +334,9 @@ void Board::movePieces() {
 }
 
 void Board::spawnPieces() {
-    con.emplace_back('P', 50*5, 50*10);
-    con.emplace_back('I', 50*5, 50*9);
-    //con.emplace_back('P', 50*5, 50*8);
+    //con.emplace_back('P', 50*5, 50*10);
+    //con.emplace_back('I', 50*5, 50*9);
+    //con.emplace_back('K', 50*5, 50*8);
     //con.emplace_back('P', 50*5, 50*6);
     //con.emplace_back('P', 50*5, 50*5);
     //con.emplace_back('P', 50*5, 50*4);
