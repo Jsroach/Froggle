@@ -13,7 +13,8 @@ using namespace std;
 Board::Board() = default;
 
 Board::Board(int boardX, int boardY, bool hasPiece, const vector<string> &words)
-        : boardX(boardX), boardY(boardY), hasPiece(hasPiece), words(words){}
+        : boardX(boardX), boardY(boardY), hasPiece(hasPiece), words(words){
+}
 
 int Board::getBoardX() const {
     return boardX;
@@ -35,10 +36,10 @@ clock_t Board::getTime() const {
     return startTime;
 }
 
-vector<Vowel> Board::getVowel() const {
+vector<Vowel>& Board::getVowel() {
     return vow;
 }
-vector<Consonant> Board::getConsonant() const {
+vector<Consonant>& Board::getConsonant() {
     return con;
 }
 
@@ -190,6 +191,7 @@ void Board:: wait(int seconds) {
     endwait = clock () + seconds * CLOCKS_PER_SEC ;
     while (clock() < endwait) {}
 }
+
 void Board:: update(){
     while (start == true){
         //move cars in vector
@@ -217,8 +219,8 @@ void Board::checkLetter(int pX, int pY, Player& player) {
     }
     if(correctCount == gameWord.size()){
         cout<<"Ya good"<<endl;
-        for(int i=0 ; i<gameWord.size();i++) {
-            gameWord[i] = ' ';
+        for (char &i : gameWord) {
+            i = ' ';
         }
         levelCount++;
         setGoalWord(words[levelCount]);
@@ -236,25 +238,24 @@ void Board::startTimer() {
 
 void Board::stopTimer() {
     double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
-    cout << "Number of seconds: " << duration << endl;
+    //cout << "Number of seconds: " << duration << endl;
 
 }
 
-void Board::checkCollision(int pX, int pY, Player& player) {
+void Board::checkCollision(Player& player) {
     // loop through the vector of all pieces.
     // if piece has the same y value as player, check x value.
     // if the x value for the piece is the same as the x value for the player a collision happened.
-    for (Consonant c : getConsonant()) {
-        if (pX == c.getX() and pY == c.getY()) {
-            //cout << "COLLLLL C" << endl;
-            player.setCharacter(c.getCharacter());
+    for (auto &i : getConsonant()) {
+        if (player.getX() == i.getX() and player.getY() == i.getY()) {
+            cout << "COLLLLL C" << endl;
+            player.setCharacter(i.getCharacter());
         }
     }
 
-    for (Vowel v : getVowel()) {
-        if (pX == v.getX() and pY == v.getY()) {
-            //cout << "COLLLLL V" << endl;
-            player.setCharacter(v.getCharacter());
+    for (auto &i : getVowel()) {
+        if (player.getX() == i.getX() and player.getY() == i.getY()) {
+            player.setCharacter(i.getCharacter());
         }
     }
 }
@@ -341,4 +342,23 @@ void Board::restart() {
     // Loop through all the pieces and generate new positions for them.
     // Reset the players letters to zero.
     // Generate a new word.
+}
+
+void Board::movePieces() {
+    for (auto &i : getConsonant()) {
+        cout << i.getX() << endl;
+        i.movePiece();
+        cout << i.getX() << endl;
+    }
+}
+
+void Board::spawnPieces() {
+    con.emplace_back('P', 50*5, 50*10);
+    vow.emplace_back('I', 50*2, 0);
+}
+
+void Board::drawPieces() {
+    for (auto &i : getConsonant()) {
+        i.draw();
+    }
 }

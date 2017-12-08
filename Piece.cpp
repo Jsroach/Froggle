@@ -28,7 +28,7 @@ int Piece::getPosition() const {
     return x,y; //returns 2 variables, x and y
 }
 void Piece::setX(int xIn) {
-    x = xIn;
+    Piece::x = xIn;
 }
 
 void Piece::setY(int yIn) {

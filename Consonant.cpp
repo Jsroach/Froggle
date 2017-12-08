@@ -19,16 +19,23 @@ Consonant::Consonant(int xIn, int yIn) : Consonant(){
 
 Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){}
 
+Consonant::Consonant(const Consonant &c) {
+
+}
+
 void Consonant::movePiece() {
     //Changes direction of movement based on the Y coordinate
-    if (getY() == UNIT1*10 && getX() >= 0) {
-        setX(getX() - UNIT1); //Moves left
-        if (getX() < 0) {
-            setX(UNIT1*12);
+    if (getY() == UNIT1*10 && getX() > 0) {
+        Consonant::setX(getX() - UNIT1); //Moves left
+        cout << getX() << endl;
+
+        if (getX() == UNIT1) {
+            Consonant::setX(UNIT1*11);
+
         }
-    }else if (getY() == SPACE*2 && getX() < 500) {
-        setX(getX() + SPACE);//Moves right
-    }else {
+    } else if (getY() == SPACE*2 && getX() < 500) {
+        Consonant::setX(getX() + SPACE);//Moves right
+    } else {
         //Y coordinate is incorrect, the car is off the road
         cout << "Car is off the road!" << endl;
     }

@@ -16,6 +16,7 @@ public:
     explicit Vowel(char c);
     Vowel(char c, int x, int y);
     Vowel(int x, int y);
+    Vowel(const Vowel &v);
 
     // setters
     void setCharacter(char characterIn) override;
