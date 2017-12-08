@@ -1,7 +1,7 @@
 //
 // Created by Jack Roach on 11/30/17.
 //
-
+#include <time.h>
 #include "graphics.h"
 #include <string>
 #include <iostream>
@@ -10,7 +10,6 @@
 #include "Vowel.h"
 #include "Shape.h"
 #include "Board.h"
-
 using namespace std;
 
 //Determine screen
@@ -23,8 +22,8 @@ int UNIT = 50;
 Board b;
 
 Player p1 = Player(UNIT*5,UNIT*11);
-Consonant c1 = Consonant('t', UNIT*2, UNIT*2);
-Vowel v1 = Vowel('e', UNIT *2, 0);
+Consonant c1 = Consonant('P', UNIT*10, UNIT*10);
+Vowel v1 = Vowel('I', UNIT *2, 0);
 
 screen_type screen = menu;
 
@@ -206,7 +205,7 @@ void displayGame() {
     glEnd();
 
     // drawing word box
-    glColor3f(1.0, 1.0, 1.0);
+    glColor3f(1.0,1.0,1.0);
     glBegin(GL_QUADS);
     glVertex2i(UNIT*3, UNIT * 12);
     glVertex2i(UNIT*3, UNIT * 13);
@@ -282,8 +281,10 @@ void displayGame() {
     }
 
 
-    b.displayGoal();
-    //b.setConsonant()
+
+
+    b.displayGoalWord();
+    b.displayGameWord();//b.setConsonant()
 
     c1.draw();
 
@@ -320,9 +321,11 @@ void display() {
     switch (screen) {
         case menu:
             displayStart();
+            b.startTimer();
             break;
         case game:
             displayGame();
+            b.stopTimer();
             break;
     }
     glFlush();  // Render now
@@ -341,24 +344,31 @@ void kbd(unsigned char key, int x, int y) {
     return;
 }
 
+
+
+
 void kbdS(int key, int x, int y) {
     if (screen == game) {
         switch(key) {
             case GLUT_KEY_DOWN:
                 p1.movePlayer(0,UNIT);
                 b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_LEFT:
                 p1.movePlayer(-UNIT, 0);
                 b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_RIGHT:
                 p1.movePlayer(UNIT, 0);
                 b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
             case GLUT_KEY_UP:
                 p1.movePlayer(0,-UNIT);
                 b.checkCollision(p1.getX(), p1.getY(), p1);
+                b.checkLetter(p1.getX(), p1.getY(), p1);
                 break;
 
             default:
@@ -422,9 +432,9 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void timer(int extra) {
-
+    c1.movePiece();
     glutPostRedisplay();
-    glutTimerFunc(30, timer, 0);
+    glutTimerFunc(1000.0/2.0, timer, 0);
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */
@@ -461,7 +471,7 @@ int graphicsPlay(int argc, char** argv) {
     glutMouseFunc(mouse);
 
     // handles timer
-    glutTimerFunc(0, timer, 0);
+    glutTimerFunc(1000.0/60.0, timer, 0);
 
     // Enter the event-processing loop
     glutMainLoop();

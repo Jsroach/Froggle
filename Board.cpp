@@ -6,6 +6,7 @@
 
 #include <utility>
 #include "graphics.h"
+#include <ctime>
 
 using namespace std;
 
@@ -89,28 +90,76 @@ void Board::setGoalWord(string newWord) {
     }
 }
 
-void Board::displayGoal() {
+void Board::displayGoalWord() {
     for(int i = 0; i<goalWord.size(); i++){
         char goal = goalWord[i];
-        glColor3f(0.0, 0.0, 0.0);
+        glColor3f(1.0, 0.0, 0.0);
         glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, goalWord[i]);
     }
 }
 
-bool Board::checkLetter() {
-    // TODO: Implement
-    return false;
+void Board::displayGameWord() {
+    for(int i = 0; i<gameWord.size(); i++){
+        char goal = gameWord[i];
+        glColor3f(0.0, 0.0, 0.0);
+        glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
+    }
+}
+void Board:: wait(int seconds) {
+    clock_t endwait;
+    endwait = clock () + seconds * CLOCKS_PER_SEC ;
+    while (clock() < endwait) {}
+}
+void Board:: update(){
+    while (start == true){
+        //move cars in vector
+        wait(0.1);
+    }
 }
 
+void Board::checkLetter(int pX, int pY, Player& player) {
+
+   if (pY == (50 * 12)){
+       for(int i=0 ; i<goalWord.size();i++){
+           if(pX== (50 * (i+3)) && goalWord[i]!= gameWord[i] && player.getCharacter() == goalWord[i]) {
+               gameWord[i]= player.getCharacter();
+               displayGameWord();
+               player.setCharacter(' ');
+           }
+
+       }
+   }
+    int correctCount = 0;
+    for(int i=0 ; i<goalWord.size();i++){
+        if(goalWord[i] == gameWord[i]){
+            correctCount++;
+        }
+    }
+    if(correctCount == gameWord.size()){
+        cout<<"Ya good"<<endl;
+        for(int i=0 ; i<gameWord.size();i++) {
+            gameWord[i] = ' ';
+        }
+        levelCount++;
+        setGoalWord(words[levelCount]);
+        player.setX(50*5);
+        player.setY(50*11);
+        displayGoalWord();
+    }
+}
+
+
+
 void Board::startTimer() {
-    setTime(clock());
-    cout << clock() << endl;
+    startTime = clock();
 }
 
 void Board::stopTimer() {
     double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
     cout << "Number of seconds: " << duration << endl;
+
 }
 
 void Board::checkCollision(int pX, int pY, Player& player) {

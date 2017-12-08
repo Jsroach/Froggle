@@ -26,6 +26,7 @@ void init(void);
 // Initialize OpenGL Graphics
 void InitGL(void);
 
+void timerScore();
 // Callback functions for GLUT */
 
 //First Menu Window
