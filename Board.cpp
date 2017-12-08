@@ -153,7 +153,6 @@ void Board::checkLetter(int pX, int pY, Player& player) {
 }
 
 
-
 void Board::startTimer() {
     startTime = clock();
 }
@@ -256,6 +255,7 @@ void Board::newGame() {
     cout << "New Game Started!" << endl;
 
 }
+
 void Board::restart() {
     cout << "Restarting game" << endl;
     // TODO: Implement restart function
@@ -266,19 +266,25 @@ void Board::restart() {
 
 void Board::movePieces() {
     for (auto &i : getConsonant()) {
-        cout << i.getX() << endl;
         i.movePiece();
-        cout << i.getX() << endl;
+    }
+
+    for (auto &i : getVowel()) {
+        i.movePiece();
     }
 }
 
 void Board::spawnPieces() {
     con.emplace_back('P', 50*5, 50*10);
-    vow.emplace_back('I', 50*2, 0);
+    vow.emplace_back('I', 50*2, 50*6);
 }
 
 void Board::drawPieces() {
     for (auto &i : getConsonant()) {
+        i.draw();
+    }
+
+    for (auto &i : getVowel()) {
         i.draw();
     }
 }
