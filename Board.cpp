@@ -6,6 +6,7 @@
 
 #include <utility>
 #include "graphics.h"
+#include <ctime>
 
 using namespace std;
 
@@ -165,13 +166,13 @@ void Board::checkLetter(int pX, int pY, Player& player) {
 
 
 void Board::startTimer() {
-    setTime(clock());
-    cout << clock() << endl;
+    startTime = clock();
 }
 
 void Board::stopTimer() {
     double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
     cout << "Number of seconds: " << duration << endl;
+
 }
 
 void Board::checkCollision(int pX, int pY, Player& player) {
