@@ -23,8 +23,6 @@ Vowel::Vowel(int xIn, int yIn) : Vowel(){
 
 }
 
-Vowel::Vowel(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){}
-
 Vowel::Vowel(const Vowel &v) {};
 
 void Vowel::movePiece() {
