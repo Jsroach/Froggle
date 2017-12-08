@@ -27,16 +27,21 @@ Vowel::Vowel(const Vowel &v) {};
 
 void Vowel::movePiece() {
     //Changes direction of movement based on the Y coordinate
-    if (getY() == UNIT1*6 && getX() >= 0) {
-        setX(getX() - UNIT1); //Moves left
-        if (getX() < 0) {
-            setX(UNIT1*11);
-        }
-    } else if (getY() == SPACE*2 && getX() < 500) {
-        setX(getX() + SPACE);//Moves right
-    } else {
-        //Y coordinate is incorrect, the car is off the road
-        cout << "Car is off the road!" << endl;
+//    if (getY() == UNIT1*6 && getX() >= 0) {
+//        setX(getX() - UNIT1); //Moves left
+//        if (getX() < 0) {
+//            setX(UNIT1*11);
+//        }
+//    } else if (getY() == SPACE*2 && getX() < 500) {
+//        setX(getX() + SPACE);//Moves right
+//    } else {
+//        //Y coordinate is incorrect, the car is off the road
+//        cout << "Car is off the road!" << endl;
+//    }
+
+    setX(getX() - UNIT1); //Moves left
+    if (getX() < 0) {
+        setX(UNIT1*11);
     }
 }
 
