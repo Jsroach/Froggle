@@ -28,8 +28,8 @@ private:
     int UNITB = 50;
     vector<char> conLetters = {'B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Z'};
     vector<char> vowLetters = {'A','E','I','O','U','Y'};
+    vector<char> gameWord = {' ',' ',' ',' ',' '};
     vector<char> goalWord = {' ',' ',' ',' ',' '};
-    vector<char> gameWord = {' ',' ',' ',' '};
     vector<string> words = {"PI   ", "COW  ", "TIME ", "SMILE"};
     int levelCount = 0;
     vector<Consonant> con; // includes both consonants and vowels

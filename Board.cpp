@@ -127,7 +127,6 @@ void Board::newGame() {
         }
     }
 
-
     for (char c : words.at(0)) {
         for (char v : vowLetters) {
             if (c == v) {
@@ -137,7 +136,6 @@ void Board::newGame() {
     }
 
     p1 = Player(UNITB*5,UNITB*11);
-
     cout << "Done with setting up game" << endl;
 
     for (auto &i: goalWord) {
@@ -156,16 +154,16 @@ void Board:: wait(int seconds) {
 void Board:: update(){
     while (start){
         //move cars in vector
-        wait(0.1);
+        wait(static_cast<int>(0.1));
     }
 }
 
 void Board::checkLetter() {
 
-    if (p1.getY() == (600)){
-        for(int i=0 ; i<goalWord.size();i++){
-            if(p1.getX()== (50 * (i+3)) && goalWord[i]!= gameWord[i] && p1.getCharacter() == goalWord[i]) {
-                gameWord[i]= p1.getCharacter();
+    if (p1.getY() == (600)) {
+        for (int i = 0; i < goalWord.size(); i++) {
+            if (p1.getX() == (50 * (i + 3)) && goalWord[i] != gameWord[i] && p1.getCharacter() == goalWord[i]) {
+                gameWord[i] = p1.getCharacter();
                 displayGameWord();
                 p1.setCharacter(' ');
 
@@ -173,27 +171,23 @@ void Board::checkLetter() {
 
         }
     }
-    checkGoal();
 
-
-
-}
-
-void Board:: checkGoal(){
     int correctCount = 0;
 
-    for(int i = 0 ; i < goalWord.size();i++){
-        if(goalWord[i] == gameWord[i]){
+    for (int i = 0; i < goalWord.size(); i++) {
+        if (goalWord[i] == gameWord[i]) {
             correctCount++;
         }
     }
-    if(correctCount == gameWord.size()){
-        cout<< "pi spelled" << endl;
-        for (int i = 0; i<gameWord.size(); i++) {
-            goalWord[i]= ' ';
 
+    cout << correctCount << endl;
 
-}        levelCount++;
+    if (correctCount == goalWord.size()) {
+        cout << "pi spelled" << endl;
+        for (char &i : gameWord) {
+            i = ' ';
+        }
+        levelCount++;
         setGoalWord(words[levelCount]);
         displayGoalWord();
     }
@@ -234,6 +228,7 @@ void Board::saveGame() {
     for (auto &i : con) {
         file << "c," << i.getCharacter() << ',' << i.getX() << ',' << i.getY() << ',' << endl;
     }
+
     //If players character is blank write to file with temporary character
     if (p1.getCharacter() == ' ') {
         file << "p,!," << p1.getX() << ',' << p1.getY() << ',' << endl;
