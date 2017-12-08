@@ -289,7 +289,7 @@ void displayGame() {
     for (int i = 0; i < exit.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
-    b.displayLevel();
+    //b.displayLevel();
     b.displayGoalWord();
     b.displayGameWord();
 
