@@ -32,7 +32,6 @@ private:
     vector<char> gameWord = {' ',' ',' ',' '};
     vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
     int levelCount = 0;
-    int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
     Player player;
@@ -148,6 +147,8 @@ public:
 
     void displayGameWord();
 
+
+
     /**
      * Requires: None
      * Modifies: Board object values
@@ -184,6 +185,8 @@ public:
     void movePieces();
 
     void drawPieces();
+
+
 };
 
 #endif //MCJJ_BOARD_H

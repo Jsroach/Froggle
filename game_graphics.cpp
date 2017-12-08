@@ -213,12 +213,6 @@ void displayGame() {
     glVertex2i(width, UNIT * 13);
     glEnd();
 
-    string level = "LEVEL";
-    glColor3f(1, 1, 1);
-    glRasterPos2i(10, (50*12.5));
-    for (int i = 0; i < level.length(); ++i) {
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, level[i]);
-    }
 
 
     // drawing word box
@@ -296,7 +290,7 @@ void displayGame() {
     for (int i = 0; i < exit.length(); ++i) {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, exit[i]);
     }
-
+    b.displayLevel();
     b.displayGoalWord();
     b.displayGameWord();//b.setConsonant()
 

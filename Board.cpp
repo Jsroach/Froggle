@@ -218,7 +218,6 @@ void Board::checkLetter(int pX, int pY, Player& player) {
         }
     }
     if(correctCount == gameWord.size()){
-        cout<<"Ya good"<<endl;
         for (char &i : gameWord) {
             i = ' ';
         }
