@@ -5,6 +5,7 @@
 #ifndef MCJJ_BOARD_H
 #define MCJJ_BOARD_H
 
+#include <time.h>
 #include <string>
 #include <vector>
 #include <ctime>
@@ -24,10 +25,11 @@ private:
     int boardX = 400;
     int boardY = 400;
 
-    vector<char> goalWord = {'P', 'I', ' ', ' ', ' '};
+    vector<char> goalWord = {'P','I',' ',' ',' '};
     vector<char> gameWord = {' ',' ',' ',' '};
     vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
     int levelCount = 0;
+    int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
     Player player;
@@ -36,7 +38,7 @@ private:
     double duration;
 
 public:
-    //bool start = true;
+    bool start = true;
     /*
      * Default constructor
      */
@@ -46,6 +48,8 @@ public:
      * * Constructor
      */
     Board(int boardX, int boardY, bool hasPiece, const vector<string> &words);
+
+    void spawnPieces();
 
     /*
      * Getter
@@ -74,22 +78,17 @@ public:
     /*
      * Getter
      */
-    vector<Vowel> getVowel() const;
+    vector<Vowel>& getVowel();
 
     /*
      * Getter
      */
-    vector<Consonant> getConsonant() const;
+    vector<Consonant>& getConsonant();
 
     /*
      * Getter
      */
     Player getPlayer() const;
-
-    /*
-     * Getter
-     */
-    int getLevelCount();
 
     /*
      * Setter
@@ -138,29 +137,13 @@ public:
 
     void update();
     //Set up for later
-    void checkCollision(int px, int py, Player& player);
-    /*
-     * Setter
-     */
+    void checkCollision(Player& player);
+
     void setGoalWord(string newWord);
-    /**
-     * Requires: Nothing
-     * Modifies: Nothing
-     * Effects: displays the goal word in red at the bottom of the playing field
-     */
+
     void displayGoalWord();
-    /**
-     * Requires: Nothing
-     * Modifies: Nothing
-     * Effects: displays the game word (letters that have been placed correctly) in black at the bottom of the playing field
-     */
+
     void displayGameWord();
-    /**
-     * Requires: Nothing
-     * Modifies: Nothing
-     * Effects: draws the level count on the playing field
-     */
-    void displayLevel();
 
     //Set up for later
     void checkLetter(int pX, int pY, Player& player);
@@ -194,6 +177,10 @@ public:
 
     //Set up for later
     void restart();
+
+    void movePieces();
+
+    void drawPieces();
 };
 
 #endif //MCJJ_BOARD_H

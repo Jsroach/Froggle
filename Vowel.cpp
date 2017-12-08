@@ -7,23 +7,24 @@
 
 
 Vowel::Vowel() {
-    character = Vowel::generateVowel(); //chooses a vowel randomly to set as the character field for the created piece
+    character = Vowel::generateVowel();
 }
 
-Vowel::Vowel(char c) : Vowel() {
-    character = c;
+Vowel::Vowel(char characterIn){
+    character = characterIn;
 }
 
-Vowel::Vowel(char c, int x, int y) : Piece(c, x, y) {}
+Vowel::Vowel(int xIn, int yIn) : Vowel(){
 
-Vowel::Vowel(int x, int y) : Vowel() {
-    Piece::setX(x);
-    Piece::setY(y);
 }
+
+Vowel::Vowel(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){}
+
+Vowel::Vowel(const Vowel &v) {};
 
 void Vowel::movePiece() {
     if (getY() == SPACE && getX() > 0) { //moves piece to the left if it is in a certain row (lane)
-        setX(getX() - SPACE);
+        setX(getX() - 50);
     }else if (getY() == SPACE*2 && getX() < 500) { //moves piece to the right if it is in a specific row (lane)
         setX(getX() + SPACE);
     }else {
@@ -33,8 +34,8 @@ void Vowel::movePiece() {
 
 void Vowel::setCharacter(char characterIn) {
     bool check = false;
-    for (int i = 0; i < letters.size(); i++) { //checks to make sure inputted character is in vowels vector (is a vowel)
-        if (characterIn == letters[i]) {
+    for (char letter : letters) { //checks to make sure inputted character is in vowels vector (is a vowel)
+        if (characterIn == letter) {
             check = true;
             break;
         }

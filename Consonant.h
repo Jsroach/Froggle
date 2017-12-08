@@ -41,6 +41,8 @@ public:
      */
     Consonant(char characterIn, int xIn, int yIn);
 
+    Consonant(const Consonant &c);
+
     /**
      * Requires: None
      * Modifies: Consonant Coordinates
