@@ -23,8 +23,8 @@ int UNIT = 50;
 Board b;
 
 Player p1 = Player(UNIT*5,UNIT*11);
-Consonant c1 = Consonant('T', UNIT*2, UNIT*2);
-Vowel v1 = Vowel('E', UNIT *2, 0);
+Consonant c1 = Consonant('P', UNIT*2, UNIT*2);
+Vowel v1 = Vowel('I', UNIT *2, 0);
 
 screen_type screen = menu;
 

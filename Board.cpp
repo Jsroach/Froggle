@@ -119,48 +119,35 @@ void Board:: update(){
 }
 
 void Board::checkLetter(int pX, int pY, Player& player) {
+
    if (pY == (50 * 12)){
-        if(pX== (50 * 3) && goalWord[0]!= gameWord[0] && player.getCharacter() == goalWord[0]) {
-                gameWord[0]= player.getCharacter();
-                displayGameWord();
-                player.setCharacter(' ');
+       for(int i=0 ; i<goalWord.size();i++){
+           if(pX== (50 * (i+3)) && goalWord[i]!= gameWord[i] && player.getCharacter() == goalWord[i]) {
+               gameWord[i]= player.getCharacter();
+               displayGameWord();
+               player.setCharacter(' ');
+           }
 
-        }
-        if(pX== (50 * 4) && goalWord[1]!= gameWord[1] && player.getCharacter() == goalWord[1]) {
-
-                gameWord[1]= player.getCharacter();
-                displayGameWord();
-                player.setCharacter(' ');
-
-
-        }
-        if(pX== (50 * 5) && goalWord[2]!= gameWord[2] && player.getCharacter() == goalWord[2]) {
-
-                gameWord[2]= player.getCharacter();
-                displayGameWord();
-                player.setCharacter(' ');
-
-        }
-        if(pX== (50 * 6) && goalWord[3]!= gameWord[3] && player.getCharacter() == goalWord[3]) {
-
-                gameWord[3]= player.getCharacter();
-                displayGameWord();
-                player.setCharacter(' ');
-
-        }
-        if(pX== (50 * 7) && goalWord[4]!= gameWord[4] && player.getCharacter() == goalWord[4]) {
-
-                gameWord[4]= player.getCharacter();
-                displayGameWord();
-                player.setCharacter(' ');
-
-
-        }
-
-
-
+       }
+   }
+    int correctCount = 0;
+    for(int i=0 ; i<goalWord.size();i++){
+        if(goalWord[i] == gameWord[i]){
+            correctCount++;
         }
     }
+    if(correctCount == gameWord.size()){
+        cout<<"Ya good"<<endl;
+        for(int i=0 ; i<gameWord.size();i++) {
+            gameWord[i] = ' ';
+        }
+        levelCount++;
+        setGoalWord(words[levelCount]);
+        player.setX(50*5);
+        player.setY(50*11);
+        displayGoalWord();
+    }
+}
 
 
 
