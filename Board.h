@@ -26,11 +26,11 @@ private:
     int boardY = 400;
 
     int UNITB = 50;
-    vector<char> conLetters = {'b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'};
-    vector<char> vowLetters = {'a','e','i','o','u','y'};
+    vector<char> conLetters = {'B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Z'};
+    vector<char> vowLetters = {'A','E','I','O','U','Y'};
     vector<char> goalWord = {'P','I',' ',' ',' '};
     vector<char> gameWord = {' ',' ',' ',' '};
-    vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
+    vector<string> words = {"PI   ", "COW  ", "TIME ", "SMILE"};
     int levelCount = 0;
     int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
@@ -146,7 +146,7 @@ public:
 
     void displayGoalWord();
 
-    void displayGameWord();
+    void displayGameWord(char c);
 
     /**
      * Requires: None
