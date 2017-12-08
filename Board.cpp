@@ -166,8 +166,15 @@ void Board::checkLetter() {
             }
 
         }
-    }
 
+    }
+    checkGoal();
+
+
+
+}
+
+void Board:: checkGoal(){
     int correctCount = 0;
 
     for(int i = 0 ; i < goalWord.size();i++){
@@ -177,8 +184,8 @@ void Board::checkLetter() {
     }
     if(correctCount == gameWord.size()){
         cout<<"pi spelled"<<endl;
-        for (char &i : gameWord) {
-            i = ' ';
+        for (int i = 0; i<gameWord.size(); i++) {
+            goalWord[i]= ' ';
         }
         levelCount++;
         setGoalWord(words[levelCount]);

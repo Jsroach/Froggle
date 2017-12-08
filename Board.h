@@ -157,6 +157,8 @@ public:
     //Set up for later
     void checkLetter();
 
+    void checkGoal();
+
     //Set up for later
     void startTimer();
 
