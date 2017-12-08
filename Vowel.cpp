@@ -7,13 +7,18 @@
 
 
 Vowel::Vowel() {
-    character = Vowel::generateVowel();
+    character = Vowel::generateVowel(); //chooses a vowel randomly to set as the character field for the created piece
+    setHasLetter(true);
 }
 
-Vowel::Vowel(char characterIn){
-    character = characterIn;
+Vowel::Vowel(char c) : Vowel() {
+    character = c;
+    setHasLetter(true);
 }
 
+Vowel::Vowel(char c, int x, int y) : Piece(c, x, y) {
+    setHasLetter(true);
+}
 Vowel::Vowel(int xIn, int yIn) : Vowel(){
 
 }
