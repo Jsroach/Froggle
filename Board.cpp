@@ -45,8 +45,9 @@ vector<Consonant> Board::getConsonant() const {
 Player Board::getPlayer() const {
     return player;
 }
-
-
+int Board::getLevelCount() {
+   return levelCount;
+}
 void Board::setBoardX(int boardX) {
     Board::boardX = boardX;
 }
@@ -107,6 +108,16 @@ void Board::displayGameWord() {
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
     }
 }
+
+void Board::displayLevel() {
+
+    glColor3f(1, 1, 1);
+    glRasterPos2i(100, (50*12.5));
+    glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, char(levelCount));
+
+}
+
+/*
 void Board:: wait(int seconds) {
     clock_t endwait;
     endwait = clock () + seconds * CLOCKS_PER_SEC ;
@@ -118,6 +129,7 @@ void Board:: update(){
         wait(0.1);
     }
 }
+ */
 
 void Board::checkLetter(int pX, int pY, Player& player) {
 
@@ -146,6 +158,8 @@ void Board::checkLetter(int pX, int pY, Player& player) {
         player.setX(50*5);
         player.setY(50*11);
         displayGoalWord();
+
+        displayLevel();
     }
 }
 

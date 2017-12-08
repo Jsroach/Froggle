@@ -36,7 +36,7 @@ private:
     double duration;
 
 public:
-    bool start = true;
+    //bool start = true;
     /*
      * Default constructor
      */
@@ -85,6 +85,11 @@ public:
      * Getter
      */
     Player getPlayer() const;
+
+    /*
+     * Getter
+     */
+    int getLevelCount();
 
     /*
      * Setter
@@ -150,6 +155,12 @@ public:
      * Effects: displays the game word (letters that have been placed correctly) in black at the bottom of the playing field
      */
     void displayGameWord();
+    /**
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: draws the level count on the playing field
+     */
+    void displayLevel();
 
     //Set up for later
     void checkLetter(int pX, int pY, Player& player);

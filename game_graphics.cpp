@@ -173,6 +173,7 @@ void displayGame() {
     glBegin(GL_LINES);
     glVertex2d(0,UNIT*11);
     glVertex2d(width,UNIT*11);
+
     glEnd();
 
 
@@ -211,6 +212,14 @@ void displayGame() {
     glVertex2i(width, height);
     glVertex2i(width, UNIT * 13);
     glEnd();
+
+    string level = "LEVEL";
+    glColor3f(1, 1, 1);
+    glRasterPos2i(10, (50*12.5));
+    for (int i = 0; i < level.length(); ++i) {
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, level[i]);
+    }
+
 
     // drawing word box
     glColor3f(1.0,1.0,1.0);
