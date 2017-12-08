@@ -28,7 +28,6 @@ private:
     vector<char> gameWord = {' ',' ',' ',' '};
     vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
     int levelCount = 0;
-    int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
     Player player;
@@ -135,11 +134,21 @@ public:
     void update();
     //Set up for later
     void checkCollision(int px, int py, Player& player);
-
+    /*
+     * Setter
+     */
     void setGoalWord(string newWord);
-
+    /**
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: displays the goal word in red at the bottom of the playing field
+     */
     void displayGoalWord();
-
+    /**
+     * Requires: Nothing
+     * Modifies: Nothing
+     * Effects: displays the game word (letters that have been placed correctly) in black at the bottom of the playing field
+     */
     void displayGameWord();
 
     //Set up for later
