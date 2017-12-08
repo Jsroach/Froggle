@@ -121,12 +121,12 @@ void Board::newGame() {
         goalWord[j] = c;
     }
 
-    con.emplace_back(UNITB*5, UNITB*10);
-    con.emplace_back(UNITB*5, UNITB*9);
-    con.emplace_back(UNITB*5, UNITB*8);
-    con.emplace_back(UNITB*5, UNITB*6);
+    con.emplace_back(UNITB*1, UNITB*10);
+    con.emplace_back(UNITB*2, UNITB*9);
+    con.emplace_back(UNITB*3, UNITB*8);
+    con.emplace_back(UNITB*4, UNITB*6);
     con.emplace_back(UNITB*5, UNITB*5);
-    con.emplace_back(UNITB*5, UNITB*4);
+    con.emplace_back(UNITB*6, UNITB*4);
 
     for (auto &i : con) {
         auto random = static_cast<int>(rand() % con.size());
@@ -184,6 +184,7 @@ void Board::newGame() {
 
     p1 = Player(UNITB*5,UNITB*11);
    cout << "Done with setting up game" << endl;
+
 }
 
 void Board:: wait(int seconds) {
@@ -228,6 +229,7 @@ void Board::checkLetter() {
            displayGoalWord();
        }
    }
+
 }
 
 void Board::startTimer() {
@@ -254,10 +256,8 @@ void Board::checkCollision() {
 }
 
 void Board::saveGame() {
-    // Should generate ID for each game and use that to find the right file.
-    int gameID = 1;
     //write to file
-    ofstream file("game.txt");
+    ofstream file("gameobjects.txt");
     //Write values of vowel vector to file
     for (auto &i : vow) {
         //Leter is added at beginning to help with loading game in
@@ -273,17 +273,30 @@ void Board::saveGame() {
     } else { // Else just add character value
         file << "p," << p1.getCharacter() << ',' << p1.getX() << ',' << p1.getY() << ',' << endl;
     }
+
     //file << "Writing to file" << endl;
     file.close();
+
+    ofstream stat("gamestats.txt");
+    for (auto &i : goalWord) {
+        stat << "g," << goalWord[i] << ',';
+    }
+    file << endl;
+
+    for (auto &i : gameWord) {
+        stat << "w," << gameWord[i] << ',';
+    }
+    file << endl;
+
+    stat.close();
     //To demonstrate save worked in testing
     con.clear();
     vow.clear();
-    p1 = Player(0,0);
+    p1 = Player(UNITB*5,UNITB*11);
 }
 
 void Board::loadGame() {
     //Define variables
-    int gameID = 1;
     char type;
     char character;
     char comma;
@@ -310,6 +323,37 @@ void Board::loadGame() {
         }
     }
     file.close();
+
+    ifstream stat("gamestat.txt");
+    while (stat) {
+        char type;
+        char comma;
+        char ch1;
+        char ch2;
+        char ch3;
+        char ch4;
+        char ch5;
+
+        stat >> type >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma;
+
+        if (type == 'g') {
+            goalWord.emplace_back(ch1);
+            goalWord.emplace_back(ch2);
+            goalWord.emplace_back(ch3);
+            goalWord.emplace_back(ch4);
+            goalWord.emplace_back(ch5);
+        }else if (type == 'w') {
+            gameWord.emplace_back(ch1);
+            gameWord.emplace_back(ch2);
+            gameWord.emplace_back(ch3);
+            gameWord.emplace_back(ch4);
+            gameWord.emplace_back(ch5);
+
+        }
+        
+    }
+    stat.close();
+
 }
 
 void Board::restart() {
@@ -331,10 +375,10 @@ void Board::movePieces() {
 }
 
 void Board::spawnPieces() {
-    //con.emplace_back('P', 50*5, 50*10);
-    con.emplace_back('P', 50*5, 50*9);
+    con.emplace_back('P', 50*5, 50*10);
+    con.emplace_back('I', 50*5, 50*9);
     //con.emplace_back('P', 50*5, 50*8);
-    con.emplace_back('P', 50*5, 50*6);
+    //con.emplace_back('P', 50*5, 50*6);
     //con.emplace_back('P', 50*5, 50*5);
     //con.emplace_back('P', 50*5, 50*4);
     //vow.emplace_back('I', 50*2, 50*6);

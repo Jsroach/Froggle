@@ -35,7 +35,7 @@ private:
     int levelCounter;
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
-    Player p1;
+    Player p1 = Player(UNITB*5, UNITB*11);
     bool hasPiece;
     clock_t startTime;
     double duration;
