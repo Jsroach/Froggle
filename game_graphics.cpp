@@ -21,7 +21,7 @@ int wd;
 int UNIT = 50;
 
 Board b;
-
+vector<string> words1 = b.getWords();
 Player p1 = Player(UNIT*5,UNIT*11);
 Consonant c1 = Consonant('P', UNIT*2, UNIT*2);
 Vowel v1 = Vowel('I', UNIT *2, 0);
@@ -34,7 +34,6 @@ Rectangle1 r2 = Rectangle1({0,.5,0}, 200, 400);
 void init() {
     width = UNIT * 11;
     height = UNIT * 14;
-
     b.setPlayer(p1);
     b.setConsonant(c1);
     b.setVowel(v1);

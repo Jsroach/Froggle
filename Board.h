@@ -24,7 +24,7 @@ private:
     int boardX = 400;
     int boardY = 400;
 
-    vector<char> goalWord = {'P','I',' ',' ',' '};
+    vector<char> goalWord = {'P', 'I', ' ', ' ', ' '};
     vector<char> gameWord = {' ',' ',' ',' '};
     vector<string> words = {"PI   ", "COW ", "TIME ", "SMILE" };
     int levelCount = 0;

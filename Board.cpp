@@ -45,6 +45,7 @@ Player Board::getPlayer() const {
     return player;
 }
 
+
 void Board::setBoardX(int boardX) {
     Board::boardX = boardX;
 }
@@ -137,7 +138,6 @@ void Board::checkLetter(int pX, int pY, Player& player) {
         }
     }
     if(correctCount == gameWord.size()){
-        cout<<"Ya good"<<endl;
         for(int i=0 ; i<gameWord.size();i++) {
             gameWord[i] = ' ';
         }
