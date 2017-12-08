@@ -127,7 +127,6 @@ void Board::newGame() {
         }
     }
 
-
     for (char c : words.at(0)) {
         for (char v : vowLetters) {
             if (c == v) {
@@ -150,46 +149,90 @@ void Board:: wait(int seconds) {
 void Board:: update(){
     while (start){
         //move cars in vector
-        wait(0.1);
+        wait(static_cast<int>(0.1));
     }
 }
 
+//void Board::checkLetter() {
+//
+//   if ((p1.getX() >= 150 and p1.getX() <= 350) and p1.getY() == 600){
+//           if (p1.getHasLetter()) {
+//               for (char i : goalWord) {
+//                   if (i != ' ' and p1.getCharacter() == i) {
+//                       gameWord.emplace_back(p1.getCharacter());
+//                       p1.setCharacter(' ');
+//                       p1.setHasLetter(false);
+//                   }
+//               }
+//           }
+//   }
+//
+//    string newGoalWord;
+//    string newGameWord;
+//
+//    for(char s : goalWord){
+//        if (s != ' ') {
+//            newGoalWord += s;
+//        }
+//    }
+//
+//    for(char s : gameWord){
+//        newGameWord += s;
+//    }
+//
+//    cout << newGoalWord << endl;
+//    cout << newGameWord << endl;
+//
+//
+//    if (newGoalWord == newGameWord){
+//        cout<< "Ya good" << endl;
+//
+//        for (char &i : gameWord) {
+//            i = ' ';
+//        }
+//
+//        levelCount++;
+//
+//        setGoalWord(words[levelCount]);
+//        //displayGoalWord();
+//    }
+//}
+
 void Board::checkLetter() {
 
-   if ((p1.getX() >= 150 and p1.getX() <= 350) and p1.getY() == 600){
+    if (p1.getY() == (600)) {
+        for (int i = 0; i < goalWord.size(); i++) {
+            if (p1.getX() == (50 * (i + 3)) && goalWord[i] != gameWord[i] && p1.getCharacter() == goalWord[i]) {
+                gameWord[i] = p1.getCharacter();
+                displayGameWord();
+                p1.setCharacter(' ');
 
-           if (p1.getHasLetter()) {
-               for (int i = 0; i < goalWord.size(); ++i) {
-                   if (goalWord[i] != ' ' and p1.getCharacter() == goalWord[i]) {
-                       gameWord[i] = p1.getCharacter();
-                       p1.setCharacter(' ');
-                       p1.setHasLetter(false);
-                   }
-               }
-               for (char c : goalWord) {
+            }
 
-               }
-           }
-   }
+        }
+    }
 
     int correctCount = 0;
 
-    for(int i = 0 ; i < goalWord.size();i++){
-        if(goalWord[i] == gameWord[i]){
+    for (int i = 0; i < goalWord.size(); i++) {
+        if (goalWord[i] == gameWord[i]) {
             correctCount++;
         }
     }
-    if(correctCount == gameWord.size()){
-        cout<< "Ya good" << endl;
+
+    cout << correctCount << endl;
+
+    if (correctCount == goalWord.size()) {
+        cout << "pi spelled" << endl;
         for (char &i : gameWord) {
             i = ' ';
         }
-
         levelCount++;
         setGoalWord(words[levelCount]);
         displayGoalWord();
     }
 }
+
 
 void Board::startTimer() {
     startTime = clock();
