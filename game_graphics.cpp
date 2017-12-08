@@ -291,7 +291,7 @@ void displayGame() {
     }
     b.displayLevel();
     b.displayGoalWord();
-    b.displayGameWord();//b.setConsonant()
+    b.displayGameWord();
 
     b.drawPieces();
 

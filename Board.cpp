@@ -92,20 +92,20 @@ void Board::setGoalWord(string newWord) {
 }
 
 void Board::displayGoalWord() {
-    for(int i = 0; i<goalWord.size(); i++){
-        char goal = goalWord[i];
+    for(int i = 0; i < goalWord.size(); i++){
         glColor3f(1.0, 0.0, 0.0);
-        glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
+        glRasterPos2i(static_cast<GLint>(50 * (3.35 + i)), static_cast<GLint>(50 * 12.7));
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, goalWord[i]);
     }
 }
 
 void Board::displayGameWord() {
-    for(int i = 0; i<gameWord.size(); i++){
-        char goal = gameWord[i];
-        glColor3f(0.0, 0.0, 0.0);
-        glRasterPos2i(50 * (3.35 + i), 50 * 12.7);
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
+    for (int i = 0; i < goalWord.size(); i++){
+        if (gameWord[i] != ' ' and goalWord[i] == gameWord[i]) {
+            glColor3f(0.0, 0.0, 0.0);
+            glRasterPos2i(static_cast<GLint>(50 * (3.35 + i)), static_cast<GLint>(50 * 12.7));
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, gameWord[i]);
+        }
     }
 }
 
@@ -115,69 +115,23 @@ void Board::newGame() {
     goalWord.clear();
     gameWord.clear();
 
-    string w = words[0];
-    for (int j = 0; j < w.length(); j++) {
-        char c = w[j];
-        goalWord[j] = c;
+    for (char c : words[0]) {
+        goalWord.emplace_back(c);
     }
 
-    con.emplace_back(UNITB*5, UNITB*10);
-    con.emplace_back(UNITB*5, UNITB*9);
-    con.emplace_back(UNITB*5, UNITB*8);
-    con.emplace_back(UNITB*5, UNITB*6);
-    con.emplace_back(UNITB*5, UNITB*5);
-    con.emplace_back(UNITB*5, UNITB*4);
-
-    for (auto &i : con) {
-        auto random = static_cast<int>(rand() % con.size());
-        //Swap the iterated value with the random value
-        Consonant temp;
-        temp = i;
-        i = con[random];
-        con[random] = temp;
-    }
-
-    for (auto &i : con) {
-        for (char j : goalWord) {
-            bool check = false;
-            for (char conLetter : conLetters) {
-                if (j == conLetter) {
-                    check = true;
-                }
-            }
-            if (check) {
-                i.setCharacter(j);
+    for (char c : words.at(0)) {
+        for (char v : conLetters) {
+            if (c == v) {
+                con.emplace_back(c, UNITB*5, UNITB*6);
             }
         }
-
     }
 
-    vow.emplace_back(UNITB*5, UNITB*3);
-    vow.emplace_back(UNITB*1, UNITB*2);
-    vow.emplace_back(UNITB*6, UNITB*2);
 
-    for (auto &i : vow) {
-        auto random = static_cast<int>(rand() % vow.size());
-        //Swap the iterated value with the random value
-        Vowel temp;
-        temp = i;
-        i = vow[random];
-        vow[random] = temp;
-    }
-
-    for (auto &i : vow) {
-        for (char j : goalWord) {
-            bool check = false;
-
-            for (char vowLetter : vowLetters) {
-
-                if (j == vowLetter) {
-                    check = true;
-                }
-            }
-
-            if (check) {
-                i.setCharacter(j);
+    for (char c : words.at(0)) {
+        for (char v : vowLetters) {
+            if (c == v) {
+                vow.emplace_back(c, UNITB*5, UNITB*2);
             }
         }
     }
@@ -202,33 +156,39 @@ void Board:: update(){
 
 void Board::checkLetter() {
 
-   if (p1.getX() == (50 * 12)){
+   if ((p1.getX() >= 150 and p1.getX() <= 350) and p1.getY() == 600){
 
-       for(int i=0 ; i < goalWord.size(); i++){
-           if(p1.getX() == (50 * (i+3)) && goalWord[i]!= gameWord[i] && p1.getCharacter() == goalWord[i]) {
-               gameWord[i]= p1.getCharacter();
-               displayGameWord();
-               p1.setCharacter(' ');
-           }
+           if (p1.getHasLetter()) {
+               for (int i = 0; i < goalWord.size(); ++i) {
+                   if (goalWord[i] != ' ' and p1.getCharacter() == goalWord[i]) {
+                       gameWord[i] = p1.getCharacter();
+                       p1.setCharacter(' ');
+                       p1.setHasLetter(false);
+                   }
+               }
+               for (char c : goalWord) {
 
-       }
-
-       int correctCount = 0;
-       for(int i=0 ; i<goalWord.size();i++){
-           if(goalWord[i] == gameWord[i]){
-               correctCount++;
+               }
            }
-       }
-       if(correctCount == gameWord.size()){
-           cout<< "Ya good" <<endl;
-           for (char &i : gameWord) {
-               i = ' ';
-           }
-           levelCount++;
-           setGoalWord(words[levelCount]);
-           displayGoalWord();
-       }
    }
+
+    int correctCount = 0;
+
+    for(int i = 0 ; i < goalWord.size();i++){
+        if(goalWord[i] == gameWord[i]){
+            correctCount++;
+        }
+    }
+    if(correctCount == gameWord.size()){
+        cout<< "Ya good" << endl;
+        for (char &i : gameWord) {
+            i = ' ';
+        }
+
+        levelCount++;
+        setGoalWord(words[levelCount]);
+        displayGoalWord();
+    }
 }
 
 void Board::startTimer() {
@@ -337,17 +297,18 @@ void Board::spawnPieces() {
 }
 
 void Board::drawPieces() {
-    cout << "drawing" << endl;
     p1.draw();
 
     for (auto &i : getConsonant()) {
-        cout << i.getCharacter() << endl;
-        i.draw();
+        if (i.getHasLetter()) {
+            i.draw();
+        }
     }
 
     for (auto &i : getVowel()) {
-        cout << i.getCharacter() << endl;
-        i.draw();
+        if (i.getHasLetter()) {
+            i.draw();
+        }
     }
 }
 
