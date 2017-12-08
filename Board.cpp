@@ -137,7 +137,12 @@ void Board::newGame() {
     }
 
     p1 = Player(UNITB*5,UNITB*11);
-   cout << "Done with setting up game" << endl;
+    cout << "Done with setting up game" << endl;
+
+    for (auto &i: goalWord) {
+        cout << goalWord[i] << endl;
+    }
+
 
 }
 
