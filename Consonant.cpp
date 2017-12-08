@@ -7,17 +7,23 @@
 
 Consonant::Consonant() {
     character = Consonant::generateConsonant();
+    setHasLetter(true);
 }
 
 Consonant::Consonant(char characterIn){
     character = characterIn;
+    setHasLetter(true);
 }
 
 Consonant::Consonant(int xIn, int yIn) : Consonant(){
-
+    setX(xIn);
+    setY(yIn);
+    character = Consonant::generateConsonant();
 }
 
-Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){}
+Consonant::Consonant(char characterIn, int xIn, int yIn) : Piece(characterIn, xIn, yIn){
+    setHasLetter(true);
+}
 
 void Consonant::movePiece() {
     //Changes direction of movement based on the Y coordinate

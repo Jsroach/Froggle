@@ -8,16 +8,19 @@
 
 Vowel::Vowel() {
     character = Vowel::generateVowel(); //chooses a vowel randomly to set as the character field for the created piece
+    setHasLetter(true);
 }
 
 Vowel::Vowel(char c) : Vowel() {
     character = c;
+    setHasLetter(true);
 }
 
 Vowel::Vowel(char c, int x, int y) : Vowel() {
     character = c;
     setX(x);
     setY(y);
+    setHasLetter(true);
 }
 
 Vowel::Vowel(int x, int y) : Vowel() {
