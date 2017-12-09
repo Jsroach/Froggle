@@ -215,14 +215,16 @@ void Board::saveGame() {
     file.close();
 
     ofstream stat("gamestats.txt");
+
+    stat << "g,";
     for (auto &i : goalWord) {
-        stat << "g," <<  goalWord[i] << ',';
+        stat << i << ',';
     }
     stat << endl;
 
+    stat << "w,";
     for (auto &i : gameWord) {
-        char ch = gameWord[i];
-        stat << "w," << ch << ',';
+        stat << i << ',';
     }
     stat << endl;
 
@@ -242,6 +244,7 @@ void Board::loadGame() {
     int y;
     con.clear();
     vow.clear();
+    goalWord.clear();
 
     //Open save file
     ifstream file("gameobjects.txt");
@@ -274,7 +277,7 @@ void Board::loadGame() {
         char ch4;
         char ch5;
 
-        stat >> type >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma;
+        stat >> noskipws >> type >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma;
 
         if (type == 'g') {
             goalWord.emplace_back(ch1);
@@ -282,7 +285,7 @@ void Board::loadGame() {
             goalWord.emplace_back(ch3);
             goalWord.emplace_back(ch4);
             goalWord.emplace_back(ch5);
-        }else if (type == 'w') {
+        } else if (type == 'w') {
             gameWord.emplace_back(ch1);
             gameWord.emplace_back(ch2);
             gameWord.emplace_back(ch3);
