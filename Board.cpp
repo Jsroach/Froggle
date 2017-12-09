@@ -230,11 +230,15 @@ void Board::saveGame() {
     }
     stat << endl;
 
+    stat << "l," << levelCount << ',' << ",,,,,,,," << endl;
+
     stat.close();
     //To demonstrate save worked in testing
     con.clear();
     vow.clear();
     p1 = Player(UNITB*5,UNITB*11);
+
+
 }
 
 void Board::loadGame() {
@@ -242,10 +246,6 @@ void Board::loadGame() {
     vow.clear();
     goalWord.clear();
     levelCount = 0;
-
-    for (int i = 0; i < gameWord.size(); ++i) {
-        gameWord[i] = ' ';
-    }
 
     for (char c : words[0]) {
         goalWord.emplace_back(c);
@@ -293,19 +293,30 @@ void Board::loadGame() {
 
         stat >> type >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma;
 
-        if (type == 'g') {
+        if (type == 'w') {
             goalWord.emplace_back(ch1);
             goalWord.emplace_back(ch2);
             goalWord.emplace_back(ch3);
             goalWord.emplace_back(ch4);
             goalWord.emplace_back(ch5);
-        }else if (type == 'w') {
+        }else if (type == 'g') {
             gameWord.emplace_back(ch1);
             gameWord.emplace_back(ch2);
             gameWord.emplace_back(ch3);
             gameWord.emplace_back(ch4);
             gameWord.emplace_back(ch5);
+        }else if (type == 'l') {
+            levelCount = ch1;
         }
+
+        for (int i = 0; i < gameWord.size(); i++) {
+            cout << gameWord[i] << endl;
+        }
+
+        for (int i = 0; i < goalWord.size(); i++) {
+            cout << goalWord[i] << endl;
+        }
+
 
     }
     stat.close();
