@@ -35,8 +35,18 @@ public:
      **/
     void movePiece() override;
 
+    /*
+     * Requires: a x and y value
+     * Modifies: changes the players position
+     * Effects: moves the player on the screen
+     */
     void movePlayer(int deltaX, int deltaY);
 
+    /*
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: draws the player object on the screen
+     */
     void draw();
 };
 
