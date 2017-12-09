@@ -216,22 +216,27 @@ void Board::saveGame() {
 
     ofstream stat("gamestats.txt");
 
-    stat << "g,";
+    stat.trunc;
+
+    stat << "g,0,";
     for (auto &i : goalWord) {
         stat << i << ',';
     }
-    stat << endl;
 
-    stat << "w,";
+    stat << "w,0,";
     for (auto &i : gameWord) {
         stat << i << ',';
     }
-    stat << endl;
+
+    stat << "l," << levelCount << endl;
 
     stat.close();
     //To demonstrate save worked in testing
     con.clear();
     vow.clear();
+    gameWord.clear();
+    goalWord.clear();
+    levelCount = NULL;
     p1 = Player(UNITB*5,UNITB*11);
 }
 
@@ -268,32 +273,81 @@ void Board::loadGame() {
     file.close();
 
     ifstream stat("gamestats.txt");
-    while (stat) {
+    if (stat) {
         char type;
+        char type2;
+        char ch12;
+        char ch22;
+        char ch32;
+        char ch42;
+        char ch52;
+        char type3;
         char comma;
         char ch1;
         char ch2;
         char ch3;
         char ch4;
         char ch5;
+        int lvl;
+        char junk;
+        while(stat) {
 
-        stat >> noskipws >> type >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma;
+            //getline(stat, type, ','), stat >> lvl >> comma, getline(stat, ch1, ','),getline(stat, ch2, ','),getline(stat, ch3, ','),getline(stat, ch4, ','), getline(stat, ch5, ',');
+            stat >> noskipws >> type >> comma >> lvl >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma >>
+                 type2 >> comma >> lvl >> comma >> ch12 >> comma >> ch22 >> comma >> ch32 >> comma >> ch42 >> comma >> ch52 >> comma >> //junk >> comma >> junk >> comma >>junk >> comma >>junk >> comma >> junk >> comma >>
+                 type3 >> comma >> lvl;
 
-        if (type == 'g') {
-            goalWord.emplace_back(ch1);
-            goalWord.emplace_back(ch2);
-            goalWord.emplace_back(ch3);
-            goalWord.emplace_back(ch4);
-            goalWord.emplace_back(ch5);
-        } else if (type == 'w') {
-            gameWord.emplace_back(ch1);
-            gameWord.emplace_back(ch2);
-            gameWord.emplace_back(ch3);
-            gameWord.emplace_back(ch4);
-            gameWord.emplace_back(ch5);
+/**
+            char type1;
+            char ch11;
+            char ch22;
+            char ch33;
+            char ch44;
+            char ch55;
+
+            for (auto& i: type) {
+                type1 = type[i];
+            }
+            for (auto& i: ch1) {
+                ch11 = ch1[i];
+            }
+            for (auto& i: ch2) {
+                ch22 = ch2[i];
+            }
+            for (auto& i: ch3) {
+                ch33 = ch3[i];
+            }
+            for (auto& i: ch4) {
+                ch44 = ch4[i];
+            }
+            for (auto& i: ch5) {
+                ch55 = ch5[i];
+            }
+**/
+
+
+            cout << type3 << " " << lvl;
+
+            if (type == 'g') {
+                goalWord.emplace_back(ch1);
+                goalWord.emplace_back(ch2);
+                goalWord.emplace_back(ch3);
+                goalWord.emplace_back(ch4);
+                goalWord.emplace_back(ch5);
+            } else if (type2 == 'w') {
+                gameWord.emplace_back(ch12);
+                gameWord.emplace_back(ch22);
+                gameWord.emplace_back(ch32);
+                gameWord.emplace_back(ch42);
+                gameWord.emplace_back(ch52);
+            }
+
+            if (type3 == 'l') {
+                levelCount = lvl;
+            }
         }
-
     }
+
     stat.close();
 
 }

@@ -452,7 +452,7 @@ void timer(int extra) {
 
     }
     glutPostRedisplay();
-    glutTimerFunc(1000.0 / 2.0, timer, 0);
+    glutTimerFunc(1000.0 / 1.0, timer, 0);
 }
 
 /* Main function: GLUT runs as a console application starting at main()  */
