@@ -351,9 +351,9 @@ void kbdS(int key, int x, int y) {
     if (screen == game) {
         switch(key) {
             case GLUT_KEY_DOWN:
-                b.movePlayer(0,UNIT);
-                b.checkCollision();
-                b.checkLetter();
+                b.movePlayer(0,UNIT); //moves player by one unit in desired direction
+                b.checkCollision(); //checks for collision with car
+                b.checkLetter(); //checks if player is placing a letter
                 break;
             case GLUT_KEY_LEFT:
                 b.movePlayer(-UNIT, 0);
@@ -386,12 +386,12 @@ void kbdS(int key, int x, int y) {
 void cursor(int x, int y) {
     if (screen == menu) {
         if ((x > UNIT*4 && x < UNIT*7) && (y >= UNIT*6 && y <= UNIT*7)) {
-            r1.setFill({0,0,1});
+            r1.setFill({0,0,1}); //button turns blue when hovered over
         }else if ((x > 200 and x < 350) && (y > 400 and y < 450)) {
-            r2.setFill({0,0,1});
+            r2.setFill({0,0,1}); //button turns blue when hovered over
         } else if ((x > 200 and x < 350) && (y > 500 and y < 550)) {
-            r3.setFill({0,0,1});
-        } else {
+            r3.setFill({0,0,1}); //button turns blue when hovered over
+        } else { //set color of buttons to green
             r1.setFill({0,.5,0});
             r2.setFill({0,.5,0});
             r3.setFill({0,.5,0});
@@ -403,7 +403,7 @@ void cursor(int x, int y) {
 
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
-void mouse(int button, int state, int x, int y) {
+void mouse(int button, int state, int x, int y) { // handles buttons on main menu
     if (screen == menu) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && (x > UNIT*4 && x < UNIT*7) && (y > UNIT*4 && y < UNIT*7)) {
             screen = game;
@@ -417,7 +417,7 @@ void mouse(int button, int state, int x, int y) {
         }
     }
 
-    if (screen == game){
+    if (screen == game){ //handles buttons on game menu
         if (button == GLUT_LEFT_BUTTON and (x > 12 and x < 120) and (y > 669 and y < 690)) {
             b.newGame();
             cout << "Inside New Game" << endl;
@@ -444,7 +444,7 @@ void mouse(int button, int state, int x, int y) {
 
     glutPostRedisplay();
 }
-
+// runs repeatedly to update positions and check for collisions
 void timer(int extra) {
     if (screen == game) {
         b.movePieces();

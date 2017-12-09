@@ -61,9 +61,9 @@ Rectangle1::Rectangle1(color f, int xIn, int yIn) {
 }
 
 void Rectangle1::draw() const {
-    glColor3f(fill.red, fill.green, fill.blue);
+    glColor3f(fill.red, fill.green, fill.blue); // set color
     glBegin(GL_QUADS);
-    glVertex2i(getX(), getY());
+    glVertex2i(getX(), getY()); //set vertex
     glVertex2i(getX()+150,getY());
     glVertex2i(getX()+150, getY()+50);
     glVertex2i(getX(), getY()+50);

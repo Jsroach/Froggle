@@ -11,7 +11,7 @@ using namespace std;
 
 class Vowel : public Piece {
 private:
-    int UNIT1 = 50;
+    int UNIT1 = 50; //width/height of one unit on the playing field
 public:
     //Constructors
     Vowel();
@@ -23,12 +23,24 @@ public:
     // setters
     void setCharacter(char characterIn) override;
 
-    // moves piece by amount that the public field SPACE, checks position to make sure piece is able to be moved
+    /**
+     * Requires: nothing
+     * Modifies: x coordinate
+     * Effects:moves piece by amount that the public field SPACE, checks position to make sure piece is able to be moved
+     */
     void movePiece() override;
     
-    // randomly generates a vowel (including Y) for when a moving piece is created on board
+    /**
+     * Requires: Nothing
+     * Modifies:Nothing
+     * Effects: randomly generates a vowel (including Y) for when a moving piece is created on board
+     */
     char generateVowel();
-
+    /**
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: draws the car on the playing field
+     */
     void draw();
 
 protected:
