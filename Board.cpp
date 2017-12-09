@@ -231,6 +231,7 @@ void Board::saveGame() {
 
     ofstream stat("gamestats.txt");
     for (auto &i : goalWord) {
+        cout << i << endl;
         stat << "g," <<  goalWord[i] << ',';
     }
     stat << endl;
@@ -255,6 +256,8 @@ void Board::loadGame() {
     char comma;
     int x;
     int y;
+    con.clear();
+    vow.clear();
 
     //Open save file
     ifstream file("gameobjects.txt");
@@ -277,7 +280,7 @@ void Board::loadGame() {
     }
     file.close();
 
-    ifstream stat("gamestat.txt");
+    ifstream stat("gamestats.txt");
     while (stat) {
         char type;
         char comma;
@@ -301,7 +304,6 @@ void Board::loadGame() {
             gameWord.emplace_back(ch3);
             gameWord.emplace_back(ch4);
             gameWord.emplace_back(ch5);
-
         }
 
     }
