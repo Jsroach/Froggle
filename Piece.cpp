@@ -49,7 +49,7 @@ char Piece::getCharacter() const {
 void Piece::drawLetter() {
     if (getHasLetter()) {
         glColor3f(1, 1, 1);
-        glRasterPos2i(getX() + 20, getY() + 30);
+        glRasterPos2i(getX() + 17, getY() + 30);
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, getCharacter());
         glEnd();
     }
