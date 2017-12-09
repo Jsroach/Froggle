@@ -26,23 +26,11 @@ Vowel::Vowel(int xIn, int yIn) : Vowel(){
 Vowel::Vowel(const Vowel &v) {};
 
 void Vowel::movePiece() {
-    //Changes direction of movement based on the Y coordinate
-//    if (getY() == UNIT1*6 && getX() >= 0) {
-//        setX(getX() - UNIT1); //Moves left
-//        if (getX() < 0) {
-//            setX(UNIT1*11);
-//        }
-//    } else if (getY() == SPACE*2 && getX() < 500) {
-//        setX(getX() + SPACE);//Moves right
-//    } else {
-//        //Y coordinate is incorrect, the car is off the road
-//        cout << "Car is off the road!" << endl;
-//    }
-
     setX(getX() - UNIT1); //Moves left
     if (getX() < 0) {
         setX(UNIT1*11);
     }
+
 }
 
 void Vowel::setCharacter(char characterIn) {
@@ -73,13 +61,13 @@ void Vowel::draw() {
     glColor3f(.7, 0, 1);
     glBegin(GL_QUADS);
     // top left corner
-    glVertex2i(getX(), getY());
+    glVertex2i(getX()+5, getY()+5);
     // top right corner
-    glVertex2i(getX() + 50, getY());
+    glVertex2i(getX() + 45, getY()+5);
     // bottom right corner
-    glVertex2i(getX() + 50, getY() + 50);
+    glVertex2i(getX() + 45, getY() + 45);
     // bottom left corner
-    glVertex2i(getX(), getY() + 50);
+    glVertex2i(getX()+5, getY() + 45);
     glEnd();
 
     drawLetter();

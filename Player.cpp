@@ -40,13 +40,13 @@ void Player:: draw() {
         glColor3f(1, 0, 0);
         glBegin(GL_QUADS);
         // top left corner
-        glVertex2i(getX(), getY());
+        glVertex2i(getX()+5, getY()+5);
         // top right corner
-        glVertex2i(getX() + 50, getY());
+        glVertex2i(getX() + 45, getY()+5);
         // bottom right corner
-        glVertex2i(getX() + 50, getY() + 50);
+        glVertex2i(getX() + 45, getY() + 45);
         // bottom left corner
-        glVertex2i(getX(), getY() + 50);
+        glVertex2i(getX()+5, getY() + 45);
 
         glEnd();
     drawLetter();
