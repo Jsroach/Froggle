@@ -147,6 +147,8 @@ public:
 
     void displayGameWord();
 
+    void generatePieces(string word);
+
     /**
      * Requires: None
      * Modifies: Board object values
