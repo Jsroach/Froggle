@@ -37,10 +37,9 @@ private:
     Player p1 = Player(UNITB*5, UNITB*11);
     bool hasPiece;
     clock_t startTime;
-    double duration;
+
 
 public:
-    bool start = true;
     /*
      * Default constructor
      */

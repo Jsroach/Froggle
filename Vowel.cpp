@@ -43,6 +43,7 @@ void Vowel::movePiece() {
     if (getX() < 0) {
         setX(UNIT1*11);
     }
+
 }
 
 void Vowel::setCharacter(char characterIn) {
