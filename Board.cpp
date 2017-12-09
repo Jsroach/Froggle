@@ -230,14 +230,16 @@ void Board::saveGame() {
     file.close();
 
     ofstream stat("gamestats.txt");
+    stat << "g,";
     for (auto &i : goalWord) {
-        stat << "g," <<  goalWord[i] << ',';
+        stat <<  goalWord[i] << ',';
     }
     stat << endl;
 
+    stat << "w,";
     for (auto &i : gameWord) {
         char ch = gameWord[i];
-        stat << "w," << ch << ',';
+        stat << ch << ',';
     }
     stat << endl;
 
@@ -249,6 +251,19 @@ void Board::saveGame() {
 }
 
 void Board::loadGame() {
+    con.clear();
+    vow.clear();
+    goalWord.clear();
+    levelCount = 0;
+
+    for (int i = 0; i < gameWord.size(); ++i) {
+        gameWord[i] = ' ';
+    }
+
+    for (char c : words[0]) {
+        goalWord.emplace_back(c);
+    }
+
     //Define variables
     char type;
     char character;
@@ -277,7 +292,7 @@ void Board::loadGame() {
     }
     file.close();
 
-    ifstream stat("gamestat.txt");
+    ifstream stat("gamestats.txt");
     while (stat) {
         char type;
         char comma;
