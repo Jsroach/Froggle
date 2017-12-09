@@ -33,8 +33,10 @@ public:
     double setX(int xIn);
     double setY(int yIn);
 
-    // will add canvas parameter when we learn graphics
-    // pure virtual (class is abstract)
+    /**
+     * Pure Virtual Method
+     * Set up draw method for drawing rectangle graphics, used by Rectangle child class
+     */
     virtual void draw() const = 0;
 
 protected:
@@ -50,6 +52,9 @@ public:
     Rectangle1(int xIn, int yIn);
     Rectangle1(color f, int xIn, int yIn);
 
+    /**
+     * Draws a rectangle in graphics using the x and y fields to construct and position vertices
+     */
     void draw() const override;
 
 };
