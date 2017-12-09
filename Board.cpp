@@ -154,8 +154,6 @@ void Board::checkLetter() {
         }
     }
 
-    cout << correctCount << endl;
-
     if (correctCount == goalWord.size()) {
         cout << "pi spelled" << endl;
         for (char &i : gameWord) {
@@ -217,40 +215,27 @@ void Board::saveGame() {
     file.close();
 
     ofstream stat("gamestats.txt");
+
     stat << "g,";
     for (auto &i : goalWord) {
-        stat <<  goalWord[i] << ',';
+        stat << i << ',';
     }
     stat << endl;
 
     stat << "w,";
     for (auto &i : gameWord) {
-        char ch = gameWord[i];
-        stat << ch << ',';
+        stat << i << ',';
     }
     stat << endl;
-
-    stat << "l," << levelCount << ',' << ",,,,,,,," << endl;
 
     stat.close();
     //To demonstrate save worked in testing
     con.clear();
     vow.clear();
     p1 = Player(UNITB*5,UNITB*11);
-
-
 }
 
 void Board::loadGame() {
-    con.clear();
-    vow.clear();
-    goalWord.clear();
-    levelCount = 0;
-
-    for (char c : words[0]) {
-        goalWord.emplace_back(c);
-    }
-
     //Define variables
     char type;
     char character;
@@ -259,6 +244,7 @@ void Board::loadGame() {
     int y;
     con.clear();
     vow.clear();
+    goalWord.clear();
 
     //Open save file
     ifstream file("gameobjects.txt");
@@ -291,32 +277,21 @@ void Board::loadGame() {
         char ch4;
         char ch5;
 
-        stat >> type >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma;
+        stat >> noskipws >> type >> comma >> ch1 >> comma >> ch2 >> comma >> ch3 >> comma >> ch4 >> comma >> ch5 >> comma;
 
-        if (type == 'w') {
+        if (type == 'g') {
             goalWord.emplace_back(ch1);
             goalWord.emplace_back(ch2);
             goalWord.emplace_back(ch3);
             goalWord.emplace_back(ch4);
             goalWord.emplace_back(ch5);
-        }else if (type == 'g') {
+        } else if (type == 'w') {
             gameWord.emplace_back(ch1);
             gameWord.emplace_back(ch2);
             gameWord.emplace_back(ch3);
             gameWord.emplace_back(ch4);
             gameWord.emplace_back(ch5);
-        }else if (type == 'l') {
-            levelCount = ch1;
         }
-
-        for (int i = 0; i < gameWord.size(); i++) {
-            cout << gameWord[i] << endl;
-        }
-
-        for (int i = 0; i < goalWord.size(); i++) {
-            cout << goalWord[i] << endl;
-        }
-
 
     }
     stat.close();
@@ -345,16 +320,24 @@ void Board::movePieces() {
 
 void Board::spawnPieces() {
     con.emplace_back('P', 50, 50*10);
+    con.emplace_back('D', 50*10, 50*10);
+    con.emplace_back('H', 50*3, 50*9);
+    con.emplace_back('X', 50*5, 50*9);
     con.emplace_back('C', 50, 50*8);
+    con.emplace_back('V', 50*7, 50*8);
+
     con.emplace_back('L', 50*11, 50*6);
     con.emplace_back('M', 50, 50*6);
     con.emplace_back('S', 50*11, 50*5);
     con.emplace_back('W', 50, 50*5);
     con.emplace_back('T', 50*11, 50*4);
+    con.emplace_back('Q', 50*6, 50*4);
 
     vow.emplace_back('I', 50*11, 50*2);
     vow.emplace_back('E', 50, 50*2);
-    vow.emplace_back('O', 50*11, 50*1);
+    vow.emplace_back('O', 50*3, 50*1);
+    vow.emplace_back('A', 50*9, 50*1);
+    vow.emplace_back('U', 50*7, 50*2);
 }
 
 
