@@ -26,12 +26,12 @@ private:
     int boardY = 400;
 
     int UNITB = 50;
-    vector<char> conLetters = {'B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Z'};
-    vector<char> vowLetters = {'A','E','I','O','U','Y'};
-    vector<char> gameWord = {' ',' ',' ',' ',' '};
-    vector<char> goalWord = {' ',' ',' ',' ',' '};
+    //vector<char> conLetters = {'B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Z'};
+    //vector<char> vowLetters = {'A','E','I','O','U','Y'};
+    vector<char> gameWord = {' ',' ',' ',' ',' '};//letters placed correctly
+    vector<char> goalWord = {' ',' ',' ',' ',' '};//word that should be spelled
     vector<string> words = {"PI   ", "COW  ", "TIME ", "SMILE"};
-    int levelCount = 0;
+    int levelCount = 0;//indicates which word is being spelling
     vector<Consonant> con; // includes both consonants and vowels
     vector<Vowel> vow;
     Player p1 = Player(UNITB*5, UNITB*11);
