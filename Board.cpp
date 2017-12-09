@@ -317,16 +317,24 @@ void Board::movePieces() {
 
 void Board::spawnPieces() {
     con.emplace_back('P', 50, 50*10);
+    con.emplace_back('D', 50*10, 50*10);
+    con.emplace_back('H', 50*3, 50*9);
+    con.emplace_back('X', 50*5, 50*9);
     con.emplace_back('C', 50, 50*8);
+    con.emplace_back('V', 50*7, 50*8);
+
     con.emplace_back('L', 50*11, 50*6);
     con.emplace_back('M', 50, 50*6);
     con.emplace_back('S', 50*11, 50*5);
     con.emplace_back('W', 50, 50*5);
     con.emplace_back('T', 50*11, 50*4);
+    con.emplace_back('Q', 50*6, 50*4);
 
     vow.emplace_back('I', 50*11, 50*2);
     vow.emplace_back('E', 50, 50*2);
-    vow.emplace_back('O', 50*11, 50*1);
+    vow.emplace_back('O', 50*3, 50*1);
+    vow.emplace_back('A', 50*9, 50*1);
+    vow.emplace_back('U', 50*7, 50*2);
 }
 
 
