@@ -79,10 +79,6 @@ void Board::setPlayer(Player& p) {
     p1 = p;
 }
 
-void Board::DrawBoard() {
-    // Graphics stuff
-}
-
 void Board::setGoalWord(string newWord) {
 
     for ( int i = 0 ; i < newWord.length(); i++)
@@ -131,30 +127,6 @@ void Board::newGame() {
 
 }
 
-void Board::generatePieces(string word) {
-    con.clear();
-    vow.clear();
-    for (char c : word) {
-        for (char v : conLetters) {
-            if (c == v) {
-                //con.emplace_back(c, UNITB*5, UNITB*6);
-                con.emplace_back(c, UNITB*5, UNITB*6);
-                con.emplace_back(c, UNITB*5, UNITB*5);
-            }
-        }
-    }
-
-    cout << con.size() << endl;
-
-    for (char c : word) {
-        for (char v : vowLetters) {
-            if (c == v) {
-                vow.emplace_back(c, UNITB*5, UNITB*2);
-            }
-        }
-    }
-}
-
 void Board:: wait(int seconds) {
     clock_t endwait;
     endwait = clock () + seconds * CLOCKS_PER_SEC ;
@@ -168,6 +140,11 @@ void Board:: update(){
     }
 }
 
+
+// First checks if the letter is in the correct goal box.
+// If it is transfer the letter to the goal box and then clear the players letter.
+// Then check if player has transferred all the right letters to the goal and if the player has
+// move the player up a level.
 void Board::checkLetter() {
 
     if (p1.getY() == (600)) {
@@ -212,6 +189,8 @@ void Board::stopTimer() {
     double duration = (clock() - startTime) / (double)CLOCKS_PER_SEC;
 }
 
+// Loops through all vowels and consonants, checks if the x and y value is the same as the player
+// if they are the same then a collision has happened and the players gets the same letter as the piece.
 void Board::checkCollision() {
 
     for (auto &i : getConsonant()) {
@@ -338,6 +317,8 @@ void Board::restart() {
     // Generate a new word.
 }
 
+
+// Loops through both consonants and vowels and moves the pieces.
 void Board::movePieces() {
     for (auto &i : getConsonant()) {
         i.movePiece();
@@ -362,6 +343,8 @@ void Board::spawnPieces() {
     vow.emplace_back('O', 50*11, 50*1);
 }
 
+
+// Draws the player as well as loops through all the consonant and vowels and draws them as well.
 void Board::drawPieces() {
     p1.draw();
 
@@ -378,6 +361,6 @@ void Board::drawPieces() {
     }
 }
 
-void Board::movePlayer(int i, int i1) {
-    p1.movePlayer(i, i1);
+void Board::movePlayer(int x, int y) {
+    p1.movePlayer(x, y);
 }
