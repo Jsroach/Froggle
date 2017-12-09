@@ -126,21 +126,6 @@ void Board::newGame() {
 
 
 }
-
-void Board:: wait(int seconds) {
-    clock_t endwait;
-    endwait = clock () + seconds * CLOCKS_PER_SEC ;
-    while (clock() < endwait) {}
-}
-
-void Board:: update(){
-    while (start){
-        //move cars in vector
-        wait(static_cast<int>(0.1));
-    }
-}
-
-
 // First checks if the letter is in the correct goal box.
 // If it is transfer the letter to the goal box and then clear the players letter.
 // Then check if player has transferred all the right letters to the goal and if the player has
