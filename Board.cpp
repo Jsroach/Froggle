@@ -113,36 +113,46 @@ void Board::newGame() {
     con.clear();
     vow.clear();
     goalWord.clear();
-    gameWord.clear();
+    levelCount = 0;
+
+    for (int i = 0; i < gameWord.size(); ++i) {
+        gameWord[i] = ' ';
+    }
 
     for (char c : words[0]) {
         goalWord.emplace_back(c);
     }
 
-    for (char c : words.at(0)) {
+    spawnPieces();
+
+    p1 = Player(UNITB*5,UNITB*11);
+    cout << "Done with setting up game" << endl;
+
+
+}
+
+void Board::generatePieces(string word) {
+    con.clear();
+    vow.clear();
+    for (char c : word) {
         for (char v : conLetters) {
             if (c == v) {
+                //con.emplace_back(c, UNITB*5, UNITB*6);
                 con.emplace_back(c, UNITB*5, UNITB*6);
+                con.emplace_back(c, UNITB*5, UNITB*5);
             }
         }
     }
 
-    for (char c : words.at(0)) {
+    cout << con.size() << endl;
+
+    for (char c : word) {
         for (char v : vowLetters) {
             if (c == v) {
                 vow.emplace_back(c, UNITB*5, UNITB*2);
             }
         }
     }
-
-    p1 = Player(UNITB*5,UNITB*11);
-    cout << "Done with setting up game" << endl;
-
-    for (auto &i: goalWord) {
-        cout << goalWord[i] << endl;
-    }
-
-
 }
 
 void Board:: wait(int seconds) {
@@ -189,6 +199,7 @@ void Board::checkLetter() {
         }
         levelCount++;
         setGoalWord(words[levelCount]);
+        //generatePieces(words[levelCount]);
         displayGoalWord();
     }
 }
@@ -338,27 +349,29 @@ void Board::movePieces() {
 }
 
 void Board::spawnPieces() {
-    //con.emplace_back('P', 50*5, 50*10);
-    //con.emplace_back('I', 50*5, 50*9);
-    //con.emplace_back('K', 50*5, 50*8);
-    //con.emplace_back('P', 50*5, 50*6);
-    //con.emplace_back('P', 50*5, 50*5);
-    //con.emplace_back('P', 50*5, 50*4);
-    //vow.emplace_back('I', 50*2, 50*6);
-//    con.emplace_back('P', 50*5, 50*10);
-//    vow.emplace_back('I', 50*2, 50*6);
+    con.emplace_back('P', 50, 50*10);
+    con.emplace_back('C', 50, 50*8);
+    con.emplace_back('L', 50*11, 50*6);
+    con.emplace_back('M', 50, 50*6);
+    con.emplace_back('S', 50*11, 50*5);
+    con.emplace_back('W', 50, 50*5);
+    con.emplace_back('T', 50*11, 50*4);
+
+    vow.emplace_back('I', 50*11, 50*2);
+    vow.emplace_back('E', 50, 50*2);
+    vow.emplace_back('O', 50*11, 50*1);
 }
 
 void Board::drawPieces() {
     p1.draw();
 
-    for (auto &i : getConsonant()) {
+    for (auto &i : con) {
         if (i.getHasLetter()) {
             i.draw();
         }
     }
 
-    for (auto &i : getVowel()) {
+    for (auto &i : vow) {
         if (i.getHasLetter()) {
             i.draw();
         }
