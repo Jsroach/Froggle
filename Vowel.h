@@ -12,21 +12,64 @@ using namespace std;
 class Vowel : public Piece {
 public:
     //Constructors
+    /**
+     * Requires: None
+     * Modifies: None
+     * Effects: Default Constructor
+     */
     Vowel();
+
+    /**
+     * Requires: char that is a vowel
+     * Modifies: Piece::character
+     * Effects: Creates a vowel with only a character and no coordinates
+     */
     explicit Vowel(char c);
-    Vowel(char c, int x, int y);
+
+    /**
+    * Requires: x value, y value
+    * Modifies: x,y
+    * Effects: Creates a vowel with full coordinates
+    */
     Vowel(int x, int y);
+
+    /**
+     * Requires: char that is a vowel, x value, y value
+     * Modifies: Piece::character, x,y
+     * Effects: Creates a vowel with a character and full coordinates
+     */
+    Vowel(char c, int x, int y);
+
+    /**
+     * Creates a vowel object by referencing another vowel
+     * @param v
+     */
     Vowel(const Vowel &v);
 
-    // setters
+    /**
+     * Requires: char that is a Vowel
+     * Modifies: None
+     * Effects: Sets the Vowel of the piece
+     */
     void setCharacter(char characterIn) override;
 
-    // moves piece by amount that the public field SPACE, checks position to make sure piece is able to be moved
+    /**
+     * Requires: None
+     * Modifies: Vowel Coordinates
+     * Effects: Overrides Piece::movePiece to move vowel piece
+     */
     void movePiece() override;
-    
-    // randomly generates a vowel (including Y) for when a moving piece is created on board
+
+    /**
+     * Requires: None
+     * Modifies: character
+     * Effects: For setting a random vowel character
+     */
     char generateVowel();
 
+    /**
+     * Creates a square in graphics using the object's X and Y coordinates
+     */
     void draw();
 
 protected:

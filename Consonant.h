@@ -23,7 +23,7 @@ public:
     /**
      * Requires: char that is a consonant
      * Modifies: Piece::character
-     * Effects: Creates a consonant with only a charater and no coordinates
+     * Effects: Creates a consonant with only a character and no coordinates
      */
     Consonant(char characterIn);
 
@@ -41,6 +41,11 @@ public:
      */
     Consonant(char characterIn, int xIn, int yIn);
 
+
+    /**
+     * Creates a consonant object by referencing another consonant
+     * @param c
+     */
     Consonant(const Consonant &c);
 
     /**
@@ -60,10 +65,13 @@ public:
     /**
      * Requires: None
      * Modifies: character
-     * Effects: For setting a random character
+     * Effects: For setting a random consonant character
      */
     char generateConsonant();
 
+    /**
+     * Creates a square in graphics using the object's X and Y coordinates
+     */
     void draw();
 
 };
