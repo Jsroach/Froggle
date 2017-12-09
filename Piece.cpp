@@ -45,6 +45,7 @@ char Piece::getCharacter() const {
     return character;
 }
 
+// Checks to make sure the piece has a letter before drawing it on the screen.
 void Piece::drawLetter() {
     if (getHasLetter()) {
         glColor3f(1, 1, 1);

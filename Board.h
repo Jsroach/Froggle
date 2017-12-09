@@ -131,19 +131,31 @@ public:
      */
     void setPlayer(Player& p);
 
-    //Set up for later
-    void DrawBoard();
-
     void wait(int seconds);
 
     void update();
     //Set up for later
     void checkCollision();
 
+    /*
+     * Requires: a string
+     * Modifies: goal word
+     * Effects: setts a new goal word to be printed on the screen
+     */
     void setGoalWord(string newWord);
 
+    /*
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: displays all the letters in goal word in red.
+     */
     void displayGoalWord();
 
+    /*
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: display letters in goal word in black instead of red.
+     */
     void displayGameWord();
 
     void generatePieces(string word);
@@ -183,11 +195,26 @@ public:
     //Set up for later
     void restart();
 
+    /*
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: calls move on each piece in vector and consonant vector
+     */
     void movePieces();
 
+    /*
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: writes all the consonants and vowels in respective vector to the screen.
+     */
     void drawPieces();
 
-    void movePlayer(int i, int i1);
+    /*
+     * Requires: a x and y value
+     * Modifies: changes the x and y value of the player
+     * Effects: moves the player on the screen
+     */
+    void movePlayer(int x, int y);
 };
 
 #endif //MCJJ_BOARD_H

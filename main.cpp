@@ -10,7 +10,6 @@
 #include <type_traits>
 
 #include "graphics.h"
-#include "Letter.h"
 
 using namespace std::chrono;
 
