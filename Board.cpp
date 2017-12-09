@@ -127,19 +127,6 @@ void Board::newGame() {
 
 }
 
-void Board:: wait(int seconds) {
-    clock_t endwait;
-    endwait = clock () + seconds * CLOCKS_PER_SEC ;
-    while (clock() < endwait) {}
-}
-
-void Board:: update(){
-    while (start){
-        //move cars in vector
-        wait(static_cast<int>(0.1));
-    }
-}
-
 
 // First checks if the letter is in the correct goal box.
 // If it is transfer the letter to the goal box and then clear the players letter.
@@ -270,6 +257,8 @@ void Board::loadGame() {
     char comma;
     int x;
     int y;
+    con.clear();
+    vow.clear();
 
     //Open save file
     ifstream file("gameobjects.txt");
@@ -316,7 +305,6 @@ void Board::loadGame() {
             gameWord.emplace_back(ch3);
             gameWord.emplace_back(ch4);
             gameWord.emplace_back(ch5);
-
         }
 
     }
