@@ -40,7 +40,11 @@ public:
     void setY(int yIn);
     void setHasLetter(bool hasLetter);
 
-    // draw letter
+    /*
+     * Requires: nothing
+     * Modifies: nothing
+     * Effects: if the piece has a letter, draw the letter on the screen.
+     */
     void drawLetter();
 
     //virtual method to move piece
