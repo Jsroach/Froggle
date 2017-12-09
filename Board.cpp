@@ -154,8 +154,6 @@ void Board::checkLetter() {
         }
     }
 
-    cout << correctCount << endl;
-
     if (correctCount == goalWord.size()) {
         cout << "pi spelled" << endl;
         for (char &i : gameWord) {
